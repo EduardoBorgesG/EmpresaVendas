@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridClientes = new System.Windows.Forms.DataGridView();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnEditarClientes = new System.Windows.Forms.Button();
             this.btnExcluirClientes = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // gridClientes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 336);
-            this.dataGridView1.TabIndex = 0;
+            this.gridClientes.AccessibleName = "gridClientes";
+            this.gridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridClientes.Location = new System.Drawing.Point(12, 12);
+            this.gridClientes.Name = "gridClientes";
+            this.gridClientes.Size = new System.Drawing.Size(776, 336);
+            this.gridClientes.TabIndex = 0;
             // 
             // btnNovoCliente
             // 
@@ -80,17 +81,18 @@
             this.Controls.Add(this.btnExcluirClientes);
             this.Controls.Add(this.btnEditarClientes);
             this.Controls.Add(this.btnNovoCliente);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridClientes);
             this.Name = "frmClientes";
             this.Text = "Clientes";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.frmClientes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridClientes;
         private System.Windows.Forms.Button btnNovoCliente;
         private System.Windows.Forms.Button btnEditarClientes;
         private System.Windows.Forms.Button btnExcluirClientes;

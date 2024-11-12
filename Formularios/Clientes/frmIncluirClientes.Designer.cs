@@ -147,6 +147,7 @@
             this.btnIncluirCliente.TabIndex = 11;
             this.btnIncluirCliente.Text = "INCLUIR";
             this.btnIncluirCliente.UseVisualStyleBackColor = true;
+            this.btnIncluirCliente.Click += new System.EventHandler(this.btnIncluirCliente_Click);
             // 
             // frmIncluirClientes
             // 

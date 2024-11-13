@@ -33,11 +33,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.1.0.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\Npgsql.4.0.0\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,36 +85,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Cliente.cs" />
-    <Compile Include="Conecctions\DbConnection.cs" />
-    <Compile Include="Formularios\Clientes\frmEditarClientes.cs">
+    <Compile Include="1 - Classes\Cliente.cs" />
+    <Compile Include="2 - Conecctions\DbConnection.cs" />
+    <Compile Include="5 - Formularios\Produtos\frmEditarProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Clientes\frmEditarClientes.Designer.cs">
-      <DependentUpon>frmEditarClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Clientes\frmIncluirClientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Clientes\frmIncluirClientes.Designer.cs">
-      <DependentUpon>frmIncluirClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Produtos\frmEditarProdutos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Produtos\frmEditarProdutos.Designer.cs">
+    <Compile Include="5 - Formularios\Produtos\frmEditarProdutos.Designer.cs">
       <DependentUpon>frmEditarProdutos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Produtos\frmIncluirProdutos.cs">
+    <Compile Include="5 - Formularios\Produtos\frmIncluirProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Produtos\frmIncluirProdutos.Designer.cs">
+    <Compile Include="5 - Formularios\Produtos\frmIncluirProdutos.Designer.cs">
       <DependentUpon>frmIncluirProdutos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Produtos\frmProdutos.cs">
+    <Compile Include="5 - Formularios\Produtos\frmProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Produtos\frmProdutos.Designer.cs">
+    <Compile Include="5 - Formularios\Produtos\frmProdutos.Designer.cs">
       <DependentUpon>frmProdutos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInicial.cs">
@@ -99,30 +111,28 @@
     <Compile Include="frmInicial.Designer.cs">
       <DependentUpon>frmInicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Clientes\frmClientes.cs">
+    <Compile Include="5 - Formularios\Clientes\frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Clientes\frmClientes.Designer.cs">
+    <Compile Include="5 - Formularios\Clientes\frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Formularios\Clientes\frmClientes.resx">
+    <Compile Include="3 - Repositorios\ClienteRepositorio.cs" />
+    <Compile Include="3 - Repositorios\IClienteRepositorio.cs" />
+    <Compile Include="4 - Servicos\ClienteServico.cs" />
+    <Compile Include="4 - Servicos\IClienteSerico.cs" />
+    <EmbeddedResource Include="5 - Formularios\Clientes\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Clientes\frmEditarClientes.resx">
-      <DependentUpon>frmEditarClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Clientes\frmIncluirClientes.resx">
-      <DependentUpon>frmIncluirClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Produtos\frmEditarProdutos.resx">
+    <EmbeddedResource Include="5 - Formularios\Produtos\frmEditarProdutos.resx">
       <DependentUpon>frmEditarProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Produtos\frmIncluirProdutos.resx">
+    <EmbeddedResource Include="5 - Formularios\Produtos\frmIncluirProdutos.resx">
       <DependentUpon>frmIncluirProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Produtos\frmProdutos.resx">
+    <EmbeddedResource Include="5 - Formularios\Produtos\frmProdutos.resx">
       <DependentUpon>frmProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicial.resx">

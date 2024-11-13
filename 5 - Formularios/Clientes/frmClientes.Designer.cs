@@ -48,6 +48,8 @@
             this.rbtNome = new System.Windows.Forms.RadioButton();
             this.rbtTelefone = new System.Windows.Forms.RadioButton();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnCancelarEdicao = new System.Windows.Forms.Button();
+            this.btnAlterarTelefone = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,9 +65,9 @@
             // 
             // btnIncluirCliente
             // 
-            this.btnIncluirCliente.Location = new System.Drawing.Point(34, 530);
+            this.btnIncluirCliente.Location = new System.Drawing.Point(12, 530);
             this.btnIncluirCliente.Name = "btnIncluirCliente";
-            this.btnIncluirCliente.Size = new System.Drawing.Size(153, 49);
+            this.btnIncluirCliente.Size = new System.Drawing.Size(118, 49);
             this.btnIncluirCliente.TabIndex = 1;
             this.btnIncluirCliente.Text = "INCLUIR";
             this.btnIncluirCliente.UseVisualStyleBackColor = true;
@@ -73,9 +75,9 @@
             // 
             // btnEditarCliente
             // 
-            this.btnEditarCliente.Location = new System.Drawing.Point(218, 530);
+            this.btnEditarCliente.Location = new System.Drawing.Point(257, 530);
             this.btnEditarCliente.Name = "btnEditarCliente";
-            this.btnEditarCliente.Size = new System.Drawing.Size(153, 49);
+            this.btnEditarCliente.Size = new System.Drawing.Size(118, 49);
             this.btnEditarCliente.TabIndex = 2;
             this.btnEditarCliente.Text = "EDITAR";
             this.btnEditarCliente.UseVisualStyleBackColor = true;
@@ -83,9 +85,9 @@
             // 
             // btnExcluirClientes
             // 
-            this.btnExcluirClientes.Location = new System.Drawing.Point(400, 530);
+            this.btnExcluirClientes.Location = new System.Drawing.Point(650, 530);
             this.btnExcluirClientes.Name = "btnExcluirClientes";
-            this.btnExcluirClientes.Size = new System.Drawing.Size(153, 49);
+            this.btnExcluirClientes.Size = new System.Drawing.Size(119, 49);
             this.btnExcluirClientes.TabIndex = 3;
             this.btnExcluirClientes.Text = "EXCLUIR";
             this.btnExcluirClientes.UseVisualStyleBackColor = true;
@@ -167,6 +169,7 @@
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(496, 20);
             this.txtNomeCliente.TabIndex = 13;
+            this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
             // lblNomeCliente
             // 
@@ -227,19 +230,41 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(35, 530);
+            this.btnSalvar.Location = new System.Drawing.Point(136, 530);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(153, 49);
+            this.btnSalvar.Size = new System.Drawing.Size(118, 49);
             this.btnSalvar.TabIndex = 27;
             this.btnSalvar.Text = "SALVAR";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // btnCancelarEdicao
+            // 
+            this.btnCancelarEdicao.Location = new System.Drawing.Point(381, 530);
+            this.btnCancelarEdicao.Name = "btnCancelarEdicao";
+            this.btnCancelarEdicao.Size = new System.Drawing.Size(118, 49);
+            this.btnCancelarEdicao.TabIndex = 28;
+            this.btnCancelarEdicao.Text = "CANCELAR";
+            this.btnCancelarEdicao.UseVisualStyleBackColor = true;
+            this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
+            // 
+            // btnAlterarTelefone
+            // 
+            this.btnAlterarTelefone.Location = new System.Drawing.Point(505, 530);
+            this.btnAlterarTelefone.Name = "btnAlterarTelefone";
+            this.btnAlterarTelefone.Size = new System.Drawing.Size(139, 49);
+            this.btnAlterarTelefone.TabIndex = 29;
+            this.btnAlterarTelefone.Text = "ALTERAR TELEFONE";
+            this.btnAlterarTelefone.UseVisualStyleBackColor = true;
+            this.btnAlterarTelefone.Click += new System.EventHandler(this.btnAlterarTelefone_Click);
             // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 591);
+            this.Controls.Add(this.btnAlterarTelefone);
+            this.Controls.Add(this.btnCancelarEdicao);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.rbtTelefone);
             this.Controls.Add(this.rbtNome);
@@ -290,5 +315,7 @@
         private System.Windows.Forms.RadioButton rbtNome;
         private System.Windows.Forms.RadioButton rbtTelefone;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnCancelarEdicao;
+        private System.Windows.Forms.Button btnAlterarTelefone;
     }
 }

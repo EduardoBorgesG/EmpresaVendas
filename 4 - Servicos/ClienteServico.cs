@@ -18,21 +18,18 @@ namespace EmpresaVendas.Servicos
         }
         public void NovoCliente(Cliente novoCliente)
         {
-            if (!_clienteRepositorio.VerificaCliente(novoCliente.Telefone))
+            if (_clienteRepositorio.VerificaCliente(novoCliente.Telefone) == true)
             {
                 _clienteRepositorio.CadastrarCliente(novoCliente);
                 return;
             }
-            MessageBox.Show("Este cliente já está cadastrado");           
+            MessageBox.Show("Este cliente já está cadastrado");
+
         }
         public void AtualizarCliente(Cliente alteradoCliente)
-        {
-            if (!_clienteRepositorio.VerificaCliente(alteradoCliente.Telefone))
-            {
+        {            
                 _clienteRepositorio.AtualizarCliente(alteradoCliente);
-                return;
-            }
-            MessageBox.Show("Este cliente já está cadastrado");
+                return;           
         }
         public void ExcluirCliente(string id)
         {
@@ -42,17 +39,17 @@ namespace EmpresaVendas.Servicos
         {
             return _clienteRepositorio.Obter();
         }
-        public void AlterarTelefone(string antigoTelefone, string novoTelefone)
+        public void AlterarTelefone(Cliente cliente)
         {
-            if (_clienteRepositorio.VerificaCliente(antigoTelefone))
+            if (_clienteRepositorio.VerificaCliente(cliente.Telefone))
             {
-                var Cliente = _clienteRepositorio.ObterUm(antigoTelefone);
+                var Cliente = _clienteRepositorio.ObterUm(cliente.Telefone);
                 if (Cliente == null) throw new Exception();
 
-                if (_clienteRepositorio.VerificaCliente(novoTelefone)) throw new Exception();
+                if (_clienteRepositorio.VerificaCliente(cliente.Telefone)) throw new Exception();
 
-                Cliente.AlterarTelefone(novoTelefone);
-                _clienteRepositorio.AtualizarCliente(Cliente);
+                Cliente.AlterarTelefone(cliente.Telefone);
+                _clienteRepositorio.AtualizarTelefone(Cliente);
             }
         }
     }

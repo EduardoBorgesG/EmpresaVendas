@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Dapper;
 using Npgsql;
 using NPOI.SS.Formula.Functions;
@@ -42,9 +43,20 @@ namespace EmpresaVendas.Conecctions
             } 
             catch (Exception ex) 
             {
-                return -1;
+                throw ex;
             }
             
+        }
+        public object VerificarnoBanco(string sql, object param = null)
+        {
+            try 
+            { 
+                return Connection.ExecuteScalar(sql, param);
+            } 
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public IEnumerable<T> Consulta(string sql, object param = null)
         {

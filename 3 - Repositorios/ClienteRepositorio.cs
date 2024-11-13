@@ -19,13 +19,14 @@ namespace EmpresaVendas.Repositorios
         public bool VerificaCliente(string telefone)
         {
             //METODO QUE VERIFICA SE JÁ POSSUÍ O TELEFONE CADASTRADO
-            string query = @"SELECT id FROM public.c_clientes_tb WHERE telefone(telefone) VALUES (@telefone)";
-            var result = conn.Executar(sql: query, param: telefone);
-            if (result == 1)
+            string query = $"SELECT id FROM public.c_clientes_tb WHERE telefone = '{telefone}'";
+            var result = conn.VerificarnoBanco(sql: query, param: telefone);
+            if (result != null)
             {
                 MessageBox.Show("Esse telefone já está cadastrado no banco de dados");
+                return false;
             }
-            return result == 1;
+            return result == null;
         }
         //Adiciona um cliente no banco de dados
         public bool CadastrarCliente(Cliente cliente)
@@ -37,9 +38,9 @@ namespace EmpresaVendas.Repositorios
             var result = conn.Executar(sql: query, param: cliente);
             return result == 1;
         }
+        //Verifica so
         public Cliente ObterUm(string telefone)
         {
-
             string query = @"SELECT *
 	                        FROM public.c_clientes_tb WHERE public.c_clientes_tb.telefone = @telefone LIMIT 1;";
             var cliente = conn.Consulta(sql: query, param: telefone);
@@ -49,17 +50,23 @@ namespace EmpresaVendas.Repositorios
         public List<Cliente> Obter()
         {
 
-            string query = @"SELECT *
-	                        FROM public.c_clientes_tb ORDER BY id;";
+            string query = @"SELECT * FROM public.c_clientes_tb;";
             var clientes = conn.Consulta(sql: query);
 
             return clientes.ToList();
+        }
+        //Edita somente o telefone
+        public bool AtualizarTelefone(Cliente cliente)
+        {
+            string query = $"UPDATE public.c_cliente_tb SET telefone = '{cliente.Telefone} WHERE {cliente.Id}'";
+            var result = conn.Executar(sql: query, param: cliente);
+            return result == 1;
         }
         //Edição de Cliente
         public bool AtualizarCliente(Cliente cliente)
         {
 
-            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.Nome}', email = '{cliente.Email}', telefone = '{cliente.Telefone}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}' WHERE id = {cliente.Id};";
+            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.Nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}' WHERE id = {cliente.Id};";
             var result = conn.Executar(sql: query, param: cliente);
             return result == 1;
         }

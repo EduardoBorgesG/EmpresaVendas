@@ -11,5 +11,6 @@ namespace EmpresaVendas.Repositorios
         List<Cliente> Obter();
         bool VerificaCliente(string telefone);
         Cliente ObterUm(string telefone);
+        bool AtualizarTelefone(Cliente cliente);
     }
 }

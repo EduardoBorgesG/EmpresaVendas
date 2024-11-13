@@ -87,6 +87,12 @@
   <ItemGroup>
     <Compile Include="1 - Classes\Cliente.cs" />
     <Compile Include="2 - Conecctions\DbConnection.cs" />
+    <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.Designer.cs">
+      <DependentUpon>frmAlterarTelefone.cs</DependentUpon>
+    </Compile>
     <Compile Include="5 - Formularios\Produtos\frmEditarProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     <Compile Include="3 - Repositorios\IClienteRepositorio.cs" />
     <Compile Include="4 - Servicos\ClienteServico.cs" />
     <Compile Include="4 - Servicos\IClienteSerico.cs" />
+    <EmbeddedResource Include="5 - Formularios\Clientes\frmAlterarTelefone.resx">
+      <DependentUpon>frmAlterarTelefone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="5 - Formularios\Clientes\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>

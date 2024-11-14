@@ -16,6 +16,10 @@ namespace EmpresaVendas.Servicos
         {
             _clienteRepositorio = clienteRepositorio;
         }
+        /// <summary>
+        /// Cadastra um novo cliente
+        /// </summary>
+        /// <param name="novoCliente"></param>
         public void NovoCliente(Cliente novoCliente)
         {
             if (_clienteRepositorio.VerificaCliente(novoCliente.Telefone) == true)
@@ -26,19 +30,36 @@ namespace EmpresaVendas.Servicos
             MessageBox.Show("Este cliente já está cadastrado");
 
         }
+        /// <summary>
+        /// Atualiza Cliente
+        /// </summary>
+        /// <param name="alteradoCliente"></param>
         public void AtualizarCliente(Cliente alteradoCliente)
         {            
                 _clienteRepositorio.AtualizarCliente(alteradoCliente);
                 return;           
         }
+        /// <summary>
+        /// Excluir cliente do banco de dados
+        /// </summary>
+        /// <param name="id"></param>
         public void ExcluirCliente(string id)
         {
             _clienteRepositorio.ExcluirCliente(id);
         }
-        public List<Cliente> ObterTodos()
+        /// <summary>
+        /// Metodo para obter todos os clientes do banco
+        /// </summary>
+        /// <returns></returns>
+        public List<Cliente> ObterCliente()
         {
-            return _clienteRepositorio.Obter();
+            return _clienteRepositorio.ObterCliente();
         }
+        /// <summary>
+        /// Metodo para alterar o Telefone
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <exception cref="Exception"></exception>
         public void AlterarTelefone(Cliente cliente)
         {
             if (_clienteRepositorio.VerificaCliente(cliente.Telefone))

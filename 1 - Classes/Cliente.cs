@@ -56,8 +56,10 @@ namespace EmpresaVendas.Classes
         }
         public Cliente(int id, string nome, string email, string telefone, string cep, string endereco)
         {
+            //Construtor utilizado para salvar edição
             Nome = !string.IsNullOrEmpty(nome) ? nome : throw new Exception("Nome do cliente não pode estar vazio");
             Nome = nome;
+            Email = !string.IsNullOrEmpty(email) ? email : throw new Exception("O Email não pode estar vazio");
             Email = email.ToLower();
             //Verifica se o telefone está totalmente preenchido e não é nulo
             Telefone = telefone.Length == 15 && !string.IsNullOrEmpty(telefone) ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
@@ -65,6 +67,7 @@ namespace EmpresaVendas.Classes
             //Verifica se o CEP não é nulo e se está totalmente preenchido
             Cep = cep.Length == 9 && !string.IsNullOrEmpty(cep) ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
             Cep = cep;
+            Endereco = !string.IsNullOrEmpty(endereco) ? endereco : throw new Exception("O Endereço não pode estar vazio");
             Endereco = endereco;
             Id = id;
         }

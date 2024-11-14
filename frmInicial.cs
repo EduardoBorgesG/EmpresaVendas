@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EmpresaVendas.Conecctions;
 using EmpresaVendas.Servicos;
+using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios.Venda;
 
 
 namespace EmpresaVendas
@@ -18,17 +20,19 @@ namespace EmpresaVendas
     public partial class frmInicial : Form
     {
         private readonly IClienteSerico _clienteSerico;
+        private readonly IProdutoServico _produtoServico;
 
-        public frmInicial(IClienteSerico clienteSerico)
+        public frmInicial(IClienteSerico clienteSerico, IProdutoServico produtoServico)
         {
             InitializeComponent();
             _clienteSerico = clienteSerico;
+            _produtoServico = produtoServico;
             
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmProdutos frm = new frmProdutos();
+            frmProdutos frm = new frmProdutos(_produtoServico);
             frm.Show();
         }
 
@@ -50,6 +54,12 @@ namespace EmpresaVendas
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmClientes frm = new frmClientes(_clienteSerico);
+            frm.Show();
+        }
+
+        private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVenda frm = new frmVenda();
             frm.Show();
         }
     }

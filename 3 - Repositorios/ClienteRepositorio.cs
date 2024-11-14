@@ -47,7 +47,7 @@ namespace EmpresaVendas.Repositorios
             return cliente.FirstOrDefault();
         }
         //Coleta todos os dados do meu banco e armazena em uma lista
-        public List<Cliente> Obter()
+        public List<Cliente> ObterCliente()
         {
 
             string query = @"SELECT * FROM public.c_clientes_tb;";
@@ -74,7 +74,6 @@ namespace EmpresaVendas.Repositorios
         //Exclusão de cliente
         public bool ExcluirCliente(string id)
         {
- 
             string query = $"DELETE FROM public.c_clientes_tb WHERE id = {id};";
             var result = conn.Executar(sql: query, param: id);
             return result == 1;

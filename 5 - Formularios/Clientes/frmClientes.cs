@@ -21,13 +21,14 @@ namespace EmpresaVendas.Formularios
     {
         private readonly IClienteSerico _clienteSerico;
 
-        private List<Cliente> Clientes { get; set; } = new List<Cliente>();
+        //private List<Cliente> Clientes { get; set; } = new List<Cliente>();
         public frmClientes(IClienteSerico clienteSerico)
         {
             InitializeComponent();
             _clienteSerico = clienteSerico;
             ObterClientes();
             FormatarDg();
+            btnCancelarEdicao.Enabled = false;
             btnEditarCliente.Enabled = false;
             btnSalvar.Enabled = false;
             btnCancelarEdicao.Enabled = false;
@@ -37,7 +38,7 @@ namespace EmpresaVendas.Formularios
         /// </summary>
         private void ObterClientes()
         {
-            var Clientes = _clienteSerico.ObterTodos();
+            var Clientes = _clienteSerico.ObterCliente();
             gridClientes.DataSource = Clientes;
         }
         private void LimparCampos()
@@ -51,6 +52,7 @@ namespace EmpresaVendas.Formularios
         }
         public void ObterId()
         {
+            //NÃO ESTÁ SENDO USADO
             var id = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
             var cliente = new Cliente(id);
         }
@@ -89,19 +91,28 @@ namespace EmpresaVendas.Formularios
 
         }
 
+
         private void txtNomeCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             PermiteLetras(sender, e);
         }
-
+        /// <summary>
+        /// Metodo para permitir somente letras
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PermiteLetras(object sender, KeyPressEventArgs e)
-        {
-            //Permite somente a inclusão de letras
+        {           
             e.Handled = (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && !char.IsControl(e.KeyChar)) ? true : e.Handled;
         }
-
+        /// <summary>
+        /// Código do botão de incluir um novo registro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
+            //IF para verificar se os campos estão vazios
             if (txtNomeCliente.Text == "" || txtEmailCliente.Text == "" || mtxtTelefoneCliente.Text == "(  )      -" || mtxtCepCliente.Text == "     -" || txtEnderecoCliente.Text == "")
             {
                 MessageBox.Show("É obrigatório preencher todos os campos", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -110,7 +121,8 @@ namespace EmpresaVendas.Formularios
             else
             {
                 try
-                {                   
+                {           
+                    //METODO DE INCLUSÃO NO BANCO DE DADOS
                     var nome = txtNomeCliente.Text;
                     var email = txtEmailCliente.Text;
                     var telefone = mtxtTelefoneCliente.Text;
@@ -118,7 +130,7 @@ namespace EmpresaVendas.Formularios
                     var endereco = txtEnderecoCliente.Text;
                     var Cliente = new Cliente(nome, email, telefone, cep, endereco);
                     _clienteSerico.NovoCliente(Cliente);
-                    MessageBox.Show("Registro salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Registro incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 }
                 catch (Exception ex)
@@ -129,17 +141,21 @@ namespace EmpresaVendas.Formularios
                 ObterClientes();
             }
         }
-
+        /// <summary>
+        /// Código do botão para editar um registro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEditarClientes_Click(object sender, EventArgs e)
         {
             ObterDados();
+            btnCancelarEdicao.Enabled = true;
             btnSalvar.Enabled = true;
             btnIncluirCliente.Enabled = false;
             btnCancelarEdicao.Enabled = true;
             mtxtTelefoneCliente.Enabled = false;
             btnEditarCliente.Enabled = false;
         }
-
         private void gridClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnEditarCliente.Enabled = true;
@@ -187,6 +203,8 @@ namespace EmpresaVendas.Formularios
                 ObterClientes();
                 btnEditarCliente.Enabled = true;
                 mtxtTelefoneCliente.Enabled = true;
+                btnSalvar.Enabled = false;
+                btnCancelarEdicao.Enabled = false;
             } 
             catch (Exception ex)
             { 
@@ -197,7 +215,10 @@ namespace EmpresaVendas.Formularios
 
         private void btnCancelarEdicao_Click(object sender, EventArgs e)
         {
-
+            LimparCampos();
+            btnEditarCliente.Enabled = true;
+            btnSalvar.Enabled= false;
+            btnCancelarEdicao.Enabled= false;
         }
 
         private void btnAlterarTelefone_Click(object sender, EventArgs e)

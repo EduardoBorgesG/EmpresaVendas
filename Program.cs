@@ -1,4 +1,6 @@
-﻿using EmpresaVendas.Conecctions;
+﻿using EmpresaVendas._3___Repositorios;
+using EmpresaVendas._4___Servicos;
+using EmpresaVendas.Conecctions;
 using EmpresaVendas.Formularios;
 using EmpresaVendas.Repositorios;
 using EmpresaVendas.Servicos;
@@ -33,6 +35,8 @@ namespace EmpresaVendas
             // Registrando a interface e implementação do serviço
             services.AddSingleton<IClienteSerico, ClienteSerico>();
             services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
+            services.AddSingleton<IProdutoServico, ProdutoServico>();
+            services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
 
             services.AddTransient(p => new DbConnection<T>());
             // Registrando o formulário inicial

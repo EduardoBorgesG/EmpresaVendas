@@ -86,30 +86,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="1 - Classes\Cliente.cs" />
+    <Compile Include="1 - Classes\Produto.cs" />
     <Compile Include="2 - Conecctions\DbConnection.cs" />
+    <Compile Include="3 - Repositorios\IProdutoRepositorio.cs" />
+    <Compile Include="3 - Repositorios\ProdutoRepositorio.cs" />
+    <Compile Include="4 - Servicos\IProdutoServico.cs" />
+    <Compile Include="4 - Servicos\ProdutoServico.cs" />
     <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.Designer.cs">
       <DependentUpon>frmAlterarTelefone.cs</DependentUpon>
     </Compile>
-    <Compile Include="5 - Formularios\Produtos\frmEditarProdutos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="5 - Formularios\Produtos\frmEditarProdutos.Designer.cs">
-      <DependentUpon>frmEditarProdutos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="5 - Formularios\Produtos\frmIncluirProdutos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="5 - Formularios\Produtos\frmIncluirProdutos.Designer.cs">
-      <DependentUpon>frmIncluirProdutos.cs</DependentUpon>
-    </Compile>
     <Compile Include="5 - Formularios\Produtos\frmProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="5 - Formularios\Produtos\frmProdutos.Designer.cs">
       <DependentUpon>frmProdutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5 - Formularios\Venda\frmVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5 - Formularios\Venda\frmVenda.Designer.cs">
+      <DependentUpon>frmVenda.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInicial.cs">
       <SubType>Form</SubType>
@@ -135,14 +134,11 @@
     <EmbeddedResource Include="5 - Formularios\Clientes\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="5 - Formularios\Produtos\frmEditarProdutos.resx">
-      <DependentUpon>frmEditarProdutos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="5 - Formularios\Produtos\frmIncluirProdutos.resx">
-      <DependentUpon>frmIncluirProdutos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="5 - Formularios\Produtos\frmProdutos.resx">
       <DependentUpon>frmProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5 - Formularios\Venda\frmVenda.resx">
+      <DependentUpon>frmVenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicial.resx">
       <DependentUpon>frmInicial.cs</DependentUpon>

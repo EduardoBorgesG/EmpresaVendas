@@ -19,7 +19,7 @@ namespace EmpresaVendas.Servicos
         /// 
         /// </summary>
         /// <returns></returns>
-        List<Cliente> ObterTodos();
+        List<Cliente> ObterCliente();
         /// <summary>
         /// 
         /// </summary>

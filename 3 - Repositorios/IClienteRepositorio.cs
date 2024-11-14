@@ -8,7 +8,7 @@ namespace EmpresaVendas.Repositorios
         bool CadastrarCliente(Cliente cliente);
         bool AtualizarCliente(Cliente cliente);
         bool ExcluirCliente(string id);
-        List<Cliente> Obter();
+        List<Cliente> ObterCliente();
         bool VerificaCliente(string telefone);
         Cliente ObterUm(string telefone);
         bool AtualizarTelefone(Cliente cliente);

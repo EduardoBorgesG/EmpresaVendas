@@ -21,7 +21,7 @@ namespace EmpresaVendas.Servicos
         //Incluir produto
         public void NovoProduto(Produto novoProduto)
         {
-            if (_produtoRepositorio.VerificaProduto(novoProduto.Nome) == true)
+            if (_produtoRepositorio.VerificaProduto(novoProduto.nome) == true)
             {
                 _produtoRepositorio.CadastrarProduto(novoProduto);
                 return;

@@ -32,7 +32,7 @@ namespace EmpresaVendas.Repositorios
         public bool CadastrarCliente(Cliente cliente)
         {
             string query = @"INSERT INTO public.c_clientes_tb(
-	                        nome, email, telefone, cep, endereco)
+	                        nome_cliente, email, telefone, cep, endereco)
 	                        VALUES (@nome, @email, @telefone, @cep, @endereco);";
 
             var result = conn.Executar(sql: query, param: cliente);
@@ -65,7 +65,7 @@ namespace EmpresaVendas.Repositorios
         public bool AtualizarCliente(Cliente cliente)
         {
 
-            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.Nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}' WHERE id = {cliente.Id};";
+            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}' WHERE id = {cliente.Id};";
             var result = conn.Executar(sql: query, param: cliente);
             return result == 1;
         }

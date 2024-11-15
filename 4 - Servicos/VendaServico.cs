@@ -36,10 +36,21 @@ namespace EmpresaVendas._4___Servicos
         }
         public void NovaVenda(Venda venda)
         {
-
                 _vendaRepositorio.IncluirVenda(venda);
                 return;
-
+        }
+        public object AdquirirEstoque(int id)
+        {
+            try
+            {
+                object resultado = _vendaRepositorio.AdquirirEstoque(id);
+                return resultado;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -14,6 +14,18 @@ namespace EmpresaVendas._1___Classes
         public int nome_cliente_id { get; set; }
         public int nome_produto_id { get; set; }
         public string nome { get; set; }
+
+
+        public int estoque { get; internal set; }
+
+        public Venda(string nome, int quantidade_venda,  int estoque)
+        {
+            this.nome = nome;
+            this.estoque = estoque;
+            this.quantidade_venda = quantidade_venda;
+            
+        }
+
         public Venda(int quantidade, decimal valor_pago)
         {
 
@@ -37,5 +49,6 @@ namespace EmpresaVendas._1___Classes
             this.valor_pago = valor_pago;
             
         }
+
     }
 }

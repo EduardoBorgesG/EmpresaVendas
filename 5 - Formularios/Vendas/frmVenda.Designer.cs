@@ -39,6 +39,11 @@
             this.mtxtValorTotal = new System.Windows.Forms.MaskedTextBox();
             this.btnFinalizarVenda = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.gridVisualizacaoProdutos = new System.Windows.Forms.DataGridView();
+            this.btnAdicionarProduto = new System.Windows.Forms.Button();
+            this.mtxtValorASerPago = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.gridVisualizacaoProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCliente
@@ -94,11 +99,12 @@
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(58, 20);
             this.txtQuantidade.TabIndex = 6;
+            this.txtQuantidade.Leave += new System.EventHandler(this.txtQuantidade_Leave);
             // 
             // lblValorTotal
             // 
             this.lblValorTotal.AutoSize = true;
-            this.lblValorTotal.Location = new System.Drawing.Point(606, 56);
+            this.lblValorTotal.Location = new System.Drawing.Point(606, 114);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(61, 13);
             this.lblValorTotal.TabIndex = 8;
@@ -117,16 +123,16 @@
             // mtxtValorTotal
             // 
             this.mtxtValorTotal.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.mtxtValorTotal.Location = new System.Drawing.Point(708, 53);
+            this.mtxtValorTotal.Location = new System.Drawing.Point(708, 111);
             this.mtxtValorTotal.Mask = "$ 00,00";
             this.mtxtValorTotal.Name = "mtxtValorTotal";
-            this.mtxtValorTotal.Size = new System.Drawing.Size(100, 20);
+            this.mtxtValorTotal.Size = new System.Drawing.Size(69, 20);
             this.mtxtValorTotal.TabIndex = 18;
             this.mtxtValorTotal.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             // 
             // btnFinalizarVenda
             // 
-            this.btnFinalizarVenda.Location = new System.Drawing.Point(15, 136);
+            this.btnFinalizarVenda.Location = new System.Drawing.Point(12, 373);
             this.btnFinalizarVenda.Name = "btnFinalizarVenda";
             this.btnFinalizarVenda.Size = new System.Drawing.Size(131, 52);
             this.btnFinalizarVenda.TabIndex = 20;
@@ -136,18 +142,60 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(678, 142);
+            this.btnCancelar.Location = new System.Drawing.Point(675, 379);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 52);
             this.btnCancelar.TabIndex = 21;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // gridVisualizacaoProdutos
+            // 
+            this.gridVisualizacaoProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridVisualizacaoProdutos.Location = new System.Drawing.Point(15, 114);
+            this.gridVisualizacaoProdutos.Name = "gridVisualizacaoProdutos";
+            this.gridVisualizacaoProdutos.Size = new System.Drawing.Size(518, 204);
+            this.gridVisualizacaoProdutos.TabIndex = 22;
+            // 
+            // btnAdicionarProduto
+            // 
+            this.btnAdicionarProduto.Location = new System.Drawing.Point(482, 55);
+            this.btnAdicionarProduto.Name = "btnAdicionarProduto";
+            this.btnAdicionarProduto.Size = new System.Drawing.Size(51, 23);
+            this.btnAdicionarProduto.TabIndex = 23;
+            this.btnAdicionarProduto.Text = "+";
+            this.btnAdicionarProduto.UseVisualStyleBackColor = true;
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
+            // 
+            // mtxtValorASerPago
+            // 
+            this.mtxtValorASerPago.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.mtxtValorASerPago.Enabled = false;
+            this.mtxtValorASerPago.Location = new System.Drawing.Point(708, 57);
+            this.mtxtValorASerPago.Mask = "$ 00,00";
+            this.mtxtValorASerPago.Name = "mtxtValorASerPago";
+            this.mtxtValorASerPago.Size = new System.Drawing.Size(69, 20);
+            this.mtxtValorASerPago.TabIndex = 25;
+            this.mtxtValorASerPago.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(606, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Valor a ser pago: ";
+            // 
             // frmVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 246);
+            this.ClientSize = new System.Drawing.Size(821, 448);
+            this.Controls.Add(this.mtxtValorASerPago);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnAdicionarProduto);
+            this.Controls.Add(this.gridVisualizacaoProdutos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnFinalizarVenda);
             this.Controls.Add(this.mtxtValorTotal);
@@ -161,6 +209,7 @@
             this.Controls.Add(this.lblCliente);
             this.Name = "frmVenda";
             this.Text = "Cadastrar uma Venda";
+            ((System.ComponentModel.ISupportInitialize)(this.gridVisualizacaoProdutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +228,9 @@
         private System.Windows.Forms.MaskedTextBox mtxtValorTotal;
         private System.Windows.Forms.Button btnFinalizarVenda;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridView gridVisualizacaoProdutos;
+        private System.Windows.Forms.Button btnAdicionarProduto;
+        private System.Windows.Forms.MaskedTextBox mtxtValorASerPago;
+        private System.Windows.Forms.Label label1;
     }
 }

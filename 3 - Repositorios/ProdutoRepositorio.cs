@@ -22,7 +22,7 @@ namespace EmpresaVendas._3___Repositorios
         public bool CadastrarProduto(Produto produto)
         {
             string query = @"INSERT INTO public.p_produtos_tb(
-	                         nome, descricao, preco_produto, estoque)
+	                         nome_produto, descricao, preco_produto, estoque)
 	                         VALUES (@nome, @descricao, @preco_produto, @estoque);";
             var result = conn.Executar(sql: query, param: produto);
             return result == 1;
@@ -30,7 +30,7 @@ namespace EmpresaVendas._3___Repositorios
         //Editar Produto
         public bool EditarProduto(Produto produto)
         {
-            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.Nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}', estoque={produto.Estoque} WHERE id = {produto.Id};";
+            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}', estoque={produto.Estoque} WHERE id = {produto.Id};";
             var result = conn.Executar(sql: query, param: produto) ; 
             return result == 1;
         }

@@ -13,5 +13,8 @@ namespace EmpresaVendas._3___Repositorios
         List<Venda> BuscarClientes();
         List<Venda> BuscaProduto();
         bool IncluirVenda(Venda venda);
+        object AdquirirEstoque(int id);
+
+
     }
 }

@@ -14,5 +14,7 @@ namespace EmpresaVendas._4___Servicos
         List<Venda> ObterProdutos();
         void NovaVenda(Venda venda);
 
+        object AdquirirEstoque(int id);
+
     }
 }

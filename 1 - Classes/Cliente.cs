@@ -16,7 +16,7 @@ namespace EmpresaVendas.Classes
     public class Cliente
     {
         public int  Id { get;  set; }  
-        public string Nome { get;  set; }
+        public string nome { get;  set; }
         public string Email { get;  set; }
         public string Telefone { get;  set; }
         public string Cep { get;  set; }
@@ -32,19 +32,19 @@ namespace EmpresaVendas.Classes
             Telefone = telefone;
             Id = id;
         }
-        public Cliente(int id, string nome, string email, string cep, string endereco) 
+        public Cliente(int id, string nome_cliente, string email, string cep, string endereco) 
         { 
             Id = id;
-            Nome = !string.IsNullOrEmpty(nome) ? nome : throw new Exception("Nome do cliente não pode estar vazio");
-            Nome = nome;
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = nome_cliente;
             Email = email;
             Telefone = cep;
             Endereco = endereco;
         }
-        public Cliente(string nome, string email, string telefone, string cep, string endereco)
+        public Cliente(string nome_cliente, string email, string telefone, string cep, string endereco)
         {
-            Nome = !string.IsNullOrEmpty(nome) ? nome : throw new Exception("Nome do cliente não pode estar vazio");
-            Nome = nome;
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = nome_cliente;
             Email = email.ToLower();
             //Verifica se o telefone está totalmente preenchido e não é nulo
             Telefone = telefone.Length == 15 && !string.IsNullOrEmpty(telefone) ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
@@ -54,11 +54,11 @@ namespace EmpresaVendas.Classes
             Cep = cep;
             Endereco = endereco;
         }
-        public Cliente(int id, string nome, string email, string telefone, string cep, string endereco)
+        public Cliente(int id, string nome_cliente, string email, string telefone, string cep, string endereco)
         {
             //Construtor utilizado para salvar edição
-            Nome = !string.IsNullOrEmpty(nome) ? nome : throw new Exception("Nome do cliente não pode estar vazio");
-            Nome = nome;
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = nome_cliente;
             Email = !string.IsNullOrEmpty(email) ? email : throw new Exception("O Email não pode estar vazio");
             Email = email.ToLower();
             //Verifica se o telefone está totalmente preenchido e não é nulo

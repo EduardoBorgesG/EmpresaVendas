@@ -87,11 +87,16 @@
   <ItemGroup>
     <Compile Include="1 - Classes\Cliente.cs" />
     <Compile Include="1 - Classes\Produto.cs" />
+    <Compile Include="1 - Classes\Venda.cs" />
     <Compile Include="2 - Conecctions\DbConnection.cs" />
     <Compile Include="3 - Repositorios\IProdutoRepositorio.cs" />
+    <Compile Include="3 - Repositorios\IVendaRepositorio.cs" />
     <Compile Include="3 - Repositorios\ProdutoRepositorio.cs" />
+    <Compile Include="3 - Repositorios\VendaRepositorio.cs" />
     <Compile Include="4 - Servicos\IProdutoServico.cs" />
+    <Compile Include="4 - Servicos\IVendaServico.cs" />
     <Compile Include="4 - Servicos\ProdutoServico.cs" />
+    <Compile Include="4 - Servicos\VendaServico.cs" />
     <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,10 +109,10 @@
     <Compile Include="5 - Formularios\Produtos\frmProdutos.Designer.cs">
       <DependentUpon>frmProdutos.cs</DependentUpon>
     </Compile>
-    <Compile Include="5 - Formularios\Venda\frmVenda.cs">
+    <Compile Include="5 - Formularios\Vendas\frmVenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="5 - Formularios\Venda\frmVenda.Designer.cs">
+    <Compile Include="5 - Formularios\Vendas\frmVenda.Designer.cs">
       <DependentUpon>frmVenda.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInicial.cs">
@@ -137,7 +142,7 @@
     <EmbeddedResource Include="5 - Formularios\Produtos\frmProdutos.resx">
       <DependentUpon>frmProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="5 - Formularios\Venda\frmVenda.resx">
+    <EmbeddedResource Include="5 - Formularios\Vendas\frmVenda.resx">
       <DependentUpon>frmVenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicial.resx">

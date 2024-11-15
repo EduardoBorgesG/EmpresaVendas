@@ -11,23 +11,23 @@ namespace EmpresaVendas._1___Classes
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public string Preco { get; set; }
+        public decimal Preco_produto { get; set; }
         public int Estoque { get; set; }
-        public Produto(string nome, string descricao, string preco, int estoque)
+        public Produto(string nome, string descricao, int estoque, decimal preco_produto)
         {
             Nome = nome;
-            Descricao = descricao;
-            Preco = preco;
+            Descricao = descricao;         
             Estoque = estoque;
+            Preco_produto = preco_produto;
         }
 
-        public Produto(int id, string nome, string descricao, string preco, int estoque)
+        public Produto(int id, string nome, string descricao, int estoque, decimal preco_produto)
         {
             Id = id;
             Nome = nome;
             Descricao = descricao;
-            Preco = preco;
             Estoque = estoque;
+            Preco_produto = preco_produto;            
         }
 
     }

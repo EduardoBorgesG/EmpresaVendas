@@ -41,8 +41,7 @@ namespace EmpresaVendas.Repositorios
         //Verifica so
         public Cliente ObterUm(string telefone)
         {
-            string query = @"SELECT *
-	                        FROM public.c_clientes_tb WHERE public.c_clientes_tb.telefone = @telefone LIMIT 1;";
+            string query = @"SELECT * FROM public.c_clientes_tb WHERE public.c_clientes_tb.telefone = @telefone LIMIT 1;";
             var cliente = conn.Consulta(sql: query, param: telefone);
             return cliente.FirstOrDefault();
         }

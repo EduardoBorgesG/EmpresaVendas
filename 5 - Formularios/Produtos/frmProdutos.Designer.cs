@@ -147,8 +147,9 @@
             // 
             // mtxtPrecoProduto
             // 
+            this.mtxtPrecoProduto.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtxtPrecoProduto.Location = new System.Drawing.Point(493, 51);
-            this.mtxtPrecoProduto.Mask = "$ 99,99";
+            this.mtxtPrecoProduto.Mask = "$";
             this.mtxtPrecoProduto.Name = "mtxtPrecoProduto";
             this.mtxtPrecoProduto.Size = new System.Drawing.Size(69, 20);
             this.mtxtPrecoProduto.TabIndex = 12;

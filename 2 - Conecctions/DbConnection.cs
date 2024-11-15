@@ -60,10 +60,11 @@ namespace EmpresaVendas.Conecctions
         }
         public IEnumerable<T> Consulta(string sql, object param = null)
         {
-            try 
-            { 
-                return Connection.Query<T>(sql, param); 
-            } 
+            try
+            {
+                return param == null ? Connection.Query<T>(sql) : Connection.Query<T>(sql, param);
+
+            }
             catch (Exception ex) 
             {
                 return null;

@@ -41,7 +41,7 @@ namespace EmpresaVendas.Classes
             Telefone = cep;
             Endereco = endereco;
         }
-        public Cliente( string nome, string email, string telefone, string cep, string endereco)
+        public Cliente(string nome, string email, string telefone, string cep, string endereco)
         {
             Nome = !string.IsNullOrEmpty(nome) ? nome : throw new Exception("Nome do cliente não pode estar vazio");
             Nome = nome;

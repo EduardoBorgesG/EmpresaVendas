@@ -22,15 +22,15 @@ namespace EmpresaVendas._3___Repositorios
         public bool CadastrarProduto(Produto produto)
         {
             string query = @"INSERT INTO public.p_produtos_tb(
-	                         nome, descricao, preco, estoque)
-	                         VALUES (@nome, @descricao, @preco, @estoque);";
+	                         nome, descricao, preco_produto, estoque)
+	                         VALUES (@nome, @descricao, @preco_produto, @estoque);";
             var result = conn.Executar(sql: query, param: produto);
             return result == 1;
         }
         //Editar Produto
         public bool EditarProduto(Produto produto)
         {
-            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.Nome}', descricao= '{produto.Descricao}', preco= '{produto.Preco}', estoque={produto.Estoque} WHERE id = {produto.Id};";
+            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.Nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}', estoque={produto.Estoque} WHERE id = {produto.Id};";
             var result = conn.Executar(sql: query, param: produto) ; 
             return result == 1;
         }
@@ -61,14 +61,12 @@ namespace EmpresaVendas._3___Repositorios
                 string query = @"SELECT * FROM public.p_produtos_tb;";
                 var produtos = conn.Consulta(sql: query);
                 return produtos.ToList();
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
-
-
         }
     }
 }

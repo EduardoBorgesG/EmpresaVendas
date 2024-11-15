@@ -1,5 +1,6 @@
 ﻿using EmpresaVendas._3___Repositorios;
 using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios.Vendas;
 using EmpresaVendas.Conecctions;
 using EmpresaVendas.Formularios;
 using EmpresaVendas.Repositorios;
@@ -37,11 +38,15 @@ namespace EmpresaVendas
             services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
             services.AddSingleton<IProdutoServico, ProdutoServico>();
             services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
+            services.AddSingleton<IVendaServico, VendaServico>();
+            services.AddTransient<IVendaRepositorio, VendaRepositorio>();
 
             services.AddTransient(p => new DbConnection<T>());
             // Registrando o formulário inicial
             services.AddTransient<frmInicial>();
             services.AddTransient<frmClientes>();
+            services.AddTransient<frmVenda>();
+
         }
     }
 }

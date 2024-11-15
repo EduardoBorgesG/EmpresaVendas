@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using EmpresaVendas.Conecctions;
 using EmpresaVendas.Servicos;
 using EmpresaVendas._4___Servicos;
-using EmpresaVendas._5___Formularios.Venda;
+using EmpresaVendas._5___Formularios.Vendas;
 
 
 namespace EmpresaVendas
@@ -21,13 +21,14 @@ namespace EmpresaVendas
     {
         private readonly IClienteSerico _clienteSerico;
         private readonly IProdutoServico _produtoServico;
+        private readonly IVendaServico _vendaServico;
 
-        public frmInicial(IClienteSerico clienteSerico, IProdutoServico produtoServico)
+        public frmInicial(IClienteSerico clienteSerico, IProdutoServico produtoServico, IVendaServico vendaServico)
         {
             InitializeComponent();
             _clienteSerico = clienteSerico;
             _produtoServico = produtoServico;
-            
+            _vendaServico = vendaServico;
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,7 +60,7 @@ namespace EmpresaVendas
 
         private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVenda frm = new frmVenda();
+            frmVenda frm = new frmVenda(_vendaServico);
             frm.Show();
         }
     }

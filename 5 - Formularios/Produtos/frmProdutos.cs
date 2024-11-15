@@ -32,6 +32,9 @@ namespace EmpresaVendas.Formularios.Produtos
         {
             e.Handled = (!char.IsNumber(e.KeyChar)) ? true : e.Handled;
         }
+        /// <summary>
+        /// Obtem os produtos do banco de dados e alimenta minha data grid
+        /// </summary>
         private void ObterProduto()
         {
             //Obtem os produtos do banco dados
@@ -84,7 +87,7 @@ namespace EmpresaVendas.Formularios.Produtos
         /// <param name="e"></param>
         private void btnCadastrarProduto_Click(object sender, EventArgs e)
         {
-            if (txtNomeProduto.Text == "" || rtxtDescricaoProduto.Text == "" || mtxtPrecoProduto.Text == "R$   ,  " || txtEstoqueProduto == null)
+            if (txtNomeProduto.Text == "" || rtxtDescricaoProduto.Text == "" || mtxtPrecoProduto.Text == "" || txtEstoqueProduto == null)
             {
                 MessageBox.Show("É obrigatório preencher todos os campos", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -93,11 +96,12 @@ namespace EmpresaVendas.Formularios.Produtos
             {
                 try
                 {
+                    string formaMoeda = mtxtPrecoProduto.Text.Replace("R$", "");
                     var nome = txtNomeProduto.Text;
                     var descricao = rtxtDescricaoProduto.Text;
-                    var preco = mtxtPrecoProduto.Text;
+                    var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text);
                     var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
-                    var Produto = new Produto(nome, descricao, preco, estoque);
+                    var Produto = new Produto(nome, descricao, estoque, preco_produto);
                     _produtoServico.NovoProduto(Produto);
                     MessageBox.Show("Registro incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -147,9 +151,9 @@ namespace EmpresaVendas.Formularios.Produtos
                 var id = Convert.ToInt32(gridProdutos.CurrentRow.Cells[0].Value);
                 var nome = txtNomeProduto.Text;
                 var descricao = rtxtDescricaoProduto.Text;
-                var preco = mtxtPrecoProduto.Text;
+                var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text);
                 var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
-                var produto = new Produto(id, nome, descricao, preco, estoque);
+                var produto = new Produto(id, nome, descricao, estoque, preco_produto);
                 _produtoServico.AtualizarProduto(produto);
                 MessageBox.Show("Produto editado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimparCampos();

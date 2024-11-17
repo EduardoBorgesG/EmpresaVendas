@@ -1,20 +1,25 @@
 ﻿using EmpresaVendas._1___Classes;
 using EmpresaVendas.Classes;
+using Npgsql;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EmpresaVendas._4___Servicos
 {
     public interface IVendaServico
     {
-        List<Venda> ObterCliente();
-        List<Venda> ObterProdutos();
-        void NovaVenda(Venda venda);
-
-        object AdquirirEstoque(int id);
+        int NovaVenda(Venda venda);
+        object VerificaEstoque(int id);
+        decimal AtualizaPreco(int id);
+        object AdquirirProdutos(int id);
+        List<Venda> ColetaID(Venda venda);
+        bool InserirDetalhes(VendaItens vendaItens);
+        
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EmpresaVendas._1___Classes;
 using EmpresaVendas._4___Servicos;
 using EmpresaVendas.Servicos;
+using Npgsql;
 using NPOI.POIFS.NIO;
 using NPOI.SS.Formula.Functions;
 using System;
@@ -19,11 +20,15 @@ namespace EmpresaVendas._5___Formularios.Vendas
     public partial class frmVenda : Form
     {
         private readonly IVendaServico _vendaServico;
-        List<Venda> vendas = new List<Venda>();
+        private readonly IClienteSerico _clienteSerico;
+        private readonly IProdutoServico _produtoServico;
+        List<VendaItemDTO> vendas = new List<VendaItemDTO>();
 
-        public frmVenda(IVendaServico vendaServico)
+        public frmVenda(IVendaServico vendaServico, IClienteSerico clienteSerico, IProdutoServico produtoServico)
         {
             InitializeComponent();
+            _produtoServico = produtoServico;
+            _clienteSerico = clienteSerico;
             _vendaServico = vendaServico;
             ListarCliente();
             ListarProdutos();
@@ -34,7 +39,8 @@ namespace EmpresaVendas._5___Formularios.Vendas
         {
             try
             {
-                var Cliente = _vendaServico.ObterCliente();
+                
+                var Cliente = _clienteSerico.ObterCliente();
                 cbListaClientes.DataSource = Cliente;
                 cbListaClientes.ValueMember = "id";
                 cbListaClientes.DisplayMember = "nome";
@@ -50,7 +56,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
         {
             try
             {
-                var Produto = _vendaServico.ObterProdutos();
+                var Produto = _produtoServico.ObterProduto();
                 cbListaProduto.DataSource = Produto;
                 cbListaProduto.ValueMember = "id";
                 cbListaProduto.DisplayMember = "nome";
@@ -62,96 +68,118 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
 
         }
-        /// <summary>
-        /// Metodo para incluir produto no banco de dados
-        /// </summary>
-        private void IncluirProduto()
+     
+        private void LimparCampos()
+        {
+            MessageBox.Show("Venda Incluída com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            mtxtValorASerPago.Clear();
+            cbListaClientes.Text = string.Empty;
+            cbListaProduto.Text = string.Empty;
+            txtQuantidade.Clear();
+            cbListaClientes.Enabled = true;
+            
+        }
+        private void btnFinalizarVenda_Click(object sender, EventArgs e)
+        {
+            int id = IncluirVenda();
+            InserirVendaItensDb(id);
+            LimparCampos();
+        }        
+        private int IncluirVenda()
         {
             try
             {
-                string valor = mtxtValorTotal.Text.Replace("R$", "");
-                valor = valor.Replace(".", ",");
-                decimal formaMoeda = Convert.ToDecimal(valor);
-                var nome_produto_id = Convert.ToInt32(cbListaProduto.SelectedValue);
-                var nome_cliente_id = Convert.ToInt32(cbListaClientes.SelectedValue);
-                var quantidade_venda = Convert.ToInt32(txtQuantidade.Text);
-                var valor_pago = formaMoeda;
-                var Venda = new Venda(nome_cliente_id, nome_produto_id, quantidade_venda, valor_pago);
-                _vendaServico.NovaVenda(Venda);
-            }
-            catch (Exception ex) { throw ex; }
-        }
+                int cliente_id = Convert.ToInt32(cbListaClientes.SelectedValue);
+                decimal valor_pago = Convert.ToDecimal(mtxtValorASerPago.Text.Replace("R$","").Replace(".",","));
+                var Venda = new Venda(cliente_id, valor_pago);
+                var result = _vendaServico.NovaVenda(Venda);
+                return result;
 
-        private void btnFinalizarVenda_Click(object sender, EventArgs e)
-        {
-            IncluirProduto();
-        }
-        private void AdicionarProduto(string nome, int quantidade_selecionar, int estoque)
-        {
-            Venda venda = new Venda { nome = nome, quantidade_venda = quantidade_selecionar, estoque = estoque };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
         private void FormatarDG()
         {
-            //Formata o nome das colunas do DataGrid
-            gridVisualizacaoProdutos.Columns[0].Visible = false;
-            gridVisualizacaoProdutos.Columns[1].HeaderText = "Quantidade";
-            gridVisualizacaoProdutos.Columns[2].Visible = false;
-            gridVisualizacaoProdutos.Columns[3].Visible = false;
-            gridVisualizacaoProdutos.Columns[4].Visible = false;
-            gridVisualizacaoProdutos.Columns[5].HeaderText = "Produto";
-            gridVisualizacaoProdutos.Columns[6].HeaderText = "Estoque";
-
+            gridVisualizacaoProdutos.Columns["nome_produto"].HeaderText = "Produto";
+            gridVisualizacaoProdutos.Columns["preco_produto"].HeaderText = "Preço do Produto";
+            gridVisualizacaoProdutos.Columns["quantidade"].HeaderText = "Quantidade";
         }
         private void VerificaEstoque()
         {
-            var id = Convert.ToInt32(cbListaProduto.SelectedValue);
-            object resultado = _vendaServico.AdquirirEstoque(id);
+            //var id = Convert.ToInt32(cbListaProduto.SelectedValue);
+            ////object resultado = _vendaServico.VerificaEstoque(id);
 
-            if (Convert.ToInt32(resultado) < Convert.ToInt32(txtQuantidade.Text))
-            {
-                MessageBox.Show("SEM ESTOQUE");
-                txtQuantidade.Clear();
-                return;
-            }
-            return;
+            //if (Convert.ToInt32(resultado) < Convert.ToInt32(txtQuantidade.Text))
+            //{
+            //    MessageBox.Show("SEM ESTOQUE");
+            //    txtQuantidade.Clear();
+            //    return;
+            //}
+            //return;
+        }
+        private void AtualizarPreco()
+        {
+                var id = Convert.ToInt32(cbListaProduto.SelectedValue);
+                decimal resultado = _vendaServico.AtualizaPreco(id);
+                decimal valorTotal = resultado * Convert.ToInt32(txtQuantidade.Text);
+                decimal x = Convert.ToDecimal(mtxtValorASerPago.Text.Replace("R$", "").Replace(".",","));
+                decimal y = x + valorTotal;
+                mtxtValorASerPago.Text = y.ToString("F2");                                
         }
         private void AlimentarDG()
         {
-            var id = Convert.ToInt32(cbListaProduto.SelectedValue);
-            object resultado = _vendaServico.AdquirirEstoque(id);
-            string nome = cbListaProduto.Text;
-            int quantidade_venda = Convert.ToInt32(txtQuantidade.Text);
-            int estoque = Convert.ToInt32(resultado);
-            vendas.Add(new Venda(nome, quantidade_venda, estoque));
-            gridVisualizacaoProdutos.DataSource = null;
-            gridVisualizacaoProdutos.DataSource = vendas;
-            //FormatarDG();
+            try
+            {
+
+                var id = Convert.ToInt32(cbListaProduto.SelectedValue);
+                var Venda = _produtoServico.ColetaDadosProduto(id);
+                int quantidade = Convert.ToInt32(txtQuantidade.Text);
+                var preco = Venda.Select(v => v.Preco_produto).ToList();
+                gridVisualizacaoProdutos.DataSource = Venda;
+
+
+                string nome = cbListaProduto.Text;
+                int produto_id = Convert.ToInt32(cbListaProduto.SelectedValue);
+                int quantidade_venda = Convert.ToInt32(txtQuantidade.Text);
+                decimal preco_produto = Convert.ToDecimal(preco.FirstOrDefault());
+                vendas.Add(new VendaItemDTO(produto_id, nome, preco_produto, quantidade_venda));
+                gridVisualizacaoProdutos.DataSource = vendas;
+                FormatarDG();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            
 
 
         }
         private void btnAdicionarProduto_Click(object sender, EventArgs e)
         {
             AlimentarDG();
+            AtualizarPreco();
+            cbListaClientes.Enabled = false;
         }
 
         private void txtQuantidade_Leave(object sender, EventArgs e)
         {
             VerificaEstoque();
         }
-        private void GerarScriptInsert()
+        private void InserirVendaItensDb(int id)
         {
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("INSERT INTO public.v_vendas_tb( valor_pago, quantidade_venda, nome_produto_id, nome_cliente_id, estoque_id)\r\n\tVALUES ( @valor_pago, @quantidade_venda, @nome_produto_id, @nome_cliente_id, @estoque_id);\r\n");
-            var valores = new List<object>();
-            for (int i = 0; i < gridVisualizacaoProdutos.Rows.Count; i++)
+            foreach (DataGridViewRow row in gridVisualizacaoProdutos.Rows)
             {
-                decimal valor_pago = Convert.ToDecimal(gridVisualizacaoProdutos.Rows[i].Cells[1].Value);
-                int quantidade_venda = Convert.ToInt32(gridVisualizacaoProdutos.Rows[i].Cells[1].Value);
-                int nome_produto_id = Convert.ToInt32(gridVisualizacaoProdutos.Rows[i].Cells[1].Value);
-                int nome_cliente_id = Convert.ToInt32(gridVisualizacaoProdutos.Rows[i].Cells[1].Value);
-                int estoque_id = Convert.ToInt32(gridVisualizacaoProdutos.Rows[i].Cells[1].Value);
-
-            }
+                int produto_id = Convert.ToInt32(row.Cells["produto_id"].Value);
+                int quantidade = Convert.ToInt32(row.Cells["quantidade"].Value);               
+                var VendaItem = new VendaItens(produto_id, quantidade, id);
+                _vendaServico.InserirDetalhes(VendaItem);
+            }                       
         }
+        
     }
 }

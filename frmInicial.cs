@@ -13,6 +13,8 @@ using EmpresaVendas.Conecctions;
 using EmpresaVendas.Servicos;
 using EmpresaVendas._4___Servicos;
 using EmpresaVendas._5___Formularios.Vendas;
+using EmpresaVendas._5___Formularios.Clientes;
+using Microsoft.Reporting.WinForms;
 
 
 namespace EmpresaVendas
@@ -60,7 +62,25 @@ namespace EmpresaVendas
 
         private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVenda frm = new frmVenda(_vendaServico);
+            frmVenda frm = new frmVenda(_vendaServico, _clienteSerico, _produtoServico);
+            frm.Show();
+        }
+
+        private void relatórioClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRelatorioClientes frm = new frmRelatorioClientes();
+            frm.Show();
+        }
+
+        private void relatórioProdutosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRelatorioProduto frm = new frmRelatorioProduto();
+            frm.Show();
+        }
+
+        private void relatórioVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRelatorioVenda frm = new frmRelatorioVenda();
             frm.Show();
         }
     }

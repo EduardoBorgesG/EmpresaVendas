@@ -16,5 +16,6 @@ namespace EmpresaVendas._3___Repositorios
         bool EditarProduto(Produto produto);
         bool VerificaProduto(string nome);
         List<Produto> ObterProduto();
+        List<Produto> ColetaDadosProduto(int id);
     }
 }

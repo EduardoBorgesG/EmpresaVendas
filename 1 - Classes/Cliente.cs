@@ -22,6 +22,10 @@ namespace EmpresaVendas.Classes
         public string Cep { get;  set; }
         public string Endereco { get;  set; }
 
+        public Cliente()
+        {
+
+        }
         public Cliente(int id)
         {
             Id = id;

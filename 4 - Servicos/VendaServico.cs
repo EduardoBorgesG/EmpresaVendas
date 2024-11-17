@@ -1,6 +1,8 @@
 ﻿using EmpresaVendas._1___Classes;
 using EmpresaVendas._3___Repositorios;
 using EmpresaVendas.Classes;
+using Npgsql;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,40 +19,75 @@ namespace EmpresaVendas._4___Servicos
         {
             _vendaRepositorio = vendaRepositorio;
         }
-        //Alimenta a minha lista de seleção de Clientes
-        public List<Venda> ObterCliente()
-        {
-            return _vendaRepositorio.BuscarClientes();
-        }
-        //Alimenta a minha lista de Produto
-        public List<Venda> ObterProdutos() 
+
+        public decimal AtualizaPreco(int id)
         {
             try
             {
-              return _vendaRepositorio.BuscaProduto();
-            }
-            catch (Exception ex) 
-            {
-                throw ex;
-            }
-        }
-        public void NovaVenda(Venda venda)
-        {
-                _vendaRepositorio.IncluirVenda(venda);
-                return;
-        }
-        public object AdquirirEstoque(int id)
-        {
-            try
-            {
-                object resultado = _vendaRepositorio.AdquirirEstoque(id);
+                decimal resultado = _vendaRepositorio.AtualizaPreco(id);
                 return resultado;
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        public int NovaVenda(Venda venda)
+        {
+            var result = _vendaRepositorio.IncluirVenda(venda);
+            return result;
+
+        }
+        public bool InserirDetalhes(VendaItens vendaItens)
+        {
+            try
+            {
+                var resultado = _vendaRepositorio.InserirVendaItem(vendaItens);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object AdquirirProdutos(int id)
+        {
+            try
+            {
+                object resultado = _vendaRepositorio.AdquiriPropriedades(id);
+                return resultado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object VerificaEstoque(int id)
+        {
+            try
+            {
+                object resultado = _vendaRepositorio.VerificaEstoque(id);
+                return resultado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Venda> ColetaID(Venda venda)
+        {
+            try
+            {
+                return _vendaRepositorio.ColetaId(venda);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
     }
 }

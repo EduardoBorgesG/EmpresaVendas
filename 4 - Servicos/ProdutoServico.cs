@@ -46,5 +46,16 @@ namespace EmpresaVendas.Servicos
             return _produtoRepositorio.ObterProduto();
            
         }
+        public List<Produto> ColetaDadosProduto(int id)
+        {
+            try
+            {
+                return _produtoRepositorio.ColetaDadosProduto(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace EmpresaVendas._3___Repositorios
         public bool CadastrarProduto(Produto produto)
         {
             string query = @"INSERT INTO public.p_produtos_tb(
-	                         nome_produto, descricao, preco_produto, estoque)
+	                         nome, descricao, preco_produto, estoque)
 	                         VALUES (@nome, @descricao, @preco_produto, @estoque);";
             var result = conn.Executar(sql: query, param: produto);
             return result == 1;
@@ -62,6 +62,20 @@ namespace EmpresaVendas._3___Repositorios
                 var produtos = conn.Consulta(sql: query);
                 return produtos.ToList();
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //Alimenta a minha lista de seleção de produtos buscando por ID
+        public List<Produto> ColetaDadosProduto(int id)
+        {
+            try
+            {
+                string query = @"SELECT id, nome, preco_produto FROM p_produtos_tb WHERE id = @id LIMIT 1";
+                var Produtos = conn.ColetaValoresDoBanco(sql: query, param: id);
+                return Produtos.ToList();
             }
             catch (Exception ex)
             {

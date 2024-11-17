@@ -13,6 +13,10 @@ namespace EmpresaVendas._1___Classes
         public string Descricao { get; set; }
         public decimal Preco_produto { get; set; }
         public int Estoque { get; set; }
+        public Produto()
+        {
+                
+        }
         public Produto(string nome, string descricao, int estoque, decimal preco_produto)
         {
             this.nome = nome;

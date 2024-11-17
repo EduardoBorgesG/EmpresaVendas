@@ -1,12 +1,14 @@
 ﻿using EmpresaVendas._1___Classes;
 using EmpresaVendas.Classes;
 using EmpresaVendas.Conecctions;
+using Npgsql;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EmpresaVendas._3___Repositorios
 {
@@ -18,49 +20,99 @@ namespace EmpresaVendas._3___Repositorios
             conn = new DbConnection<Venda>();
         }
         //Alimenta lista de seleção dos clientes
-        public List<Venda> BuscarClientes()
+        
+        
+        
+        public int IncluirVenda(Venda venda)
         {
             try
             {
-                string query = "SELECT c.id, c.nome FROM c_clientes_tb c LEFT JOIN v_vendas_tb v ON v.nome_cliente_id = c.id;";
-                //string query = @"SELECT id, nome FROM c_clientes_tb";
-                var cliente = conn.Consulta(sql: query).ToList();
-                return cliente;
+                string query = @"INSERT INTO public.v_vendas_tb(valor_pago, nome_cliente_id) VALUES (@valor_pago, @cliente_id) RETURNING id;";
+                var result = conn.ExecuteScalarMetodo(sql: query, param: venda);
+                int venda_id = Convert.ToInt32(result);
+                return venda_id;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        //Alimenta a minha lista de seleção de produtos buscando por ID
-        public List<Venda> BuscaProduto()
+        public decimal AtualizaPreco(int id)
         {
-            string query = @"SELECT p.id, p.nome FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.nome_produto_id = p.id;";
-            //string query = "SELECT id, nome FROM p_produtos_tb;";
-            var produtos = conn.Consulta(sql: query).ToList();
-            return produtos;
+            //PASSAR PARA O REPOSITORIO DE PRODUTO DPS
+            try
+            {
+                string query = "SELECT preco_produto FROM p_produtos_tb WHERE id = @id";
+                decimal result = Convert.ToDecimal(conn.VerificarnoBanco(sql: query, param: id));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        public bool IncluirVenda(Venda venda)
+        
+        public List<Venda> ColetaId(Venda venda)
         {
             try
             {
-                //FALTA ADICIONAR O ESTOQUE_ID, IMPLEMENTAR LOGICA PARA ATUALIZAR O ESTOQUE E SE FOR IGUAL A ZERO REMOVER O PRODUTO DA TABELA P_PRODUTOS
-                string query = @"INSERT INTO public.v_vendas_tb(valor_pago, quantidade_venda, nome_produto_id, nome_cliente_id) VALUES (@valor_pago, @quantidade_venda, @nome_produto_id, @nome_cliente_id);";
-                var result = conn.Executar(sql: query, param: venda);
+                string query = "SELECT id FROM v_vendas_tb WHERE nome_cliente_id = @cliente_id";
+                var result = conn.ColetaValoresDoBanco(sql: query, param: venda);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool InserirVendaItem(VendaItens vendaItens)
+        {
+            try
+            {
+                string query = @"INSERT INTO public.v_vendas_item_tb(venda_id, produto_id, quantidade) VALUES (@vendaId, @produto_id, @quantidade);";                                
+                var result = conn.Executar(sql: query, param: vendaItens);
                 return result == 1;
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        public object AdquirirEstoque(int id)
+        public object VerificaEstoque(int id)
+        {
+            //ADICIONAR no repositorio de produtos dps
+            try
+            {
+                string query = "SELECT p.estoque FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.estoque_id = p.id";           
+                object result = conn.VerificarnoBanco(sql: query, param: id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object AdquirirEstoquePreco(int id)
         {
             try
             {
-                string query = "SELECT p.estoque FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.estoque_id = p.id;";
-                object result = conn.VerificarnoBanco(sql: query, param: id);
+                string query = "SELECT p.estoque, p.preco_produto FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.estoque_id = p.id AND v.valor_pago = p.preco_produto;\r\n";
+                object result = conn.ColetaDadosBanco(sql: query, param: id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object AdquiriPropriedades(int id)
+        {
+            //NÃO ESTÁ SENDO USADO
+            try
+            {
+                string query = @"SELECT p.nome AS nome_produto, p.estoque, c.nome AS nome_cliente, p.preco_produto FROM p_produtos_tb p JOIN v_vendas_tb v ON v.nome_produto_id = p.id JOIN c_clientes_tb c ON c.id = v.nome_cliente_id WHERE v.estoque_id = @id";
+                object result = conn.ColetaDadosBanco(sql: query, param: id);
                 return result;
             }
             catch (Exception ex)
@@ -73,7 +125,8 @@ namespace EmpresaVendas._3___Repositorios
             string query = "";
             object result = conn.VerificarnoBanco(sql: query, param: id);
             return result;
-        }
+        }       
+   
 
     }
 }

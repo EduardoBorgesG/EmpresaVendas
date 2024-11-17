@@ -18,6 +18,8 @@ namespace EmpresaVendas
         [STAThread]
         static void Main()
         {
+            //ReportViewer
+            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
             // Configurando o Service Collection e injetando serviços
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);

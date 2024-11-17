@@ -13,5 +13,6 @@ namespace EmpresaVendas._4___Servicos
         void NovoProduto(Produto novoProduto);
         void ExcluirProduto(string id);
         List<Produto> ObterProduto();
+        List<Produto> ColetaDadosProduto(int id);
     }
 }

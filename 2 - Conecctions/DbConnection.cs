@@ -36,24 +36,10 @@ namespace EmpresaVendas.Conecctions
                 Connection.Close();
             }
         }
-        public void ExecutaBloco(Action<NpgsqlTransaction> action)
-        {
-            
-            using (var transaction = Connection.BeginTransaction()) {
-                try
-                {
-                    action(transaction);
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    throw ex;                
-                }    
-            }
-        }
+        
         public object ExecuteScalarMetodo(string sql, object param, NpgsqlTransaction transaction = null)
-        {                    
+        {        
+            //RETORNA O RESULTADO DA MINHA QUERY EM UM OBJECT
                 return Connection.ExecuteScalar<object>(sql, param, transaction);           
         }
         
@@ -71,12 +57,14 @@ namespace EmpresaVendas.Conecctions
         }
         public IEnumerable<T> ColetaValoresDoBanco(string sql, object param = null)
         {
+            //COLETA VALORES E ADICIONAR EM UM IENUMERABLE<T>
            return Connection.Query<T>(sql, param);
         }
         public object ColetaDadosBanco(string sql, object param = null)
         {
             try 
             { 
+                //COLETA DADOS DO BANCO MAS SOMENTE A PRIMEIRA LINHA
                 return Connection.QuerySingleOrDefault<(int estoque, decimal preco_produto)>(sql, param);
             }
             catch (Exception ex)
@@ -100,6 +88,7 @@ namespace EmpresaVendas.Conecctions
         {
             try
             {
+                //PERMITE CONSULTA SEM PARAMETRE E RETORNA T
                 return param == null ? Connection.Query<T>(sql) : Connection.Query<T>(sql, param);
 
             }

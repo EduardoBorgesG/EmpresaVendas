@@ -23,7 +23,7 @@ namespace EmpresaVendas._3___Repositorios
         object AdquirirEstoquePreco(int id);
         decimal AtualizaPreco(int id);
         bool InserirVendaItem(VendaItens vendaItens);
-        List<Venda> ColetaId(Venda venda);
+        
         
 
     }

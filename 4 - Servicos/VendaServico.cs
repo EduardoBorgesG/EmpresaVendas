@@ -77,17 +77,7 @@ namespace EmpresaVendas._4___Servicos
                 throw ex;
             }
         }
-        public List<Venda> ColetaID(Venda venda)
-        {
-            try
-            {
-                return _vendaRepositorio.ColetaId(venda);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         
     }
 }

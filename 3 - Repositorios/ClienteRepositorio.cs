@@ -34,7 +34,7 @@ namespace EmpresaVendas.Repositorios
         public bool CadastrarCliente(Cliente cliente)
         {
             string query = @"INSERT INTO public.c_clientes_tb(
-	                        nome_cliente, email, telefone, cep, endereco)
+	                        nome, email, telefone, cep, endereco)
 	                        VALUES (@nome, @email, @telefone, @cep, @endereco);";
 
             var result = conn.Executar(sql: query, param: cliente);

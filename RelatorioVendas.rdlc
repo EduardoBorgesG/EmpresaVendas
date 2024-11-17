@@ -15,7 +15,7 @@
               <Width>3.37312cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.65875cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -123,14 +123,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
+                    <Textbox Name="Textbox2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Valor Total</Value>
+                              <Value>Valor</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -146,7 +146,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -265,7 +265,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!expr1.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>'R$' 0.00;'R$' -0.00</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -281,8 +283,10 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>pt-BR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -309,9 +313,9 @@
         </TablixRowHierarchy>
         <DataSetName>Vendas</DataSetName>
         <Top>0.89641cm</Top>
-        <Left>1.69016cm</Left>
+        <Left>1.05516cm</Left>
         <Height>1.2cm</Height>
-        <Width>13.36083cm</Width>
+        <Width>13.20208cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

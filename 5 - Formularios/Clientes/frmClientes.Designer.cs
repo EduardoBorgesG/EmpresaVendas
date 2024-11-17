@@ -42,14 +42,8 @@
             this.lblTelefoneCliente = new System.Windows.Forms.Label();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.lblNomeCliente = new System.Windows.Forms.Label();
-            this.btnPesquisar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblBuscar = new System.Windows.Forms.Label();
-            this.rbtNome = new System.Windows.Forms.RadioButton();
-            this.rbtTelefone = new System.Windows.Forms.RadioButton();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelarEdicao = new System.Windows.Forms.Button();
-            this.btnAlterarTelefone = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,17 +51,19 @@
             // 
             this.gridClientes.AccessibleName = "gridClientes";
             this.gridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridClientes.Location = new System.Drawing.Point(12, 188);
+            this.gridClientes.Location = new System.Drawing.Point(18, 289);
+            this.gridClientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridClientes.Name = "gridClientes";
-            this.gridClientes.Size = new System.Drawing.Size(757, 336);
+            this.gridClientes.Size = new System.Drawing.Size(1136, 517);
             this.gridClientes.TabIndex = 0;
             this.gridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientes_CellClick);
             // 
             // btnIncluirCliente
             // 
-            this.btnIncluirCliente.Location = new System.Drawing.Point(12, 530);
+            this.btnIncluirCliente.Location = new System.Drawing.Point(18, 815);
+            this.btnIncluirCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnIncluirCliente.Name = "btnIncluirCliente";
-            this.btnIncluirCliente.Size = new System.Drawing.Size(118, 49);
+            this.btnIncluirCliente.Size = new System.Drawing.Size(177, 75);
             this.btnIncluirCliente.TabIndex = 1;
             this.btnIncluirCliente.Text = "INCLUIR";
             this.btnIncluirCliente.UseVisualStyleBackColor = true;
@@ -75,9 +71,10 @@
             // 
             // btnEditarCliente
             // 
-            this.btnEditarCliente.Location = new System.Drawing.Point(257, 530);
+            this.btnEditarCliente.Location = new System.Drawing.Point(386, 815);
+            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarCliente.Name = "btnEditarCliente";
-            this.btnEditarCliente.Size = new System.Drawing.Size(118, 49);
+            this.btnEditarCliente.Size = new System.Drawing.Size(177, 75);
             this.btnEditarCliente.TabIndex = 2;
             this.btnEditarCliente.Text = "EDITAR";
             this.btnEditarCliente.UseVisualStyleBackColor = true;
@@ -85,9 +82,10 @@
             // 
             // btnExcluirClientes
             // 
-            this.btnExcluirClientes.Location = new System.Drawing.Point(650, 530);
+            this.btnExcluirClientes.Location = new System.Drawing.Point(975, 815);
+            this.btnExcluirClientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcluirClientes.Name = "btnExcluirClientes";
-            this.btnExcluirClientes.Size = new System.Drawing.Size(119, 49);
+            this.btnExcluirClientes.Size = new System.Drawing.Size(178, 75);
             this.btnExcluirClientes.TabIndex = 3;
             this.btnExcluirClientes.Text = "EXCLUIR";
             this.btnExcluirClientes.UseVisualStyleBackColor = true;
@@ -95,16 +93,18 @@
             // 
             // txtEnderecoCliente
             // 
-            this.txtEnderecoCliente.Location = new System.Drawing.Point(269, 134);
+            this.txtEnderecoCliente.Location = new System.Drawing.Point(404, 206);
+            this.txtEnderecoCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEnderecoCliente.Name = "txtEnderecoCliente";
-            this.txtEnderecoCliente.Size = new System.Drawing.Size(500, 20);
+            this.txtEnderecoCliente.Size = new System.Drawing.Size(748, 26);
             this.txtEnderecoCliente.TabIndex = 21;
             // 
             // lblEnderecoCliente
             // 
             this.lblEnderecoCliente.AutoSize = true;
             this.lblEnderecoCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnderecoCliente.Location = new System.Drawing.Point(193, 135);
+            this.lblEnderecoCliente.Location = new System.Drawing.Point(290, 208);
+            this.lblEnderecoCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnderecoCliente.Name = "lblEnderecoCliente";
             this.lblEnderecoCliente.Size = new System.Drawing.Size(70, 16);
             this.lblEnderecoCliente.TabIndex = 20;
@@ -112,17 +112,19 @@
             // 
             // mtxtCepCliente
             // 
-            this.mtxtCepCliente.Location = new System.Drawing.Point(100, 134);
+            this.mtxtCepCliente.Location = new System.Drawing.Point(150, 206);
+            this.mtxtCepCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mtxtCepCliente.Mask = "00000-999";
             this.mtxtCepCliente.Name = "mtxtCepCliente";
-            this.mtxtCepCliente.Size = new System.Drawing.Size(65, 20);
+            this.mtxtCepCliente.Size = new System.Drawing.Size(96, 26);
             this.mtxtCepCliente.TabIndex = 19;
             // 
             // lblCepCliente
             // 
             this.lblCepCliente.AutoSize = true;
             this.lblCepCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCepCliente.Location = new System.Drawing.Point(32, 135);
+            this.lblCepCliente.Location = new System.Drawing.Point(48, 208);
+            this.lblCepCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCepCliente.Name = "lblCepCliente";
             this.lblCepCliente.Size = new System.Drawing.Size(42, 16);
             this.lblCepCliente.TabIndex = 18;
@@ -130,16 +132,18 @@
             // 
             // txtEmailCliente
             // 
-            this.txtEmailCliente.Location = new System.Drawing.Point(99, 105);
+            this.txtEmailCliente.Location = new System.Drawing.Point(148, 162);
+            this.txtEmailCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmailCliente.Name = "txtEmailCliente";
-            this.txtEmailCliente.Size = new System.Drawing.Size(496, 20);
+            this.txtEmailCliente.Size = new System.Drawing.Size(742, 26);
             this.txtEmailCliente.TabIndex = 17;
             // 
             // lblEmailCliente
             // 
             this.lblEmailCliente.AutoSize = true;
             this.lblEmailCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailCliente.Location = new System.Drawing.Point(31, 105);
+            this.lblEmailCliente.Location = new System.Drawing.Point(46, 162);
+            this.lblEmailCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailCliente.Name = "lblEmailCliente";
             this.lblEmailCliente.Size = new System.Drawing.Size(52, 16);
             this.lblEmailCliente.TabIndex = 16;
@@ -147,17 +151,19 @@
             // 
             // mtxtTelefoneCliente
             // 
-            this.mtxtTelefoneCliente.Location = new System.Drawing.Point(675, 78);
+            this.mtxtTelefoneCliente.Location = new System.Drawing.Point(1012, 120);
+            this.mtxtTelefoneCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mtxtTelefoneCliente.Mask = "(99) 00000-0000";
             this.mtxtTelefoneCliente.Name = "mtxtTelefoneCliente";
-            this.mtxtTelefoneCliente.Size = new System.Drawing.Size(94, 20);
+            this.mtxtTelefoneCliente.Size = new System.Drawing.Size(139, 26);
             this.mtxtTelefoneCliente.TabIndex = 15;
             // 
             // lblTelefoneCliente
             // 
             this.lblTelefoneCliente.AutoSize = true;
             this.lblTelefoneCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefoneCliente.Location = new System.Drawing.Point(607, 78);
+            this.lblTelefoneCliente.Location = new System.Drawing.Point(910, 120);
+            this.lblTelefoneCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefoneCliente.Name = "lblTelefoneCliente";
             this.lblTelefoneCliente.Size = new System.Drawing.Size(62, 16);
             this.lblTelefoneCliente.TabIndex = 14;
@@ -165,9 +171,10 @@
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(99, 77);
+            this.txtNomeCliente.Location = new System.Drawing.Point(148, 118);
+            this.txtNomeCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeCliente.Name = "txtNomeCliente";
-            this.txtNomeCliente.Size = new System.Drawing.Size(496, 20);
+            this.txtNomeCliente.Size = new System.Drawing.Size(742, 26);
             this.txtNomeCliente.TabIndex = 13;
             this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
@@ -175,64 +182,19 @@
             // 
             this.lblNomeCliente.AutoSize = true;
             this.lblNomeCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeCliente.Location = new System.Drawing.Point(31, 79);
+            this.lblNomeCliente.Location = new System.Drawing.Point(46, 122);
+            this.lblNomeCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeCliente.Name = "lblNomeCliente";
             this.lblNomeCliente.Size = new System.Drawing.Size(49, 16);
             this.lblNomeCliente.TabIndex = 12;
             this.lblNomeCliente.Text = "Nome: ";
             // 
-            // btnPesquisar
-            // 
-            this.btnPesquisar.Location = new System.Drawing.Point(707, 13);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(62, 23);
-            this.btnPesquisar.TabIndex = 22;
-            this.btnPesquisar.Text = "Pesquisar";
-            this.btnPesquisar.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(494, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(207, 20);
-            this.textBox1.TabIndex = 23;
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Location = new System.Drawing.Point(315, 18);
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(43, 13);
-            this.lblBuscar.TabIndex = 24;
-            this.lblBuscar.Text = "Buscar:";
-            // 
-            // rbtNome
-            // 
-            this.rbtNome.AutoSize = true;
-            this.rbtNome.Location = new System.Drawing.Point(362, 16);
-            this.rbtNome.Name = "rbtNome";
-            this.rbtNome.Size = new System.Drawing.Size(53, 17);
-            this.rbtNome.TabIndex = 25;
-            this.rbtNome.TabStop = true;
-            this.rbtNome.Text = "Nome";
-            this.rbtNome.UseVisualStyleBackColor = true;
-            // 
-            // rbtTelefone
-            // 
-            this.rbtTelefone.AutoSize = true;
-            this.rbtTelefone.Location = new System.Drawing.Point(421, 16);
-            this.rbtTelefone.Name = "rbtTelefone";
-            this.rbtTelefone.Size = new System.Drawing.Size(67, 17);
-            this.rbtTelefone.TabIndex = 26;
-            this.rbtTelefone.TabStop = true;
-            this.rbtTelefone.Text = "Telefone";
-            this.rbtTelefone.UseVisualStyleBackColor = true;
-            // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(136, 530);
+            this.btnSalvar.Location = new System.Drawing.Point(204, 815);
+            this.btnSalvar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(118, 49);
+            this.btnSalvar.Size = new System.Drawing.Size(177, 75);
             this.btnSalvar.TabIndex = 27;
             this.btnSalvar.Text = "SALVAR";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -240,37 +202,22 @@
             // 
             // btnCancelarEdicao
             // 
-            this.btnCancelarEdicao.Location = new System.Drawing.Point(381, 530);
+            this.btnCancelarEdicao.Location = new System.Drawing.Point(572, 815);
+            this.btnCancelarEdicao.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelarEdicao.Name = "btnCancelarEdicao";
-            this.btnCancelarEdicao.Size = new System.Drawing.Size(118, 49);
+            this.btnCancelarEdicao.Size = new System.Drawing.Size(177, 75);
             this.btnCancelarEdicao.TabIndex = 28;
             this.btnCancelarEdicao.Text = "CANCELAR";
             this.btnCancelarEdicao.UseVisualStyleBackColor = true;
             this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
             // 
-            // btnAlterarTelefone
-            // 
-            this.btnAlterarTelefone.Location = new System.Drawing.Point(505, 530);
-            this.btnAlterarTelefone.Name = "btnAlterarTelefone";
-            this.btnAlterarTelefone.Size = new System.Drawing.Size(139, 49);
-            this.btnAlterarTelefone.TabIndex = 29;
-            this.btnAlterarTelefone.Text = "ALTERAR TELEFONE";
-            this.btnAlterarTelefone.UseVisualStyleBackColor = true;
-            this.btnAlterarTelefone.Click += new System.EventHandler(this.btnAlterarTelefone_Click);
-            // 
             // frmClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 591);
-            this.Controls.Add(this.btnAlterarTelefone);
+            this.ClientSize = new System.Drawing.Size(1191, 909);
             this.Controls.Add(this.btnCancelarEdicao);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.rbtTelefone);
-            this.Controls.Add(this.rbtNome);
-            this.Controls.Add(this.lblBuscar);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.txtEnderecoCliente);
             this.Controls.Add(this.lblEnderecoCliente);
             this.Controls.Add(this.mtxtCepCliente);
@@ -285,6 +232,7 @@
             this.Controls.Add(this.btnEditarCliente);
             this.Controls.Add(this.btnIncluirCliente);
             this.Controls.Add(this.gridClientes);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmClientes";
             this.Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).EndInit();
@@ -309,13 +257,7 @@
         private System.Windows.Forms.Label lblTelefoneCliente;
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.Label lblNomeCliente;
-        private System.Windows.Forms.Button btnPesquisar;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.RadioButton rbtNome;
-        private System.Windows.Forms.RadioButton rbtTelefone;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelarEdicao;
-        private System.Windows.Forms.Button btnAlterarTelefone;
     }
 }

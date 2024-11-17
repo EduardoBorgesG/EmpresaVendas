@@ -17,7 +17,7 @@ namespace EmpresaVendas._4___Servicos
         object VerificaEstoque(int id);
         decimal AtualizaPreco(int id);
         object AdquirirProdutos(int id);
-        List<Venda> ColetaID(Venda venda);
+        
         bool InserirDetalhes(VendaItens vendaItens);
         
 

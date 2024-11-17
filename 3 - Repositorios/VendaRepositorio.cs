@@ -39,7 +39,7 @@ namespace EmpresaVendas._3___Repositorios
         }
         public decimal AtualizaPreco(int id)
         {
-            //PASSAR PARA O REPOSITORIO DE PRODUTO DPS
+            //Verifica o preço do produto e atualiza na minha textbox
             try
             {
                 string query = "SELECT preco_produto FROM p_produtos_tb WHERE id = @id";
@@ -52,21 +52,10 @@ namespace EmpresaVendas._3___Repositorios
             }
         }
         
-        public List<Venda> ColetaId(Venda venda)
-        {
-            try
-            {
-                string query = "SELECT id FROM v_vendas_tb WHERE nome_cliente_id = @cliente_id";
-                var result = conn.ColetaValoresDoBanco(sql: query, param: venda);
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
         public bool InserirVendaItem(VendaItens vendaItens)
         {
+            //Inserir conteudo tabela venda Itens
             try
             {
                 string query = @"INSERT INTO public.v_vendas_item_tb(venda_id, produto_id, quantidade) VALUES (@vendaId, @produto_id, @quantidade);";                                
@@ -81,7 +70,7 @@ namespace EmpresaVendas._3___Repositorios
         }
         public object VerificaEstoque(int id)
         {
-            //ADICIONAR no repositorio de produtos dps
+            //Verifica se a quantidade é maior ou igual ao estoque
             try
             {
                 string query = "SELECT p.estoque FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.estoque_id = p.id";           

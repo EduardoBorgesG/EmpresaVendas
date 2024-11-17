@@ -21,7 +21,6 @@ namespace EmpresaVendas.Formularios
     {
         private readonly IClienteSerico _clienteSerico;
 
-        //private List<Cliente> Clientes { get; set; } = new List<Cliente>();
         public frmClientes(IClienteSerico clienteSerico)
         {
             InitializeComponent();

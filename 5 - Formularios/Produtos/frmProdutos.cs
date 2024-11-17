@@ -99,7 +99,7 @@ namespace EmpresaVendas.Formularios.Produtos
                     string formaMoeda = mtxtPrecoProduto.Text.Replace("R$", "");
                     var nome = txtNomeProduto.Text;
                     var descricao = rtxtDescricaoProduto.Text;
-                    var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text);
+                    var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text.Replace("R$", "").Replace(".", ","));
                     var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
                     var Produto = new Produto(nome, descricao, estoque, preco_produto);
                     _produtoServico.NovoProduto(Produto);
@@ -151,7 +151,7 @@ namespace EmpresaVendas.Formularios.Produtos
                 var id = Convert.ToInt32(gridProdutos.CurrentRow.Cells[0].Value);
                 var nome = txtNomeProduto.Text;
                 var descricao = rtxtDescricaoProduto.Text;
-                var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text);
+                var preco_produto = Convert.ToDecimal(mtxtPrecoProduto.Text.Replace("R$","").Replace(",","."));
                 var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
                 var produto = new Produto(id, nome, descricao, estoque, preco_produto);
                 _produtoServico.AtualizarProduto(produto);

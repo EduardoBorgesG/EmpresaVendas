@@ -201,6 +201,11 @@ namespace EmpresaVendas.Formularios
             btnEditarCliente.Enabled = true;
             btnSalvar.Enabled= false;
             btnCancelarEdicao.Enabled= false;
-        }       
+        }
+
+        private void gridClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnEditarCliente.Enabled= true;
+        }
     }
 }

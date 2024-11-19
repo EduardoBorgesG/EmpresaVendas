@@ -29,15 +29,15 @@ CREATE TABLE IF NOT EXISTS public.c_clientes_tb
     telefone character varying(15) COLLATE pg_catalog."default",
     cep character varying(10) COLLATE pg_catalog."default",
     endereco character varying(250) COLLATE pg_catalog."default",
+    ativo boolean,
     CONSTRAINT c_clientes_tb_pkey PRIMARY KEY (id),
-    CONSTRAINT cliente UNIQUE (nome),
-    CONSTRAINT telefone UNIQUE (telefone)
+    CONSTRAINT cliente UNIQUE (nome)
 )
-TABLESPACE pg_default;
+TABLESPACE pg_default;=
 ALTER TABLE IF EXISTS public.c_clientes_tb
     OWNER to postgres;
 ---------------------------------------------------------------------------------------
-Criação da tabela clientes
+Criação da tabela produto
 
 -- Table: public.p_produtos_tb
 -- DROP TABLE IF EXISTS public.p_produtos_tb;
@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS public.p_produtos_tb
     descricao character varying(350) COLLATE pg_catalog."default",
     estoque integer,
     preco_produto numeric(10,2),
+    ativo boolean,
     CONSTRAINT p_produto_tb_pkey PRIMARY KEY (id),
     CONSTRAINT nome UNIQUE (nome)
 )
@@ -80,8 +81,7 @@ CREATE TABLE IF NOT EXISTS public.v_vendas_tb
 )
 TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.v_vendas_tb
-OWNER to postgres;
-
+    OWNER to postgres;
 
 -----------------------------------------------------------------------------------------------
 

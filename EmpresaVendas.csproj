@@ -117,17 +117,23 @@
     <Compile Include="4 - Servicos\IVendaServico.cs" />
     <Compile Include="4 - Servicos\ProdutoServico.cs" />
     <Compile Include="4 - Servicos\VendaServico.cs" />
-    <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.cs">
+    <Compile Include="5 - Formularios\Clientes\frmAtivarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="5 - Formularios\Clientes\frmAlterarTelefone.Designer.cs">
-      <DependentUpon>frmAlterarTelefone.cs</DependentUpon>
+    <Compile Include="5 - Formularios\Clientes\frmAtivarClientes.Designer.cs">
+      <DependentUpon>frmAtivarClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="5 - Formularios\Clientes\frmRelatorioClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="5 - Formularios\Clientes\frmRelatorioClientes.Designer.cs">
       <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5 - Formularios\Produtos\frmAtivarProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5 - Formularios\Produtos\frmAtivarProdutos.Designer.cs">
+      <DependentUpon>frmAtivarProdutos.cs</DependentUpon>
     </Compile>
     <Compile Include="5 - Formularios\Produtos\frmProdutos.cs">
       <SubType>Form</SubType>
@@ -180,14 +186,17 @@
     <Compile Include="4 - Servicos\ClienteServico.cs" />
     <Compile Include="4 - Servicos\IClienteSerico.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="5 - Formularios\Clientes\frmAlterarTelefone.resx">
-      <DependentUpon>frmAlterarTelefone.cs</DependentUpon>
+    <EmbeddedResource Include="5 - Formularios\Clientes\frmAtivarClientes.resx">
+      <DependentUpon>frmAtivarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="5 - Formularios\Clientes\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="5 - Formularios\Clientes\frmRelatorioClientes.resx">
       <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5 - Formularios\Produtos\frmAtivarProdutos.resx">
+      <DependentUpon>frmAtivarProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="5 - Formularios\Produtos\frmRelatorioProduto.resx">
       <DependentUpon>frmRelatorioProduto.cs</DependentUpon>
@@ -256,6 +265,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Imagens\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

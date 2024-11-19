@@ -11,8 +11,11 @@ namespace EmpresaVendas._4___Servicos
     {
         void AtualizarProduto(Produto alteradoProduto);
         void NovoProduto(Produto novoProduto);
-        void ExcluirProduto(string id);
+        void EsgotarProduto(int id);
+        List<Produto> ObterProdutosInativos();
         List<Produto> ObterProduto();
         List<Produto> ColetaDadosProduto(int id);
+        object VerificaEstoque(int id);
+        void AtivarProduto(int id);
     }
 }

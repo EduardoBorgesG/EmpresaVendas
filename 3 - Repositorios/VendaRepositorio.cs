@@ -42,7 +42,7 @@ namespace EmpresaVendas._3___Repositorios
             //Verifica o preço do produto e atualiza na minha textbox
             try
             {
-                string query = "SELECT preco_produto FROM p_produtos_tb WHERE id = @id";
+                string query = $"SELECT preco_produto FROM p_produtos_tb WHERE id = {id}";
                 decimal result = Convert.ToDecimal(conn.VerificarnoBanco(sql: query, param: id));
                 return result;
             }
@@ -68,20 +68,7 @@ namespace EmpresaVendas._3___Repositorios
                 throw ex;
             }
         }
-        public object VerificaEstoque(int id)
-        {
-            //Verifica se a quantidade é maior ou igual ao estoque
-            try
-            {
-                string query = "SELECT p.estoque FROM p_produtos_tb p LEFT JOIN v_vendas_tb v ON v.estoque_id = p.id";           
-                object result = conn.VerificarnoBanco(sql: query, param: id);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         public object AdquirirEstoquePreco(int id)
         {
             try

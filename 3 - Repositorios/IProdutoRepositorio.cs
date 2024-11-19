@@ -12,10 +12,13 @@ namespace EmpresaVendas._3___Repositorios
     public interface IProdutoRepositorio
     {
         bool CadastrarProduto(Produto produto);
-        bool ExcluirProduto(string id);
+        bool EsgotarProduto(int id);
         bool EditarProduto(Produto produto);
         bool VerificaProduto(string nome);
         List<Produto> ObterProduto();
         List<Produto> ColetaDadosProduto(int id);
+        object VerificaEstoque(int id);
+        List<Produto> ObterProdutosInativos();
+        bool AtivarProduto(int id);
     }
 }

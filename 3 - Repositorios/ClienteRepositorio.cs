@@ -34,24 +34,19 @@ namespace EmpresaVendas.Repositorios
         public bool CadastrarCliente(Cliente cliente)
         {
             string query = @"INSERT INTO public.c_clientes_tb(
-	                        nome, email, telefone, cep, endereco)
-	                        VALUES (@nome, @email, @telefone, @cep, @endereco);";
+	                        nome, email, telefone, cep, endereco, ativo)
+	                        VALUES (@nome, @email, @telefone, @cep, @endereco, true);";
 
             var result = conn.Executar(sql: query, param: cliente);
             return result == 1;
         }
-        //Verifica so
-        public Cliente ObterUm(string telefone)
-        {
-            string query = @"SELECT * FROM public.c_clientes_tb WHERE public.c_clientes_tb.telefone = @telefone LIMIT 1;";
-            var cliente = conn.Consulta(sql: query, param: telefone);
-            return cliente.FirstOrDefault();
-        }
+
+
         //Coleta todos os dados do meu banco e armazena em uma lista
-        public List<Cliente> ObterCliente()
+        public List<Cliente> ObterClienteAtivos()
         {
 
-            string query = @"SELECT * FROM public.c_clientes_tb;";
+            string query = @"SELECT * FROM public.c_clientes_tb WHERE ativo = true;";
             var clientes = conn.Consulta(sql: query);
 
             return clientes.ToList();
@@ -67,17 +62,30 @@ namespace EmpresaVendas.Repositorios
         public bool AtualizarCliente(Cliente cliente)
         {
 
-            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}' WHERE id = {cliente.Id};";
+            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}', telefone = '{cliente.Telefone}' WHERE id = {cliente.Id};";
             var result = conn.Executar(sql: query, param: cliente);
             return result == 1;
         }
 
         //Exclusão de cliente
-        public bool ExcluirCliente(string id)
+        public bool InativarCliente(string id)
         {
-            string query = $"DELETE FROM public.c_clientes_tb WHERE id = {id};";
+            string query = $"UPDATE public.c_clientes_tb SET ativo = false WHERE id = {id};";
             var result = conn.Executar(sql: query, param: id);
             return result == 1;
+        }
+        public List<Cliente> ObterClienteInativos()
+        {
+            string query = "SELECT id, nome FROM public.c_clientes_tb WHERE ativo = false";
+            var result = conn.Consulta(sql: query);
+            return result.ToList();
+        }
+        public bool AtivarCliente(int id)
+        {
+            string query = $"UPDATE public.c_clientes_tb SET ativo = true WHERE id = {id};";
+            var result = conn.Executar(sql: query, param: id);
+            return result == 1;
+
         }
     }
 }

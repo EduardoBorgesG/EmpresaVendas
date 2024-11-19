@@ -14,12 +14,9 @@ namespace EmpresaVendas._4___Servicos
     public interface IVendaServico
     {
         int NovaVenda(Venda venda);
-        object VerificaEstoque(int id);
         decimal AtualizaPreco(int id);
         object AdquirirProdutos(int id);
         
-        bool InserirDetalhes(VendaItens vendaItens);
-        
-
+        bool InserirDetalhes(VendaItens vendaItens);        
     }
 }

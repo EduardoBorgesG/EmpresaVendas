@@ -32,7 +32,7 @@ namespace EmpresaVendas {
         
         private v_vendas_tbDataTable tablev_vendas_tb;
         
-        private VendaJoinDataTable tableVendaJoin;
+        private v_relatorio_vendasDataTable tablev_relatorio_vendas;
         
         private global::System.Data.DataRelation relationc_clientes_tb_v_vendas_tb;
         
@@ -80,8 +80,8 @@ namespace EmpresaVendas {
                 if ((ds.Tables["v_vendas_tb"] != null)) {
                     base.Tables.Add(new v_vendas_tbDataTable(ds.Tables["v_vendas_tb"]));
                 }
-                if ((ds.Tables["VendaJoin"] != null)) {
-                    base.Tables.Add(new VendaJoinDataTable(ds.Tables["VendaJoin"]));
+                if ((ds.Tables["v_relatorio_vendas"] != null)) {
+                    base.Tables.Add(new v_relatorio_vendasDataTable(ds.Tables["v_relatorio_vendas"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -145,9 +145,9 @@ namespace EmpresaVendas {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public VendaJoinDataTable VendaJoin {
+        public v_relatorio_vendasDataTable v_relatorio_vendas {
             get {
-                return this.tableVendaJoin;
+                return this.tablev_relatorio_vendas;
             }
         }
         
@@ -230,8 +230,8 @@ namespace EmpresaVendas {
                 if ((ds.Tables["v_vendas_tb"] != null)) {
                     base.Tables.Add(new v_vendas_tbDataTable(ds.Tables["v_vendas_tb"]));
                 }
-                if ((ds.Tables["VendaJoin"] != null)) {
-                    base.Tables.Add(new VendaJoinDataTable(ds.Tables["VendaJoin"]));
+                if ((ds.Tables["v_relatorio_vendas"] != null)) {
+                    base.Tables.Add(new v_relatorio_vendasDataTable(ds.Tables["v_relatorio_vendas"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -290,10 +290,10 @@ namespace EmpresaVendas {
                     this.tablev_vendas_tb.InitVars();
                 }
             }
-            this.tableVendaJoin = ((VendaJoinDataTable)(base.Tables["VendaJoin"]));
+            this.tablev_relatorio_vendas = ((v_relatorio_vendasDataTable)(base.Tables["v_relatorio_vendas"]));
             if ((initTable == true)) {
-                if ((this.tableVendaJoin != null)) {
-                    this.tableVendaJoin.InitVars();
+                if ((this.tablev_relatorio_vendas != null)) {
+                    this.tablev_relatorio_vendas.InitVars();
                 }
             }
             this.relationc_clientes_tb_v_vendas_tb = this.Relations["c_clientes_tb_v_vendas_tb"];
@@ -317,8 +317,8 @@ namespace EmpresaVendas {
             base.Tables.Add(this.tablev_vendas_item_tb);
             this.tablev_vendas_tb = new v_vendas_tbDataTable();
             base.Tables.Add(this.tablev_vendas_tb);
-            this.tableVendaJoin = new VendaJoinDataTable();
-            base.Tables.Add(this.tableVendaJoin);
+            this.tablev_relatorio_vendas = new v_relatorio_vendasDataTable();
+            base.Tables.Add(this.tablev_relatorio_vendas);
             this.relationc_clientes_tb_v_vendas_tb = new global::System.Data.DataRelation("c_clientes_tb_v_vendas_tb", new global::System.Data.DataColumn[] {
                         this.tablec_clientes_tb.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablev_vendas_tb.nome_cliente_idColumn}, false);
@@ -359,7 +359,7 @@ namespace EmpresaVendas {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeVendaJoin() {
+        private bool ShouldSerializev_relatorio_vendas() {
             return false;
         }
         
@@ -431,7 +431,7 @@ namespace EmpresaVendas {
         public delegate void v_vendas_tbRowChangeEventHandler(object sender, v_vendas_tbRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void VendaJoinRowChangeEventHandler(object sender, VendaJoinRowChangeEvent e);
+        public delegate void v_relatorio_vendasRowChangeEventHandler(object sender, v_relatorio_vendasRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1703,22 +1703,18 @@ namespace EmpresaVendas {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class VendaJoinDataTable : global::System.Data.TypedTableBase<VendaJoinRow> {
-            
-            private global::System.Data.DataColumn columnvalor_pago;
-            
-            private global::System.Data.DataColumn columnquantidade;
-            
-            private global::System.Data.DataColumn columnexpr1;
-            
-            private global::System.Data.DataColumn columnnomeproduto;
+        public partial class v_relatorio_vendasDataTable : global::System.Data.TypedTableBase<v_relatorio_vendasRow> {
             
             private global::System.Data.DataColumn columnnomecliente;
             
+            private global::System.Data.DataColumn columnprodutos;
+            
+            private global::System.Data.DataColumn columnvalortotal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinDataTable() {
-                this.TableName = "VendaJoin";
+            public v_relatorio_vendasDataTable() {
+                this.TableName = "v_relatorio_vendas";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1726,7 +1722,7 @@ namespace EmpresaVendas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal VendaJoinDataTable(global::System.Data.DataTable table) {
+            internal v_relatorio_vendasDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1743,41 +1739,9 @@ namespace EmpresaVendas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected VendaJoinDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected v_relatorio_vendasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn valor_pagoColumn {
-                get {
-                    return this.columnvalor_pago;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn quantidadeColumn {
-                get {
-                    return this.columnquantidade;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn expr1Column {
-                get {
-                    return this.columnexpr1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn nomeprodutoColumn {
-                get {
-                    return this.columnnomeproduto;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1785,6 +1749,22 @@ namespace EmpresaVendas {
             public global::System.Data.DataColumn nomeclienteColumn {
                 get {
                     return this.columnnomecliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn produtosColumn {
+                get {
+                    return this.columnprodutos;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn valortotalColumn {
+                get {
+                    return this.columnvalortotal;
                 }
             }
             
@@ -1799,49 +1779,47 @@ namespace EmpresaVendas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinRow this[int index] {
+            public v_relatorio_vendasRow this[int index] {
                 get {
-                    return ((VendaJoinRow)(this.Rows[index]));
+                    return ((v_relatorio_vendasRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event VendaJoinRowChangeEventHandler VendaJoinRowChanging;
+            public event v_relatorio_vendasRowChangeEventHandler v_relatorio_vendasRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event VendaJoinRowChangeEventHandler VendaJoinRowChanged;
+            public event v_relatorio_vendasRowChangeEventHandler v_relatorio_vendasRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event VendaJoinRowChangeEventHandler VendaJoinRowDeleting;
+            public event v_relatorio_vendasRowChangeEventHandler v_relatorio_vendasRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event VendaJoinRowChangeEventHandler VendaJoinRowDeleted;
+            public event v_relatorio_vendasRowChangeEventHandler v_relatorio_vendasRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddVendaJoinRow(VendaJoinRow row) {
+            public void Addv_relatorio_vendasRow(v_relatorio_vendasRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinRow AddVendaJoinRow(int valor_pago, decimal quantidade, decimal expr1, string nomeproduto, string nomecliente) {
-                VendaJoinRow rowVendaJoinRow = ((VendaJoinRow)(this.NewRow()));
+            public v_relatorio_vendasRow Addv_relatorio_vendasRow(string nomecliente, string produtos, decimal valortotal) {
+                v_relatorio_vendasRow rowv_relatorio_vendasRow = ((v_relatorio_vendasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        valor_pago,
-                        quantidade,
-                        expr1,
-                        nomeproduto,
-                        nomecliente};
-                rowVendaJoinRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowVendaJoinRow);
-                return rowVendaJoinRow;
+                        nomecliente,
+                        produtos,
+                        valortotal};
+                rowv_relatorio_vendasRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowv_relatorio_vendasRow);
+                return rowv_relatorio_vendasRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                VendaJoinDataTable cln = ((VendaJoinDataTable)(base.Clone()));
+                v_relatorio_vendasDataTable cln = ((v_relatorio_vendasDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1849,66 +1827,53 @@ namespace EmpresaVendas {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new VendaJoinDataTable();
+                return new v_relatorio_vendasDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnvalor_pago = base.Columns["valor_pago"];
-                this.columnquantidade = base.Columns["quantidade"];
-                this.columnexpr1 = base.Columns["expr1"];
-                this.columnnomeproduto = base.Columns["nomeproduto"];
                 this.columnnomecliente = base.Columns["nomecliente"];
+                this.columnprodutos = base.Columns["produtos"];
+                this.columnvalortotal = base.Columns["valortotal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnvalor_pago = new global::System.Data.DataColumn("valor_pago", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnvalor_pago);
-                this.columnquantidade = new global::System.Data.DataColumn("quantidade", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnquantidade);
-                this.columnexpr1 = new global::System.Data.DataColumn("expr1", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnexpr1);
-                this.columnnomeproduto = new global::System.Data.DataColumn("nomeproduto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnomeproduto);
                 this.columnnomecliente = new global::System.Data.DataColumn("nomecliente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnomecliente);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnnomeproduto}, false));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
-                                this.columnnomecliente}, false));
-                this.columnnomeproduto.Unique = true;
-                this.columnnomeproduto.MaxLength = 250;
-                this.columnnomecliente.Unique = true;
+                this.columnprodutos = new global::System.Data.DataColumn("produtos", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprodutos);
+                this.columnvalortotal = new global::System.Data.DataColumn("valortotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnvalortotal);
                 this.columnnomecliente.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinRow NewVendaJoinRow() {
-                return ((VendaJoinRow)(this.NewRow()));
+            public v_relatorio_vendasRow Newv_relatorio_vendasRow() {
+                return ((v_relatorio_vendasRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new VendaJoinRow(builder);
+                return new v_relatorio_vendasRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(VendaJoinRow);
+                return typeof(v_relatorio_vendasRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.VendaJoinRowChanged != null)) {
-                    this.VendaJoinRowChanged(this, new VendaJoinRowChangeEvent(((VendaJoinRow)(e.Row)), e.Action));
+                if ((this.v_relatorio_vendasRowChanged != null)) {
+                    this.v_relatorio_vendasRowChanged(this, new v_relatorio_vendasRowChangeEvent(((v_relatorio_vendasRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1916,8 +1881,8 @@ namespace EmpresaVendas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.VendaJoinRowChanging != null)) {
-                    this.VendaJoinRowChanging(this, new VendaJoinRowChangeEvent(((VendaJoinRow)(e.Row)), e.Action));
+                if ((this.v_relatorio_vendasRowChanging != null)) {
+                    this.v_relatorio_vendasRowChanging(this, new v_relatorio_vendasRowChangeEvent(((v_relatorio_vendasRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1925,8 +1890,8 @@ namespace EmpresaVendas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.VendaJoinRowDeleted != null)) {
-                    this.VendaJoinRowDeleted(this, new VendaJoinRowChangeEvent(((VendaJoinRow)(e.Row)), e.Action));
+                if ((this.v_relatorio_vendasRowDeleted != null)) {
+                    this.v_relatorio_vendasRowDeleted(this, new v_relatorio_vendasRowChangeEvent(((v_relatorio_vendasRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1934,14 +1899,14 @@ namespace EmpresaVendas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.VendaJoinRowDeleting != null)) {
-                    this.VendaJoinRowDeleting(this, new VendaJoinRowChangeEvent(((VendaJoinRow)(e.Row)), e.Action));
+                if ((this.v_relatorio_vendasRowDeleting != null)) {
+                    this.v_relatorio_vendasRowDeleting(this, new v_relatorio_vendasRowChangeEvent(((v_relatorio_vendasRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveVendaJoinRow(VendaJoinRow row) {
+            public void Removev_relatorio_vendasRow(v_relatorio_vendasRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1968,7 +1933,7 @@ namespace EmpresaVendas {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "VendaJoinDataTable";
+                attribute2.FixedValue = "v_relatorio_vendasDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2574,79 +2539,15 @@ namespace EmpresaVendas {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class VendaJoinRow : global::System.Data.DataRow {
+        public partial class v_relatorio_vendasRow : global::System.Data.DataRow {
             
-            private VendaJoinDataTable tableVendaJoin;
+            private v_relatorio_vendasDataTable tablev_relatorio_vendas;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal VendaJoinRow(global::System.Data.DataRowBuilder rb) : 
+            internal v_relatorio_vendasRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableVendaJoin = ((VendaJoinDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int valor_pago {
-                get {
-                    try {
-                        return ((int)(this[this.tableVendaJoin.valor_pagoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'valor_pago\' na tabela \'VendaJoin\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVendaJoin.valor_pagoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal quantidade {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableVendaJoin.quantidadeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'quantidade\' na tabela \'VendaJoin\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVendaJoin.quantidadeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal expr1 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableVendaJoin.expr1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'expr1\' na tabela \'VendaJoin\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVendaJoin.expr1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string nomeproduto {
-                get {
-                    try {
-                        return ((string)(this[this.tableVendaJoin.nomeprodutoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'nomeproduto\' na tabela \'VendaJoin\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVendaJoin.nomeprodutoColumn] = value;
-                }
+                this.tablev_relatorio_vendas = ((v_relatorio_vendasDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2654,75 +2555,83 @@ namespace EmpresaVendas {
             public string nomecliente {
                 get {
                     try {
-                        return ((string)(this[this.tableVendaJoin.nomeclienteColumn]));
+                        return ((string)(this[this.tablev_relatorio_vendas.nomeclienteColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'nomecliente\' na tabela \'VendaJoin\' é DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'nomecliente\' na tabela \'v_relatorio_vendas\' é DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableVendaJoin.nomeclienteColumn] = value;
+                    this[this.tablev_relatorio_vendas.nomeclienteColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isvalor_pagoNull() {
-                return this.IsNull(this.tableVendaJoin.valor_pagoColumn);
+            public string produtos {
+                get {
+                    try {
+                        return ((string)(this[this.tablev_relatorio_vendas.produtosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'produtos\' na tabela \'v_relatorio_vendas\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablev_relatorio_vendas.produtosColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setvalor_pagoNull() {
-                this[this.tableVendaJoin.valor_pagoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsquantidadeNull() {
-                return this.IsNull(this.tableVendaJoin.quantidadeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetquantidadeNull() {
-                this[this.tableVendaJoin.quantidadeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isexpr1Null() {
-                return this.IsNull(this.tableVendaJoin.expr1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setexpr1Null() {
-                this[this.tableVendaJoin.expr1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsnomeprodutoNull() {
-                return this.IsNull(this.tableVendaJoin.nomeprodutoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetnomeprodutoNull() {
-                this[this.tableVendaJoin.nomeprodutoColumn] = global::System.Convert.DBNull;
+            public decimal valortotal {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablev_relatorio_vendas.valortotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'valortotal\' na tabela \'v_relatorio_vendas\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablev_relatorio_vendas.valortotalColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsnomeclienteNull() {
-                return this.IsNull(this.tableVendaJoin.nomeclienteColumn);
+                return this.IsNull(this.tablev_relatorio_vendas.nomeclienteColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetnomeclienteNull() {
-                this[this.tableVendaJoin.nomeclienteColumn] = global::System.Convert.DBNull;
+                this[this.tablev_relatorio_vendas.nomeclienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsprodutosNull() {
+                return this.IsNull(this.tablev_relatorio_vendas.produtosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetprodutosNull() {
+                this[this.tablev_relatorio_vendas.produtosColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsvalortotalNull() {
+                return this.IsNull(this.tablev_relatorio_vendas.valortotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetvalortotalNull() {
+                this[this.tablev_relatorio_vendas.valortotalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2866,22 +2775,22 @@ namespace EmpresaVendas {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class VendaJoinRowChangeEvent : global::System.EventArgs {
+        public class v_relatorio_vendasRowChangeEvent : global::System.EventArgs {
             
-            private VendaJoinRow eventRow;
+            private v_relatorio_vendasRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinRowChangeEvent(VendaJoinRow row, global::System.Data.DataRowAction action) {
+            public v_relatorio_vendasRowChangeEvent(v_relatorio_vendasRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VendaJoinRow Row {
+            public v_relatorio_vendasRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5149,7 +5058,7 @@ namespace EmpresaVendas.empresa_vendaDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class VendaJoinTableAdapter : global::System.ComponentModel.Component {
+    public partial class v_relatorio_vendasTableAdapter : global::System.ComponentModel.Component {
         
         private global::Npgsql.NpgsqlDataAdapter _adapter;
         
@@ -5163,7 +5072,7 @@ namespace EmpresaVendas.empresa_vendaDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public VendaJoinTableAdapter() {
+        public v_relatorio_vendasTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -5260,12 +5169,10 @@ namespace EmpresaVendas.empresa_vendaDataSetTableAdapters {
             this._adapter = new global::Npgsql.NpgsqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "VendaJoin";
-            tableMapping.ColumnMappings.Add("valor_pago", "valor_pago");
-            tableMapping.ColumnMappings.Add("quantidade", "quantidade");
-            tableMapping.ColumnMappings.Add("expr1", "expr1");
-            tableMapping.ColumnMappings.Add("nomeproduto", "nomeproduto");
+            tableMapping.DataSetTable = "v_relatorio_vendas";
             tableMapping.ColumnMappings.Add("nomecliente", "nomecliente");
+            tableMapping.ColumnMappings.Add("produtos", "produtos");
+            tableMapping.ColumnMappings.Add("valortotal", "valortotal");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5282,11 +5189,8 @@ namespace EmpresaVendas.empresa_vendaDataSetTableAdapters {
             this._commandCollection = new global::Npgsql.NpgsqlCommand[1];
             this._commandCollection[0] = new global::Npgsql.NpgsqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT   v.valor_pago, vd.quantidade, v.valor_pago AS Expr1, p.nome AS NomeProduto, c.nome AS NomeCliente
-FROM         v_vendas_tb v INNER JOIN
-                         v_vendas_item_tb vd ON v.id = vd.venda_id INNER JOIN
-                         p_produtos_tb p ON p.id = vd.produto_id INNER JOIN
-                         c_clientes_tb c ON c.id = v.nome_cliente_id";
+            this._commandCollection[0].CommandText = "SELECT        nomecliente, produtos, valortotal\r\nFROM            v_relatorio_vend" +
+                "as";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5294,7 +5198,7 @@ FROM         v_vendas_tb v INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(empresa_vendaDataSet.VendaJoinDataTable dataTable) {
+        public virtual int Fill(empresa_vendaDataSet.v_relatorio_vendasDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5307,9 +5211,9 @@ FROM         v_vendas_tb v INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual empresa_vendaDataSet.VendaJoinDataTable GetData() {
+        public virtual empresa_vendaDataSet.v_relatorio_vendasDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            empresa_vendaDataSet.VendaJoinDataTable dataTable = new empresa_vendaDataSet.VendaJoinDataTable();
+            empresa_vendaDataSet.v_relatorio_vendasDataTable dataTable = new empresa_vendaDataSet.v_relatorio_vendasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

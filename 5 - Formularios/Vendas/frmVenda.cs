@@ -23,15 +23,18 @@ namespace EmpresaVendas._5___Formularios.Vendas
         private readonly IClienteSerico _clienteSerico;
         private readonly IProdutoServico _produtoServico;
         List<VendaItemDTO> vendas = new List<VendaItemDTO>();
+        
 
         public frmVenda(IVendaServico vendaServico, IClienteSerico clienteSerico, IProdutoServico produtoServico)
-        {
+        {           
             InitializeComponent();
+            txtValorASerPago.Text = "R$";
             _produtoServico = produtoServico;
             _clienteSerico = clienteSerico;
             _vendaServico = vendaServico;
             ListarCliente();
             ListarProdutos();
+            btnFinalizarVenda.Enabled = false;
 
         }
         //Metodo para alimentar minha lista
@@ -40,7 +43,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             try
             {
                 
-                var Cliente = _clienteSerico.ObterCliente();
+                var Cliente = _clienteSerico.ObterClientesAtivos();
                 cbListaClientes.DataSource = Cliente;
                 cbListaClientes.ValueMember = "id";
                 cbListaClientes.DisplayMember = "nome";
@@ -72,12 +75,13 @@ namespace EmpresaVendas._5___Formularios.Vendas
         private void LimparCampos()
         {
             MessageBox.Show("Venda Incluída com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            mtxtValorASerPago.Clear();
+            txtValorASerPago.Clear();
+            txtValorASerPago.Text = "R$";
             cbListaClientes.Text = string.Empty;
             cbListaProduto.Text = string.Empty;
             txtQuantidade.Clear();
             cbListaClientes.Enabled = true;
-            
+            gridVisualizacaoProdutos.Columns.Clear();
         }
         private void btnFinalizarVenda_Click(object sender, EventArgs e)
         {
@@ -90,7 +94,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             try
             {
                 int cliente_id = Convert.ToInt32(cbListaClientes.SelectedValue);
-                decimal valor_pago = Convert.ToDecimal(mtxtValorASerPago.Text.Replace("R$","").Replace(".",","));
+                decimal valor_pago = Convert.ToDecimal(txtValorASerPago.Text.Replace("R$",""));
                 var Venda = new Venda(cliente_id, valor_pago);
                 var result = _vendaServico.NovaVenda(Venda);
                 return result;
@@ -109,36 +113,45 @@ namespace EmpresaVendas._5___Formularios.Vendas
         }
         private void VerificaEstoque()
         {
-            //var id = Convert.ToInt32(cbListaProduto.SelectedValue);
-            ////object resultado = _vendaServico.VerificaEstoque(id);
-
-            //if (Convert.ToInt32(resultado) < Convert.ToInt32(txtQuantidade.Text))
-            //{
-            //    MessageBox.Show("SEM ESTOQUE");
-            //    txtQuantidade.Clear();
-            //    return;
-            //}
-            //return;
+            var id = Convert.ToInt32(cbListaProduto.SelectedValue);
+            object resultado = _produtoServico.VerificaEstoque(id);
+            if (Convert.ToInt32(resultado) < Convert.ToInt32(txtQuantidade.Text))
+            {
+                MessageBox.Show("Sem Estoque");
+                txtQuantidade.Clear();
+                txtQuantidade.Focus();
+                return;
+            }           
         }
         private void AtualizarPreco()
-        {
+       {                
                 var id = Convert.ToInt32(cbListaProduto.SelectedValue);
                 decimal resultado = _vendaServico.AtualizaPreco(id);
                 decimal valorTotal = resultado * Convert.ToInt32(txtQuantidade.Text);
-                decimal x = Convert.ToDecimal(mtxtValorASerPago.Text.Replace("R$", "").Replace(".",","));
-                decimal y = x + valorTotal;
-                mtxtValorASerPago.Text = y.ToString("F2");                                
+                if (txtValorASerPago.Text == "R$")
+                {
+                    txtValorASerPago.Text = valorTotal.ToString("C");
+                    return;
+                }
+                else
+                {
+                    decimal x = Convert.ToDecimal(txtValorASerPago.Text.Replace("R$","").Replace(".",","));
+                    decimal y = x + valorTotal;
+                    txtValorASerPago.Text = y.ToString("C");
+                    return;
+                }                               
+                
         }
         private void AlimentarDG()
         {
             try
             {
-
+                
                 var id = Convert.ToInt32(cbListaProduto.SelectedValue);
-                var Venda = _produtoServico.ColetaDadosProduto(id);
+                var p = _produtoServico.ColetaDadosProduto(id);
                 int quantidade = Convert.ToInt32(txtQuantidade.Text);
-                var preco = Venda.Select(v => v.Preco_produto).ToList();
-                gridVisualizacaoProdutos.DataSource = Venda;
+                var preco = p.Select(v => v.Preco_produto).ToList();
+                gridVisualizacaoProdutos.DataSource = preco;
 
 
                 string nome = cbListaProduto.Text;
@@ -164,8 +177,8 @@ namespace EmpresaVendas._5___Formularios.Vendas
             AlimentarDG();
             AtualizarPreco();
             cbListaClientes.Enabled = false;
+            btnFinalizarVenda.Enabled = true;
         }
-
         private void txtQuantidade_Leave(object sender, EventArgs e)
         {
             VerificaEstoque();

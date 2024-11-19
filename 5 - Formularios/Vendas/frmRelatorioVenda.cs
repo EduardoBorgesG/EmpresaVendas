@@ -19,8 +19,8 @@ namespace EmpresaVendas._5___Formularios.Vendas
 
         private void frmRelatorioVenda_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'empresa_vendaDataSet.VendaJoin'. Você pode movê-la ou removê-la conforme necessário.
-            this.vendaJoinTableAdapter.Fill(this.empresa_vendaDataSet.VendaJoin);
+            // TODO: esta linha de código carrega dados na tabela 'empresa_vendaDataSet.v_relatorio_vendas'. Você pode movê-la ou removê-la conforme necessário.
+            this.v_relatorio_vendasTableAdapter.Fill(this.empresa_vendaDataSet.v_relatorio_vendas);
 
             this.reportViewer1.RefreshReport();
         }

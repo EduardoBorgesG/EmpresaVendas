@@ -30,17 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
-            this.empresavendaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.c_clientes_tbBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cclientestbBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empresavendaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.c_clientes_tbBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.c_clientes_tbTableAdapter = new EmpresaVendas.empresa_vendaDataSetTableAdapters.c_clientes_tbTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c_clientes_tbBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cclientestbBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c_clientes_tbBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cclientestbBindingSource
+            // 
+            this.cclientestbBindingSource.DataMember = "c_clientes_tb";
+            this.cclientestbBindingSource.DataSource = this.empresavendaDataSetBindingSource;
+            // 
+            // empresavendaDataSetBindingSource
+            // 
+            this.empresavendaDataSetBindingSource.DataSource = this.empresa_vendaDataSet;
+            this.empresavendaDataSetBindingSource.Position = 0;
+            // 
+            // empresa_vendaDataSet
+            // 
+            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
+            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -55,25 +70,10 @@
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // empresa_vendaDataSet
-            // 
-            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
-            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // empresavendaDataSetBindingSource
-            // 
-            this.empresavendaDataSetBindingSource.DataSource = this.empresa_vendaDataSet;
-            this.empresavendaDataSetBindingSource.Position = 0;
-            // 
             // c_clientes_tbBindingSource
             // 
             this.c_clientes_tbBindingSource.DataMember = "c_clientes_tb";
             this.c_clientes_tbBindingSource.DataSource = this.empresa_vendaDataSet;
-            // 
-            // cclientestbBindingSource
-            // 
-            this.cclientestbBindingSource.DataMember = "c_clientes_tb";
-            this.cclientestbBindingSource.DataSource = this.empresavendaDataSetBindingSource;
             // 
             // c_clientes_tbTableAdapter
             // 
@@ -86,12 +86,12 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmRelatorioClientes";
-            this.Text = "frmRelatorioClientes";
+            this.Text = "Relatório de Clientes";
             this.Load += new System.EventHandler(this.frmRelatorioClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c_clientes_tbBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cclientestbBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c_clientes_tbBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

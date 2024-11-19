@@ -64,19 +64,7 @@ namespace EmpresaVendas._4___Servicos
                 throw ex;
             }
         }
-        public object VerificaEstoque(int id)
-        {
-            try
-            {
-                object resultado = _vendaRepositorio.VerificaEstoque(id);
-                return resultado;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         
         
     }

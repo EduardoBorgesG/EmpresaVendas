@@ -36,21 +36,40 @@ namespace EmpresaVendas.Servicos
             return;
         }
         //Remover produto
-        public void ExcluirProduto(string id)
+        public void EsgotarProduto(int id)
         {
-            _produtoRepositorio.ExcluirProduto(id);
+            _produtoRepositorio.EsgotarProduto(id);
         }
-        //Obtem todos os produtos do banco
+        public void AtivarProduto(int id)
+        {
+            _produtoRepositorio.AtivarProduto(id);
+        } 
+        public List<Produto> ObterProdutosInativos()
+        {
+            return _produtoRepositorio.ObterProdutosInativos();
+        }
+        //Obtem os produtos do banco que estão com status ativo
         public List<Produto> ObterProduto()
         {
             return _produtoRepositorio.ObterProduto();
-           
+
         }
         public List<Produto> ColetaDadosProduto(int id)
         {
             try
             {
                 return _produtoRepositorio.ColetaDadosProduto(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object VerificaEstoque(int id)
+        {
+            try
+            {
+                return _produtoRepositorio.VerificaEstoque(id);
             }
             catch (Exception ex)
             {

@@ -7,10 +7,10 @@ namespace EmpresaVendas.Repositorios
     {
         bool CadastrarCliente(Cliente cliente);
         bool AtualizarCliente(Cliente cliente);
-        bool ExcluirCliente(string id);
-        List<Cliente> ObterCliente();
+        bool InativarCliente(string id);
+        List<Cliente> ObterClienteAtivos();
         bool VerificaCliente(string telefone);
-        Cliente ObterUm(string telefone);
-        bool AtualizarTelefone(Cliente cliente);
+        List<Cliente> ObterClienteInativos();
+        bool AtivarCliente(int id);
     }
 }

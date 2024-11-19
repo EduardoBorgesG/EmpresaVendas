@@ -32,17 +32,17 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
-            this.vendaJoinBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vendaJoinTableAdapter = new EmpresaVendas.empresa_vendaDataSetTableAdapters.VendaJoinTableAdapter();
+            this.vrelatoriovendasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_relatorio_vendasTableAdapter = new EmpresaVendas.empresa_vendaDataSetTableAdapters.v_relatorio_vendasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendaJoinBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vrelatoriovendasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "Vendas";
-            reportDataSource1.Value = this.vendaJoinBindingSource;
+            reportDataSource1.Name = "relatorio_vendas";
+            reportDataSource1.Value = this.vrelatoriovendasBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "EmpresaVendas.RelatorioVendas.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
@@ -56,14 +56,14 @@
             this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
             this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // vendaJoinBindingSource
+            // vrelatoriovendasBindingSource
             // 
-            this.vendaJoinBindingSource.DataMember = "VendaJoin";
-            this.vendaJoinBindingSource.DataSource = this.empresa_vendaDataSet;
+            this.vrelatoriovendasBindingSource.DataMember = "v_relatorio_vendas";
+            this.vrelatoriovendasBindingSource.DataSource = this.empresa_vendaDataSet;
             // 
-            // vendaJoinTableAdapter
+            // v_relatorio_vendasTableAdapter
             // 
-            this.vendaJoinTableAdapter.ClearBeforeFill = true;
+            this.v_relatorio_vendasTableAdapter.ClearBeforeFill = true;
             // 
             // frmRelatorioVenda
             // 
@@ -75,7 +75,7 @@
             this.Text = "frmRelatorioVenda";
             this.Load += new System.EventHandler(this.frmRelatorioVenda_Load);
             ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendaJoinBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vrelatoriovendasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,7 +84,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private empresa_vendaDataSet empresa_vendaDataSet;
-        private System.Windows.Forms.BindingSource vendaJoinBindingSource;
-        private empresa_vendaDataSetTableAdapters.VendaJoinTableAdapter vendaJoinTableAdapter;
+        private System.Windows.Forms.BindingSource vrelatoriovendasBindingSource;
+        private empresa_vendaDataSetTableAdapters.v_relatorio_vendasTableAdapter v_relatorio_vendasTableAdapter;
     }
 }

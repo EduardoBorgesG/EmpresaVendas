@@ -22,22 +22,23 @@ namespace EmpresaVendas._3___Repositorios
         public bool CadastrarProduto(Produto produto)
         {
             string query = @"INSERT INTO public.p_produtos_tb(
-	                         nome, descricao, preco_produto, estoque)
-	                         VALUES (@nome, @descricao, @preco_produto, @estoque);";
+	                         nome, descricao, preco_produto, estoque, ativo)
+	                         VALUES (@nome, @descricao, @preco_produto, @estoque, true);";
             var result = conn.Executar(sql: query, param: produto);
             return result == 1;
         }
         //Editar Produto
         public bool EditarProduto(Produto produto)
         {
-            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}', estoque={produto.Estoque} WHERE id = {produto.Id};";
+            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}' WHERE id = {produto.Id};";
             var result = conn.Executar(sql: query, param: produto) ; 
             return result == 1;
         }
         //Remover Produto
-        public bool ExcluirProduto(string id)
+        public bool EsgotarProduto(int id)
         {
-            string query = $"DELETE FROM public.p_produtos_tb WHERE id = {id};";
+            //NÃO DELETA PRODUTO SOMENTE ZERA O ESTOQUE
+            string query = $"UPDATE public.p_produtos_tb SET estoque = 0, ativo = false WHERE id = {id};";
             var result = conn.Executar(sql: query, param: id);
             return result == 1;
         }
@@ -54,11 +55,38 @@ namespace EmpresaVendas._3___Repositorios
             return result == null;
 
         }
+        public bool AtivarProduto(int id)
+        {
+            try
+            {
+                string query = $"UPDATE public.p_produtos_tb SET ativo = true WHERE id = {id}";
+                var produtos = conn.Executar(sql: query, param: id);
+                return produtos == 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Produto> ObterProdutosInativos()
+        {
+            try
+            {
+                string query = @"SELECT id, nome FROM public.p_produtos_tb WHERE ativo = false";
+                var produtos = conn.Consulta(sql: query);
+                return produtos.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<Produto> ObterProduto()
         {
             try
             {
-                string query = @"SELECT * FROM public.p_produtos_tb;";
+                string query = @"SELECT * FROM public.p_produtos_tb WHERE ativo = true;";
                 var produtos = conn.Consulta(sql: query);
                 return produtos.ToList();
 
@@ -73,9 +101,23 @@ namespace EmpresaVendas._3___Repositorios
         {
             try
             {
-                string query = @"SELECT id, nome, preco_produto FROM p_produtos_tb WHERE id = @id LIMIT 1";
-                var Produtos = conn.ColetaValoresDoBanco(sql: query, param: id);
-                return Produtos.ToList();
+                string query = $"SELECT id, nome, preco_produto FROM p_produtos_tb WHERE id = {id}";
+                var Produtos2 = conn.ColetaValoresDoBanco(sql: query, param: id);
+                return Produtos2.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public object VerificaEstoque(int id)
+        {
+            //Verifica se a quantidade é maior ou igual ao estoque
+            try
+            {
+                string query = $"SELECT estoque FROM p_produtos_tb WHERE id = {id}";
+                object result = conn.VerificarnoBanco(sql: query, param: id);
+                return result;
             }
             catch (Exception ex)
             {

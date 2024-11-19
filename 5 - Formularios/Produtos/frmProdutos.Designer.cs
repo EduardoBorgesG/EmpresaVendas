@@ -39,27 +39,25 @@
             this.txtNomeProduto = new System.Windows.Forms.TextBox();
             this.rtxtDescricaoProduto = new System.Windows.Forms.RichTextBox();
             this.txtEstoqueProduto = new System.Windows.Forms.TextBox();
-            this.mtxtPrecoProduto = new System.Windows.Forms.MaskedTextBox();
             this.btnSalvarProduto = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtPrecoProduto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // gridProdutos
             // 
             this.gridProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridProdutos.Location = new System.Drawing.Point(9, 323);
-            this.gridProdutos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridProdutos.Location = new System.Drawing.Point(6, 210);
             this.gridProdutos.Name = "gridProdutos";
-            this.gridProdutos.Size = new System.Drawing.Size(1002, 472);
+            this.gridProdutos.Size = new System.Drawing.Size(668, 307);
             this.gridProdutos.TabIndex = 0;
             // 
             // btnCadastrarProduto
             // 
-            this.btnCadastrarProduto.Location = new System.Drawing.Point(18, 805);
-            this.btnCadastrarProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCadastrarProduto.Location = new System.Drawing.Point(12, 523);
             this.btnCadastrarProduto.Name = "btnCadastrarProduto";
-            this.btnCadastrarProduto.Size = new System.Drawing.Size(154, 86);
+            this.btnCadastrarProduto.Size = new System.Drawing.Size(103, 56);
             this.btnCadastrarProduto.TabIndex = 1;
             this.btnCadastrarProduto.Text = "CADASTRAR";
             this.btnCadastrarProduto.UseVisualStyleBackColor = true;
@@ -67,10 +65,9 @@
             // 
             // btnEditarProduto
             // 
-            this.btnEditarProduto.Location = new System.Drawing.Point(352, 805);
-            this.btnEditarProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEditarProduto.Location = new System.Drawing.Point(235, 523);
             this.btnEditarProduto.Name = "btnEditarProduto";
-            this.btnEditarProduto.Size = new System.Drawing.Size(154, 86);
+            this.btnEditarProduto.Size = new System.Drawing.Size(103, 56);
             this.btnEditarProduto.TabIndex = 2;
             this.btnEditarProduto.Text = "EDITAR";
             this.btnEditarProduto.UseVisualStyleBackColor = true;
@@ -78,10 +75,9 @@
             // 
             // btnExcluirProduto
             // 
-            this.btnExcluirProduto.Location = new System.Drawing.Point(770, 805);
-            this.btnExcluirProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExcluirProduto.Location = new System.Drawing.Point(513, 523);
             this.btnExcluirProduto.Name = "btnExcluirProduto";
-            this.btnExcluirProduto.Size = new System.Drawing.Size(242, 86);
+            this.btnExcluirProduto.Size = new System.Drawing.Size(161, 56);
             this.btnExcluirProduto.TabIndex = 3;
             this.btnExcluirProduto.Text = "EXCLUIR";
             this.btnExcluirProduto.UseVisualStyleBackColor = true;
@@ -91,8 +87,7 @@
             // 
             this.lblNomeProduto.AutoSize = true;
             this.lblNomeProduto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblNomeProduto.Location = new System.Drawing.Point(18, 80);
-            this.lblNomeProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeProduto.Location = new System.Drawing.Point(12, 52);
             this.lblNomeProduto.Name = "lblNomeProduto";
             this.lblNomeProduto.Size = new System.Drawing.Size(49, 16);
             this.lblNomeProduto.TabIndex = 4;
@@ -102,8 +97,7 @@
             // 
             this.lblDescricaoProduto.AutoSize = true;
             this.lblDescricaoProduto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblDescricaoProduto.Location = new System.Drawing.Point(18, 138);
-            this.lblDescricaoProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescricaoProduto.Location = new System.Drawing.Point(12, 90);
             this.lblDescricaoProduto.Name = "lblDescricaoProduto";
             this.lblDescricaoProduto.Size = new System.Drawing.Size(73, 16);
             this.lblDescricaoProduto.TabIndex = 5;
@@ -113,8 +107,7 @@
             // 
             this.lblPrecoProduto.AutoSize = true;
             this.lblPrecoProduto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblPrecoProduto.Location = new System.Drawing.Point(650, 80);
-            this.lblPrecoProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrecoProduto.Location = new System.Drawing.Point(433, 52);
             this.lblPrecoProduto.Name = "lblPrecoProduto";
             this.lblPrecoProduto.Size = new System.Drawing.Size(45, 16);
             this.lblPrecoProduto.TabIndex = 6;
@@ -124,8 +117,7 @@
             // 
             this.lblEstoqueProduto.AutoSize = true;
             this.lblEstoqueProduto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblEstoqueProduto.Location = new System.Drawing.Point(650, 138);
-            this.lblEstoqueProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEstoqueProduto.Location = new System.Drawing.Point(433, 90);
             this.lblEstoqueProduto.Name = "lblEstoqueProduto";
             this.lblEstoqueProduto.Size = new System.Drawing.Size(63, 16);
             this.lblEstoqueProduto.TabIndex = 7;
@@ -133,46 +125,33 @@
             // 
             // txtNomeProduto
             // 
-            this.txtNomeProduto.Location = new System.Drawing.Point(100, 78);
-            this.txtNomeProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNomeProduto.Location = new System.Drawing.Point(67, 51);
             this.txtNomeProduto.Name = "txtNomeProduto";
-            this.txtNomeProduto.Size = new System.Drawing.Size(493, 26);
+            this.txtNomeProduto.Size = new System.Drawing.Size(330, 20);
             this.txtNomeProduto.TabIndex = 8;
             // 
             // rtxtDescricaoProduto
             // 
-            this.rtxtDescricaoProduto.Location = new System.Drawing.Point(136, 138);
-            this.rtxtDescricaoProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rtxtDescricaoProduto.Location = new System.Drawing.Point(91, 90);
             this.rtxtDescricaoProduto.Name = "rtxtDescricaoProduto";
-            this.rtxtDescricaoProduto.Size = new System.Drawing.Size(457, 146);
+            this.rtxtDescricaoProduto.Size = new System.Drawing.Size(306, 96);
             this.rtxtDescricaoProduto.TabIndex = 9;
             this.rtxtDescricaoProduto.Text = "";
             // 
             // txtEstoqueProduto
             // 
-            this.txtEstoqueProduto.Location = new System.Drawing.Point(740, 137);
-            this.txtEstoqueProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEstoqueProduto.Location = new System.Drawing.Point(493, 89);
             this.txtEstoqueProduto.Name = "txtEstoqueProduto";
-            this.txtEstoqueProduto.Size = new System.Drawing.Size(102, 26);
+            this.txtEstoqueProduto.Size = new System.Drawing.Size(69, 20);
             this.txtEstoqueProduto.TabIndex = 11;
-            // 
-            // mtxtPrecoProduto
-            // 
-            this.mtxtPrecoProduto.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtxtPrecoProduto.Location = new System.Drawing.Point(740, 78);
-            this.mtxtPrecoProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.mtxtPrecoProduto.Mask = "$ 00,00";
-            this.mtxtPrecoProduto.Name = "mtxtPrecoProduto";
-            this.mtxtPrecoProduto.Size = new System.Drawing.Size(102, 26);
-            this.mtxtPrecoProduto.TabIndex = 12;
-            this.mtxtPrecoProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtPrecoProduto_KeyPress);
+            this.txtEstoqueProduto.Enter += new System.EventHandler(this.txtEstoqueProduto_Enter);
+            this.txtEstoqueProduto.Leave += new System.EventHandler(this.txtEstoqueProduto_Leave);
             // 
             // btnSalvarProduto
             // 
-            this.btnSalvarProduto.Location = new System.Drawing.Point(182, 805);
-            this.btnSalvarProduto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSalvarProduto.Location = new System.Drawing.Point(121, 523);
             this.btnSalvarProduto.Name = "btnSalvarProduto";
-            this.btnSalvarProduto.Size = new System.Drawing.Size(154, 86);
+            this.btnSalvarProduto.Size = new System.Drawing.Size(103, 56);
             this.btnSalvarProduto.TabIndex = 13;
             this.btnSalvarProduto.Text = "SALVAR";
             this.btnSalvarProduto.UseVisualStyleBackColor = true;
@@ -180,23 +159,30 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(516, 805);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancelar.Location = new System.Drawing.Point(344, 523);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(154, 86);
+            this.btnCancelar.Size = new System.Drawing.Size(103, 56);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // txtPrecoProduto
+            // 
+            this.txtPrecoProduto.Location = new System.Drawing.Point(493, 51);
+            this.txtPrecoProduto.Name = "txtPrecoProduto";
+            this.txtPrecoProduto.Size = new System.Drawing.Size(69, 20);
+            this.txtPrecoProduto.TabIndex = 15;
+            this.txtPrecoProduto.Leave += new System.EventHandler(this.txtPrecoProduto_Leave);
+            // 
             // frmProdutos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 909);
+            this.ClientSize = new System.Drawing.Size(698, 591);
+            this.Controls.Add(this.txtPrecoProduto);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvarProduto);
-            this.Controls.Add(this.mtxtPrecoProduto);
             this.Controls.Add(this.txtEstoqueProduto);
             this.Controls.Add(this.rtxtDescricaoProduto);
             this.Controls.Add(this.txtNomeProduto);
@@ -208,9 +194,8 @@
             this.Controls.Add(this.btnEditarProduto);
             this.Controls.Add(this.btnCadastrarProduto);
             this.Controls.Add(this.gridProdutos);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmProdutos";
-            this.Text = "frmProdutos";
+            this.Text = "Cadastro de Produtos";
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,8 +215,8 @@
         private System.Windows.Forms.TextBox txtNomeProduto;
         private System.Windows.Forms.RichTextBox rtxtDescricaoProduto;
         private System.Windows.Forms.TextBox txtEstoqueProduto;
-        private System.Windows.Forms.MaskedTextBox mtxtPrecoProduto;
         private System.Windows.Forms.Button btnSalvarProduto;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtPrecoProduto;
     }
 }

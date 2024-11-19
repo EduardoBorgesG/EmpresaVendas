@@ -15,9 +15,6 @@ namespace EmpresaVendas._3___Repositorios
     {
         //INCLUÍ VENDA
         int IncluirVenda(Venda venda);
-        //Verifica o estoque no banco
-        object VerificaEstoque(int id);
-        //NÃO ESTÁ SENDO USADO 
         object AdquiriPropriedades(int id);
         object VerificarQuantidade(int id);
         object AdquirirEstoquePreco(int id);

@@ -37,7 +37,7 @@ namespace EmpresaVendas.Formularios
         /// </summary>
         private void ObterClientes()
         {
-            var Clientes = _clienteSerico.ObterCliente();
+            var Clientes = _clienteSerico.ObterClientesAtivos();
             gridClientes.DataSource = Clientes;
         }
         private void LimparCampos()
@@ -49,12 +49,7 @@ namespace EmpresaVendas.Formularios
             mtxtTelefoneCliente.Clear();
             txtEnderecoCliente.Clear();
         }
-        public void ObterId()
-        {
-            //NÃO ESTÁ SENDO USADO
-            var id = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
-            var cliente = new Cliente(id);
-        }
+        
         private void ObterDados()
         {
             //Coleta os dados da grid e passa para os campos de texto
@@ -63,13 +58,6 @@ namespace EmpresaVendas.Formularios
             mtxtTelefoneCliente.Text = gridClientes.CurrentRow.Cells[3].Value.ToString();
             mtxtCepCliente.Text = gridClientes.CurrentRow.Cells[4].Value.ToString();
             txtEnderecoCliente.Text = gridClientes.CurrentRow.Cells[5].Value.ToString();
-        }
-        private void BloquearCampos()
-        {
-            txtNomeCliente.Enabled = false;
-            txtEmailCliente.Enabled = false;
-            mtxtCepCliente.Enabled = false;
-            txtEnderecoCliente.Enabled = false;
         }
         private void FormatarDg()
         {
@@ -151,26 +139,22 @@ namespace EmpresaVendas.Formularios
             btnCancelarEdicao.Enabled = true;
             btnSalvar.Enabled = true;
             btnIncluirCliente.Enabled = false;
-            btnCancelarEdicao.Enabled = true;
-            mtxtTelefoneCliente.Enabled = false;
+            btnCancelarEdicao.Enabled = true;            
             btnEditarCliente.Enabled = false;
         }
-        private void gridClientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            btnEditarCliente.Enabled = true;
-            ObterId();
-        }
+       
         private void btnExcluirClientes_Click(object sender, EventArgs e)
         {
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir esse Cliente?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show("Não é possível excluir um cliente, somente inativar." +
+                                                         "Deseja inativar esse Cliente?", "Inativar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
-                    //Metodo para excluir um cliente
+                    //Metodo para inativar um cliente
                     var id = gridClientes.CurrentRow.Cells[0].Value.ToString();
-                    _clienteSerico.ExcluirCliente(id);
-                    MessageBox.Show("Cliente excluído com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    _clienteSerico.InativarCliente(id);
+                    MessageBox.Show("Cliente inativado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     //Atualiza os dados da minha grid
                     ObterClientes();
                     return;
@@ -200,8 +184,7 @@ namespace EmpresaVendas.Formularios
                 LimparCampos();
                 //atualiza os dados da minha grid
                 ObterClientes();
-                btnEditarCliente.Enabled = true;
-                mtxtTelefoneCliente.Enabled = true;
+                btnEditarCliente.Enabled = true;               
                 btnSalvar.Enabled = false;
                 btnCancelarEdicao.Enabled = false;
             } 
@@ -218,22 +201,6 @@ namespace EmpresaVendas.Formularios
             btnEditarCliente.Enabled = true;
             btnSalvar.Enabled= false;
             btnCancelarEdicao.Enabled= false;
-        }
-
-        private void btnAlterarTelefone_Click(object sender, EventArgs e)
-        {
-            //try 
-            //{               
-            //    var telefone = mtxtTelefoneCliente.Text;
-            //    var id = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
-            //    var cliente = new Cliente(telefone, id);
-            //    _clienteSerico.AlterarTelefone(cliente);
-            //} 
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-            
-        }
+        }       
     }
 }

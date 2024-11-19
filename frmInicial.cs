@@ -15,6 +15,7 @@ using EmpresaVendas._4___Servicos;
 using EmpresaVendas._5___Formularios.Vendas;
 using EmpresaVendas._5___Formularios.Clientes;
 using Microsoft.Reporting.WinForms;
+using EmpresaVendas._5___Formularios.Produtos;
 
 
 namespace EmpresaVendas
@@ -37,23 +38,7 @@ namespace EmpresaVendas
         {
             frmProdutos frm = new frmProdutos(_produtoServico);
             frm.Show();
-        }
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        var conn = new DbConnection();
-        //        conn.Dispose();
-        //        MessageBox.Show("Conexão sucesso");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Ocrreu um erro {ex}");
-
-        //    }
-        //}
-
+        }      
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmClientes frm = new frmClientes(_clienteSerico);
@@ -81,6 +66,18 @@ namespace EmpresaVendas
         private void relatórioVendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmRelatorioVenda frm = new frmRelatorioVenda();
+            frm.Show();
+        }
+
+        private void produtosInativosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAtivarProdutos frm = new frmAtivarProdutos(_produtoServico);
+            frm.Show();
+        }
+
+        private void clientesInativosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAtivarClientes frm = new frmAtivarClientes(_clienteSerico);
             frm.Show();
         }
     }

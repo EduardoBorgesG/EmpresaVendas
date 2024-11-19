@@ -43,35 +43,26 @@ namespace EmpresaVendas.Servicos
         /// Excluir cliente do banco de dados
         /// </summary>
         /// <param name="id"></param>
-        public void ExcluirCliente(string id)
+        public void InativarCliente(string id)
         {
-            _clienteRepositorio.ExcluirCliente(id);
+            _clienteRepositorio.InativarCliente(id);
         }
         /// <summary>
         /// Metodo para obter todos os clientes do banco
         /// </summary>
         /// <returns></returns>
-        public List<Cliente> ObterCliente()
+        public List<Cliente> ObterClientesAtivos()
         {
-            return _clienteRepositorio.ObterCliente();
+            return _clienteRepositorio.ObterClienteAtivos();
         }
-        /// <summary>
-        /// Metodo para alterar o Telefone
-        /// </summary>
-        /// <param name="cliente"></param>
-        /// <exception cref="Exception"></exception>
-        public void AlterarTelefone(Cliente cliente)
+
+        public List<Cliente> ObterClientesInativos()
         {
-            if (_clienteRepositorio.VerificaCliente(cliente.Telefone))
-            {
-                var Cliente = _clienteRepositorio.ObterUm(cliente.Telefone);
-                if (Cliente == null) throw new Exception();
-
-                if (_clienteRepositorio.VerificaCliente(cliente.Telefone)) throw new Exception();
-
-                Cliente.AlterarTelefone(cliente.Telefone);
-                _clienteRepositorio.AtualizarTelefone(Cliente);
-            }
+            return _clienteRepositorio.ObterClienteInativos();
+        }
+        public bool AtivarCliente(int id)
+        {
+            return _clienteRepositorio.AtivarCliente(id);
         }
     }
 }

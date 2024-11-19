@@ -262,27 +262,22 @@ FROM     c_clientes_tb</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VendaJoinTableAdapter" GeneratorDataComponentClassName="VendaJoinTableAdapter" Name="VendaJoin" UserDataComponentName="VendaJoinTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_relatorio_vendasTableAdapter" GeneratorDataComponentClassName="v_relatorio_vendasTableAdapter" Name="v_relatorio_vendas" UserDataComponentName="v_relatorio_vendasTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="empresa_vendaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="empresa_vendaConnectionString (Settings)" DbObjectName="empresa_venda.&quot;public&quot;.v_relatorio_vendas" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT   v.valor_pago, vd.quantidade, v.valor_pago AS Expr1, p.nome AS NomeProduto, c.nome AS NomeCliente
-FROM         v_vendas_tb v INNER JOIN
-                         v_vendas_item_tb vd ON v.id = vd.venda_id INNER JOIN
-                         p_produtos_tb p ON p.id = vd.produto_id INNER JOIN
-                         c_clientes_tb c ON c.id = v.nome_cliente_id</CommandText>
+                    <CommandText>SELECT        nomecliente, produtos, valortotal
+FROM            v_relatorio_vendas</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="valor_pago" DataSetColumn="valor_pago" />
-              <Mapping SourceColumn="quantidade" DataSetColumn="quantidade" />
-              <Mapping SourceColumn="expr1" DataSetColumn="expr1" />
-              <Mapping SourceColumn="nomeproduto" DataSetColumn="nomeproduto" />
               <Mapping SourceColumn="nomecliente" DataSetColumn="nomecliente" />
+              <Mapping SourceColumn="produtos" DataSetColumn="produtos" />
+              <Mapping SourceColumn="valortotal" DataSetColumn="valortotal" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -378,19 +373,9 @@ FROM         v_vendas_tb v INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VendaJoin" msprop:Generator_RowEvHandlerName="VendaJoinRowChangeEventHandler" msprop:Generator_RowDeletedName="VendaJoinRowDeleted" msprop:Generator_RowDeletingName="VendaJoinRowDeleting" msprop:Generator_RowEvArgName="VendaJoinRowChangeEvent" msprop:Generator_TablePropName="VendaJoin" msprop:Generator_RowChangedName="VendaJoinRowChanged" msprop:Generator_RowChangingName="VendaJoinRowChanging" msprop:Generator_TableClassName="VendaJoinDataTable" msprop:Generator_RowClassName="VendaJoinRow" msprop:Generator_TableVarName="tableVendaJoin" msprop:Generator_UserTableName="VendaJoin">
+        <xs:element name="v_relatorio_vendas" msprop:Generator_RowEvHandlerName="v_relatorio_vendasRowChangeEventHandler" msprop:Generator_RowDeletedName="v_relatorio_vendasRowDeleted" msprop:Generator_RowDeletingName="v_relatorio_vendasRowDeleting" msprop:Generator_RowEvArgName="v_relatorio_vendasRowChangeEvent" msprop:Generator_TablePropName="v_relatorio_vendas" msprop:Generator_RowChangedName="v_relatorio_vendasRowChanged" msprop:Generator_RowChangingName="v_relatorio_vendasRowChanging" msprop:Generator_TableClassName="v_relatorio_vendasDataTable" msprop:Generator_RowClassName="v_relatorio_vendasRow" msprop:Generator_TableVarName="tablev_relatorio_vendas" msprop:Generator_UserTableName="v_relatorio_vendas">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="valor_pago" msprop:Generator_ColumnPropNameInRow="valor_pago" msprop:Generator_ColumnPropNameInTable="valor_pagoColumn" msprop:Generator_ColumnVarNameInTable="columnvalor_pago" msprop:Generator_UserColumnName="valor_pago" type="xs:int" minOccurs="0" />
-              <xs:element name="quantidade" msprop:Generator_ColumnPropNameInRow="quantidade" msprop:Generator_ColumnPropNameInTable="quantidadeColumn" msprop:Generator_ColumnVarNameInTable="columnquantidade" msprop:Generator_UserColumnName="quantidade" type="xs:decimal" minOccurs="0" />
-              <xs:element name="expr1" msprop:Generator_ColumnPropNameInRow="expr1" msprop:Generator_ColumnPropNameInTable="expr1Column" msprop:Generator_ColumnVarNameInTable="columnexpr1" msprop:Generator_UserColumnName="expr1" type="xs:decimal" minOccurs="0" />
-              <xs:element name="nomeproduto" msprop:Generator_ColumnPropNameInRow="nomeproduto" msprop:Generator_ColumnPropNameInTable="nomeprodutoColumn" msprop:Generator_ColumnVarNameInTable="columnnomeproduto" msprop:Generator_UserColumnName="nomeproduto" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="250" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="nomecliente" msprop:Generator_ColumnPropNameInRow="nomecliente" msprop:Generator_ColumnPropNameInTable="nomeclienteColumn" msprop:Generator_ColumnVarNameInTable="columnnomecliente" msprop:Generator_UserColumnName="nomecliente" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -398,6 +383,8 @@ FROM         v_vendas_tb v INNER JOIN
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="produtos" msprop:Generator_ColumnPropNameInRow="produtos" msprop:Generator_ColumnPropNameInTable="produtosColumn" msprop:Generator_ColumnVarNameInTable="columnprodutos" msprop:Generator_UserColumnName="produtos" type="xs:string" minOccurs="0" />
+              <xs:element name="valortotal" msprop:Generator_ColumnPropNameInRow="valortotal" msprop:Generator_ColumnPropNameInTable="valortotalColumn" msprop:Generator_ColumnVarNameInTable="columnvalortotal" msprop:Generator_UserColumnName="valortotal" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -431,20 +418,12 @@ FROM         v_vendas_tb v INNER JOIN
       <xs:selector xpath=".//mstns:v_vendas_tb" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
-    <xs:unique name="VendaJoin_Constraint1" msdata:ConstraintName="Constraint1">
-      <xs:selector xpath=".//mstns:VendaJoin" />
-      <xs:field xpath="mstns:nomeproduto" />
-    </xs:unique>
-    <xs:unique name="VendaJoin_Constraint2" msdata:ConstraintName="Constraint2">
-      <xs:selector xpath=".//mstns:VendaJoin" />
-      <xs:field xpath="mstns:nomecliente" />
-    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
       <msdata:Relationship name="c_clientes_tb_v_vendas_tb" msdata:parent="c_clientes_tb" msdata:child="v_vendas_tb" msdata:parentkey="id" msdata:childkey="nome_cliente_id" msprop:Generator_UserParentTable="c_clientes_tb" msprop:Generator_UserChildTable="v_vendas_tb" msprop:Generator_RelationVarName="relationc_clientes_tb_v_vendas_tb" msprop:Generator_ChildPropName="Getv_vendas_tbRows" msprop:Generator_ParentPropName="c_clientes_tbRow" msprop:Generator_UserRelationName="c_clientes_tb_v_vendas_tb" />
       <msdata:Relationship name="p_produtos_tb_v_vendas_item_tb" msdata:parent="p_produtos_tb" msdata:child="v_vendas_item_tb" msdata:parentkey="id" msdata:childkey="produto_id" msprop:Generator_UserParentTable="p_produtos_tb" msprop:Generator_UserChildTable="v_vendas_item_tb" msprop:Generator_RelationVarName="relationp_produtos_tb_v_vendas_item_tb" msprop:Generator_ChildPropName="Getv_vendas_item_tbRows" msprop:Generator_ParentPropName="p_produtos_tbRow" msprop:Generator_UserRelationName="p_produtos_tb_v_vendas_item_tb" />
-      <msdata:Relationship name="v_vendas_tb_v_vendas_item_tb" msdata:parent="v_vendas_tb" msdata:child="v_vendas_item_tb" msdata:parentkey="id" msdata:childkey="venda_id" msprop:Generator_UserParentTable="v_vendas_tb" msprop:Generator_UserChildTable="v_vendas_item_tb" msprop:Generator_RelationVarName="relationv_vendas_tb_v_vendas_item_tb" msprop:Generator_UserRelationName="v_vendas_tb_v_vendas_item_tb" msprop:Generator_ChildPropName="Getv_vendas_item_tbRows" msprop:Generator_ParentPropName="v_vendas_tbRow" />
+      <msdata:Relationship name="v_vendas_tb_v_vendas_item_tb" msdata:parent="v_vendas_tb" msdata:child="v_vendas_item_tb" msdata:parentkey="id" msdata:childkey="venda_id" msprop:Generator_UserParentTable="v_vendas_tb" msprop:Generator_UserChildTable="v_vendas_item_tb" msprop:Generator_RelationVarName="relationv_vendas_tb_v_vendas_item_tb" msprop:Generator_ChildPropName="Getv_vendas_item_tbRows" msprop:Generator_UserRelationName="v_vendas_tb_v_vendas_item_tb" msprop:Generator_ParentPropName="v_vendas_tbRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

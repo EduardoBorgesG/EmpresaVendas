@@ -19,17 +19,18 @@ namespace EmpresaVendas.Servicos
         /// 
         /// </summary>
         /// <returns></returns>
-        List<Cliente> ObterCliente();
+        List<Cliente> ObterClientesAtivos();
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        void ExcluirCliente(string id);
+        void InativarCliente(string id);
         /// <summary>
         /// asdada
         /// </summary>
         /// <param name="alteradoCliente">adsadada</param>
         void AtualizarCliente(Cliente alteradoCliente);
-        void AlterarTelefone(Cliente cliente);
+        List<Cliente> ObterClientesInativos();
+        bool AtivarCliente(int id);
     }
 }

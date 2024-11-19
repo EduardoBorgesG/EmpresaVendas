@@ -1,5 +1,7 @@
 ﻿using EmpresaVendas._3___Repositorios;
 using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios.Clientes;
+using EmpresaVendas._5___Formularios.Produtos;
 using EmpresaVendas._5___Formularios.Vendas;
 using EmpresaVendas.Conecctions;
 using EmpresaVendas.Formularios;
@@ -48,6 +50,8 @@ namespace EmpresaVendas
             services.AddTransient<frmInicial>();
             services.AddTransient<frmClientes>();
             services.AddTransient<frmVenda>();
+            services.AddTransient<frmAtivarProdutos>();
+            services.AddTransient<frmAtivarClientes>();
 
         }
     }

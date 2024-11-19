@@ -195,6 +195,7 @@
             this.Controls.Add(this.btnCadastrarProduto);
             this.Controls.Add(this.gridProdutos);
             this.Name = "frmProdutos";
+            this.ShowIcon = false;
             this.Text = "Cadastro de Produtos";
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutos)).EndInit();
             this.ResumeLayout(false);

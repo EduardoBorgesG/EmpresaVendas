@@ -55,6 +55,7 @@
             // 
             // cbListaClientes
             // 
+            this.cbListaClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListaClientes.FormattingEnabled = true;
             this.cbListaClientes.Items.AddRange(new object[] {
             "teste1",
@@ -76,6 +77,7 @@
             // 
             // cbListaProduto
             // 
+            this.cbListaProduto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListaProduto.FormattingEnabled = true;
             this.cbListaProduto.Location = new System.Drawing.Point(63, 57);
             this.cbListaProduto.Name = "cbListaProduto";
@@ -182,6 +184,7 @@
             this.Controls.Add(this.cbListaClientes);
             this.Controls.Add(this.lblCliente);
             this.Name = "frmVenda";
+            this.ShowIcon = false;
             this.Text = "Cadastrar uma Venda";
             ((System.ComponentModel.ISupportInitialize)(this.gridVisualizacaoProdutos)).EndInit();
             this.ResumeLayout(false);

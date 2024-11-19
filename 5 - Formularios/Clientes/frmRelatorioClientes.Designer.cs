@@ -86,6 +86,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmRelatorioClientes";
+            this.ShowIcon = false;
             this.Text = "Relatório de Clientes";
             this.Load += new System.EventHandler(this.frmRelatorioClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cclientestbBindingSource)).EndInit();

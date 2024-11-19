@@ -216,6 +216,7 @@
             this.Controls.Add(this.btnIncluirCliente);
             this.Controls.Add(this.gridClientes);
             this.Name = "frmClientes";
+            this.ShowIcon = false;
             this.Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).EndInit();
             this.ResumeLayout(false);

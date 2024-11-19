@@ -50,8 +50,8 @@ namespace EmpresaVendas.Formularios.Produtos
             //Coleta os dados da grid e passa para os campos de texto
             txtNomeProduto.Text = gridProdutos.CurrentRow.Cells[1].Value.ToString();
             rtxtDescricaoProduto.Text = gridProdutos.CurrentRow.Cells[2].Value.ToString();
-            decimal formato_moeda = Convert.ToDecimal(gridProdutos.CurrentRow.Cells[3].Value.ToString());
-            txtPrecoProduto.Text = formato_moeda.ToString("C");
+            string x = gridProdutos.CurrentRow.Cells[3].Value.ToString();
+            txtPrecoProduto.Text = "R$" + x.Replace(".", ",");
             txtEstoqueProduto.Text = gridProdutos.CurrentRow.Cells[4].Value.ToString();
         }
         private void LimparCampos()
@@ -155,8 +155,8 @@ namespace EmpresaVendas.Formularios.Produtos
             {
                 //Metodo para editar um cliente                
                 var nome = txtNomeProduto.Text;
-                var descricao = rtxtDescricaoProduto.Text;
-                var preco_produto = Convert.ToDecimal(txtPrecoProduto.Text.Replace("R$", "").Replace(",", "."));
+                var descricao = rtxtDescricaoProduto.Text;              
+                var preco_produto = Convert.ToDecimal(txtPrecoProduto.Text.Replace("R$", "").Replace(",00", "").Replace(",","."));
                 var produto = new Produto(id, nome, descricao, preco_produto);
                 _produtoServico.AtualizarProduto(produto);
                 MessageBox.Show("Produto editado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -165,6 +165,8 @@ namespace EmpresaVendas.Formularios.Produtos
                 ObterProduto();
                 btnCadastrarProduto.Enabled = true;
                 btnSalvarProduto.Enabled = false;
+                btnEditarProduto.Enabled = true;
+                btnCancelar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -188,7 +190,7 @@ namespace EmpresaVendas.Formularios.Produtos
         {
             if (txtPrecoProduto.Text.Trim() == "")
             {
-                txtPrecoProduto.Text = "R$";
+                txtPrecoProduto.Text = "R$ ";
                 return;
             }
             else

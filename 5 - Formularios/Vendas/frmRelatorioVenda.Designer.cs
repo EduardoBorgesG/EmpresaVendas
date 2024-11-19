@@ -30,17 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
             this.vrelatoriovendasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.v_relatorio_vendasTableAdapter = new EmpresaVendas.empresa_vendaDataSetTableAdapters.v_relatorio_vendasTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vrelatoriovendasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // vrelatoriovendasBindingSource
+            // 
+            this.vrelatoriovendasBindingSource.DataMember = "v_relatorio_vendas";
+            this.vrelatoriovendasBindingSource.DataSource = this.empresa_vendaDataSet;
+            // 
+            // empresa_vendaDataSet
+            // 
+            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
+            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.DocumentMapWidth = 50;
             reportDataSource1.Name = "relatorio_vendas";
             reportDataSource1.Value = this.vrelatoriovendasBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
@@ -50,16 +61,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // empresa_vendaDataSet
-            // 
-            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
-            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vrelatoriovendasBindingSource
-            // 
-            this.vrelatoriovendasBindingSource.DataMember = "v_relatorio_vendas";
-            this.vrelatoriovendasBindingSource.DataSource = this.empresa_vendaDataSet;
             // 
             // v_relatorio_vendasTableAdapter
             // 
@@ -72,10 +73,11 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmRelatorioVenda";
+            this.ShowIcon = false;
             this.Text = "frmRelatorioVenda";
             this.Load += new System.EventHandler(this.frmRelatorioVenda_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vrelatoriovendasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

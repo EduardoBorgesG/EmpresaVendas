@@ -73,6 +73,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.gridClientesInativos);
             this.Name = "frmAtivarClientes";
+            this.ShowIcon = false;
             this.Text = "frmAtivarClientes";
             ((System.ComponentModel.ISupportInitialize)(this.gridClientesInativos)).EndInit();
             this.ResumeLayout(false);

@@ -30,15 +30,30 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
-            this.empresavendaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pprodutostbBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empresavendaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empresa_vendaDataSet = new EmpresaVendas.empresa_vendaDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.p_produtos_tbTableAdapter = new EmpresaVendas.empresa_vendaDataSetTableAdapters.p_produtos_tbTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pprodutostbBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pprodutostbBindingSource
+            // 
+            this.pprodutostbBindingSource.DataMember = "p_produtos_tb";
+            this.pprodutostbBindingSource.DataSource = this.empresavendaDataSetBindingSource;
+            // 
+            // empresavendaDataSetBindingSource
+            // 
+            this.empresavendaDataSetBindingSource.DataSource = this.empresa_vendaDataSet;
+            this.empresavendaDataSetBindingSource.Position = 0;
+            // 
+            // empresa_vendaDataSet
+            // 
+            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
+            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -53,21 +68,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // empresa_vendaDataSet
-            // 
-            this.empresa_vendaDataSet.DataSetName = "empresa_vendaDataSet";
-            this.empresa_vendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // empresavendaDataSetBindingSource
-            // 
-            this.empresavendaDataSetBindingSource.DataSource = this.empresa_vendaDataSet;
-            this.empresavendaDataSetBindingSource.Position = 0;
-            // 
-            // pprodutostbBindingSource
-            // 
-            this.pprodutostbBindingSource.DataMember = "p_produtos_tb";
-            this.pprodutostbBindingSource.DataSource = this.empresavendaDataSetBindingSource;
-            // 
             // p_produtos_tbTableAdapter
             // 
             this.p_produtos_tbTableAdapter.ClearBeforeFill = true;
@@ -79,11 +79,12 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmRelatorioProduto";
+            this.ShowIcon = false;
             this.Text = "frmRelatorioProduto";
             this.Load += new System.EventHandler(this.frmRelatorioProduto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pprodutostbBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresavendaDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empresa_vendaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

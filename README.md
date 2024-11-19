@@ -111,3 +111,23 @@ CREATE TABLE IF NOT EXISTS public.v_vendas_item_tb
 TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.v_vendas_item_tb
     OWNER to postgres;
+
+
+---------------------------------------------------------------------------------------------------
+
+Criação da view do relatório
+
+-- View: public.v_relatorio_vendas
+-- DROP VIEW public.v_relatorio_vendas;
+CREATE OR REPLACE VIEW public.v_relatorio_vendas
+ AS
+ SELECT c.nome AS nomecliente,
+    string_agg(((p.nome::text || ' (Qtd: '::text) || vi.quantidade) || ')'::text, ', '::text) AS produtos,
+    sum(v.valor_pago) AS valortotal
+   FROM v_vendas_tb v
+     JOIN v_vendas_item_tb vi ON v.id = vi.venda_id
+     JOIN p_produtos_tb p ON vi.produto_id = p.id
+     JOIN c_clientes_tb c ON v.nome_cliente_id = c.id
+  GROUP BY c.nome;
+ALTER TABLE public.v_relatorio_vendas
+    OWNER TO postgres;

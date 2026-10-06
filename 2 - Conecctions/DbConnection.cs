@@ -21,7 +21,7 @@ namespace EmpresaVendas.Conecctions
             try
             {
                 //INICIA CONEXÃO COM O MEU BANCO DE DADOS
-                Connection = new NpgsqlConnection("Server=localhost;Port=5433;Database=empresa_venda;User ID=postgres;Password=123456");
+                Connection = new NpgsqlConnection("Server=localhost;Port=5433;Database=empresa_venda;User ID=postgres;Password=123");
                 Connection.Open();
             }
             catch (Exception ex)

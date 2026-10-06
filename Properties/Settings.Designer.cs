@@ -26,7 +26,7 @@ namespace EmpresaVendas.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Port=5433;Host=localhost;Database=empresa_venda;Username=postgres;Password=123456" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Port=5433;Host=localhost;Database=empresa_venda;Username=postgres;Password=123" +
             ";Persist Security Info=True")]
         public string empresa_vendaConnectionString {
             get {

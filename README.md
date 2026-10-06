@@ -123,11 +123,14 @@ CREATE OR REPLACE VIEW public.v_relatorio_vendas
  AS
  SELECT c.nome AS nomecliente,
     string_agg(((p.nome::text || ' (Qtd: '::text) || vi.quantidade) || ')'::text, ', '::text) AS produtos,
-    sum(v.valor_pago) AS valortotal
+    -- Soma o valor de cada venda uma única vez (somar após o JOIN com os itens multiplicava o valor pela quantidade de itens)
+    ( SELECT sum(v2.valor_pago)
+        FROM v_vendas_tb v2
+       WHERE v2.nome_cliente_id = c.id) AS valortotal
    FROM v_vendas_tb v
      JOIN v_vendas_item_tb vi ON v.id = vi.venda_id
      JOIN p_produtos_tb p ON vi.produto_id = p.id
      JOIN c_clientes_tb c ON v.nome_cliente_id = c.id
-  GROUP BY c.nome;
+  GROUP BY c.id, c.nome;
 ALTER TABLE public.v_relatorio_vendas
     OWNER TO postgres;

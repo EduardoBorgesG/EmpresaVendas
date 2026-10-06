@@ -32,29 +32,29 @@ namespace EmpresaVendas.Classes
         }
         public Cliente(string telefone, int id)
         {
-            Telefone = telefone.Length == 15 && !string.IsNullOrEmpty(telefone) ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             Id = id;
         }
-        public Cliente(int id, string nome_cliente, string email, string cep, string endereco) 
-        { 
+        public Cliente(int id, string nome_cliente, string email, string cep, string endereco)
+        {
             Id = id;
             nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
             nome = nome_cliente;
             Email = email;
-            Telefone = cep;
+            Cep = cep;
             Endereco = endereco;
         }
         public Cliente(string nome_cliente, string email, string telefone, string cep, string endereco)
         {
             nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
             nome = nome_cliente;
-            Email = email.ToLower();
-            //Verifica se o telefone está totalmente preenchido e não é nulo
-            Telefone = telefone.Length == 15 && !string.IsNullOrEmpty(telefone) ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            Email = email?.ToLower();
+            //Verifica se o telefone não é nulo e se está totalmente preenchido
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             //Verifica se o CEP não é nulo e se está totalmente preenchido
-            Cep = cep.Length == 9 && !string.IsNullOrEmpty(cep) ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
+            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
             Cep = cep;
             Endereco = endereco;
         }
@@ -65,11 +65,11 @@ namespace EmpresaVendas.Classes
             nome = nome_cliente;
             Email = !string.IsNullOrEmpty(email) ? email : throw new Exception("O Email não pode estar vazio");
             Email = email.ToLower();
-            //Verifica se o telefone está totalmente preenchido e não é nulo
-            Telefone = telefone.Length == 15 && !string.IsNullOrEmpty(telefone) ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            //Verifica se o telefone não é nulo e se está totalmente preenchido
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             //Verifica se o CEP não é nulo e se está totalmente preenchido
-            Cep = cep.Length == 9 && !string.IsNullOrEmpty(cep) ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
+            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
             Cep = cep;
             Endereco = !string.IsNullOrEmpty(endereco) ? endereco : throw new Exception("O Endereço não pode estar vazio");
             Endereco = endereco;

@@ -49,12 +49,12 @@ namespace EmpresaVendas._5___Formularios.Clientes
                 var id = Convert.ToInt32(gridClientesInativos.CurrentRow.Cells[0].Value);
                 _clienteSerico.AtivarCliente(id);
                 btnAtivarCliente.Enabled = false;
-                MessageBox.Show("Cliente invativado com sucesso!", "Cliente Ativado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Cliente ativado com sucesso!", "Cliente Ativado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CarregarGrid();
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show($"Ocorreu um erro ao ativar o cliente : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

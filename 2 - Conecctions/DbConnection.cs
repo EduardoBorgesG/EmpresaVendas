@@ -37,6 +37,12 @@ namespace EmpresaVendas.Conecctions
             }
         }
         
+        //INICIA UMA TRANSAÇÃO PARA AGRUPAR VÁRIOS COMANDOS (TUDO OU NADA)
+        public NpgsqlTransaction IniciarTransacao()
+        {
+            return Connection.BeginTransaction();
+        }
+
         public object ExecuteScalarMetodo(string sql, object param, NpgsqlTransaction transaction = null)
         {        
             //RETORNA O RESULTADO DA MINHA QUERY EM UM OBJECT

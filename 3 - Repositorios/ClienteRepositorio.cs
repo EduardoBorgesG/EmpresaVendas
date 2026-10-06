@@ -21,13 +21,9 @@ namespace EmpresaVendas.Repositorios
         public bool VerificaCliente(string telefone)
         {
             //METODO QUE VERIFICA SE JÁ POSSUÍ O TELEFONE CADASTRADO
-            string query = $"SELECT id FROM public.c_clientes_tb WHERE telefone = '{telefone}'";
-            var result = conn.VerificarnoBanco(sql: query, param: telefone);
-            if (result != null)
-            {
-                MessageBox.Show("Esse telefone já está cadastrado no banco de dados");
-                return false;
-            }
+            //Retorna true quando o telefone ainda NÃO existe (pode cadastrar)
+            string query = "SELECT id FROM public.c_clientes_tb WHERE telefone = @telefone";
+            var result = conn.VerificarnoBanco(sql: query, param: new { telefone });
             return result == null;
         }
         //Adiciona um cliente no banco de dados

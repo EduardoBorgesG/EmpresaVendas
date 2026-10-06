@@ -13,13 +13,12 @@ namespace EmpresaVendas._3___Repositorios
 {
     public interface IVendaRepositorio
     {
-        //INCLUÍ VENDA
-        int IncluirVenda(Venda venda);
+        //INCLUÍ VENDA, ITENS E BAIXA O ESTOQUE (TRANSAÇÃO ÚNICA)
+        int RegistrarVenda(Venda venda, List<VendaItens> itens);
         object AdquiriPropriedades(int id);
         object VerificarQuantidade(int id);
         object AdquirirEstoquePreco(int id);
         decimal AtualizaPreco(int id);
-        bool InserirVendaItem(VendaItens vendaItens);
         
         
 

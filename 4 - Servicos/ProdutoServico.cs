@@ -21,12 +21,12 @@ namespace EmpresaVendas.Servicos
         //Incluir produto
         public void NovoProduto(Produto novoProduto)
         {
-            if (_produtoRepositorio.VerificaProduto(novoProduto.nome) == true)
+            //Lança exceção para o formulário exibir o erro e não mostrar a mensagem de sucesso
+            if (!_produtoRepositorio.VerificaProduto(novoProduto.nome))
             {
-                _produtoRepositorio.CadastrarProduto(novoProduto);
-                return;
+                throw new Exception("Já existe um produto cadastrado com esse nome");
             }
-            MessageBox.Show("Este produto já está cadastrado");
+            _produtoRepositorio.CadastrarProduto(novoProduto);
 
         }
         //editar produto

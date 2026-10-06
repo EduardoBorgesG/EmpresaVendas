@@ -20,6 +20,8 @@ namespace EmpresaVendas.Formularios
     public partial class frmClientes : Form
     {
         private readonly IClienteSerico _clienteSerico;
+        //Id do cliente que está sendo editado (guardado ao clicar em Editar)
+        private int _idClienteEmEdicao;
 
         public frmClientes(IClienteSerico clienteSerico)
         {
@@ -118,14 +120,14 @@ namespace EmpresaVendas.Formularios
                     var Cliente = new Cliente(nome, email, telefone, cep, endereco);
                     _clienteSerico.NovoCliente(Cliente);
                     MessageBox.Show("Registro incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    //Só limpa os campos se deu certo, para o usuário poder corrigir em caso de erro
+                    LimparCampos();
+                    ObterClientes();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocorreu um erro ao Incluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);                   
+                    MessageBox.Show($"Ocorreu um erro ao Incluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                LimparCampos();
-                ObterClientes();
             }
         }
         /// <summary>
@@ -135,6 +137,8 @@ namespace EmpresaVendas.Formularios
         /// <param name="e"></param>
         private void btnEditarClientes_Click(object sender, EventArgs e)
         {
+            if (gridClientes.CurrentRow == null) return;
+            _idClienteEmEdicao = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
             ObterDados();
             btnCancelarEdicao.Enabled = true;
             btnSalvar.Enabled = true;
@@ -172,7 +176,8 @@ namespace EmpresaVendas.Formularios
             try
             {
                 //Metodo para editar um cliente
-                var id = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
+                //Usa o id guardado no Editar, e não a linha selecionada agora (que pode ter mudado)
+                var id = _idClienteEmEdicao;
                 var nome = txtNomeCliente.Text;
                 var email = txtEmailCliente.Text;
                 var telefone = mtxtTelefoneCliente.Text;
@@ -184,10 +189,11 @@ namespace EmpresaVendas.Formularios
                 LimparCampos();
                 //atualiza os dados da minha grid
                 ObterClientes();
-                btnEditarCliente.Enabled = true;               
+                btnEditarCliente.Enabled = true;
                 btnSalvar.Enabled = false;
                 btnCancelarEdicao.Enabled = false;
-            } 
+                btnIncluirCliente.Enabled = true;
+            }
             catch (Exception ex)
             { 
                 MessageBox.Show($"Ocorreu um erro ao Salvar : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -201,6 +207,7 @@ namespace EmpresaVendas.Formularios
             btnEditarCliente.Enabled = true;
             btnSalvar.Enabled= false;
             btnCancelarEdicao.Enabled= false;
+            btnIncluirCliente.Enabled = true;
         }
 
         private void gridClientes_CellClick(object sender, DataGridViewCellEventArgs e)

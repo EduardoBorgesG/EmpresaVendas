@@ -22,6 +22,9 @@ namespace EmpresaVendas.Formularios.Produtos
     {
         private readonly IProdutoServico _produtoServico;
         private List<Produto> Produto { get; set; } = new List<Produto>();
+        private static readonly CultureInfo CulturaBR = new CultureInfo("pt-BR");
+        //Id do produto que está sendo editado (guardado ao clicar em Editar)
+        private int _idProdutoEmEdicao;
         public frmProdutos(IProdutoServico produtoServico)
         {
             InitializeComponent();
@@ -34,6 +37,22 @@ namespace EmpresaVendas.Formularios.Produtos
         private void PermitirNumero(object sender, KeyPressEventArgs e)
         {
             e.Handled = (!char.IsNumber(e.KeyChar)) ? true : e.Handled;
+        }
+        /// <summary>
+        /// Converte o texto do campo de preço ("R$ 1.234,56", "12,50" ou "12.50") em decimal,
+        /// sem depender da cultura configurada no Windows
+        /// </summary>
+        private static decimal ConverterPreco(string texto)
+        {
+            string valor = texto.Replace("R$", "").Trim();
+            //Com vírgula: formato brasileiro (ponto = milhar, vírgula = decimal)
+            //Sem vírgula: o ponto, se existir, é tratado como separador decimal
+            CultureInfo cultura = valor.Contains(",") ? CulturaBR : CultureInfo.InvariantCulture;
+            if (!decimal.TryParse(valor, NumberStyles.Number, cultura, out decimal preco) || preco < 0)
+            {
+                throw new Exception("Preço do produto inválido");
+            }
+            return preco;
         }
         /// <summary>
         /// Obtem os produtos do banco de dados e alimenta minha data grid
@@ -50,8 +69,8 @@ namespace EmpresaVendas.Formularios.Produtos
             //Coleta os dados da grid e passa para os campos de texto
             txtNomeProduto.Text = gridProdutos.CurrentRow.Cells[1].Value.ToString();
             rtxtDescricaoProduto.Text = gridProdutos.CurrentRow.Cells[2].Value.ToString();
-            string x = gridProdutos.CurrentRow.Cells[3].Value.ToString();
-            txtPrecoProduto.Text = "R$" + x.Replace(".", ",");
+            decimal preco = Convert.ToDecimal(gridProdutos.CurrentRow.Cells[3].Value);
+            txtPrecoProduto.Text = "R$ " + preco.ToString("N2", CulturaBR);
             txtEstoqueProduto.Text = gridProdutos.CurrentRow.Cells[4].Value.ToString();
         }
         private void LimparCampos()
@@ -78,6 +97,8 @@ namespace EmpresaVendas.Formularios.Produtos
         }
         private void btnEditarProduto_Click(object sender, EventArgs e)
         {
+            if (gridProdutos.CurrentRow == null) return;
+            _idProdutoEmEdicao = Convert.ToInt32(gridProdutos.CurrentRow.Cells[0].Value);
             ObterDados();
             btnCadastrarProduto.Enabled = false;
             btnSalvarProduto.Enabled = true;
@@ -102,19 +123,19 @@ namespace EmpresaVendas.Formularios.Produtos
                 {
                     var nome = txtNomeProduto.Text;
                     var descricao = rtxtDescricaoProduto.Text;
-                    var preco_produto = Convert.ToDecimal(txtPrecoProduto.Text.Replace("R$", "").Replace(".", ","));
+                    var preco_produto = ConverterPreco(txtPrecoProduto.Text);
                     var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
                     var Produto = new Produto(nome, descricao, estoque, preco_produto);
                     _produtoServico.NovoProduto(Produto);
                     MessageBox.Show("Produto incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    //Só limpa os campos se deu certo, para o usuário poder corrigir em caso de erro
+                    LimparCampos();
+                    ObterProduto();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ocorreu um erro ao Incluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                LimparCampos();
-                ObterProduto();
             }
         }
 
@@ -150,14 +171,16 @@ namespace EmpresaVendas.Formularios.Produtos
 
         private void btnSalvarProduto_Click(object sender, EventArgs e)
         {
-            var id = Convert.ToInt32(gridProdutos.CurrentRow.Cells[0].Value);
+            //Usa o id guardado no Editar, e não a linha selecionada agora (que pode ter mudado)
+            var id = _idProdutoEmEdicao;
             try
             {
-                //Metodo para editar um cliente                
+                //Metodo para editar um produto
                 var nome = txtNomeProduto.Text;
-                var descricao = rtxtDescricaoProduto.Text;              
-                var preco_produto = Convert.ToDecimal(txtPrecoProduto.Text.Replace("R$", "").Replace(",00", "").Replace(",","."));
-                var produto = new Produto(id, nome, descricao, preco_produto);
+                var descricao = rtxtDescricaoProduto.Text;
+                var preco_produto = ConverterPreco(txtPrecoProduto.Text);
+                var estoque = Convert.ToInt32(txtEstoqueProduto.Text);
+                var produto = new Produto(id, nome, descricao, preco_produto, estoque);
                 _produtoServico.AtualizarProduto(produto);
                 MessageBox.Show("Produto editado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimparCampos();
@@ -181,7 +204,9 @@ namespace EmpresaVendas.Formularios.Produtos
             LimparCampos();
             btnEditarProduto.Enabled = true;
             btnSalvarProduto.Enabled = false;
-        }       
+            btnCadastrarProduto.Enabled = true;
+            btnCancelar.Enabled = false;
+        }
         private void txtEstoqueProduto_Enter(object sender, EventArgs e)
         {
         }

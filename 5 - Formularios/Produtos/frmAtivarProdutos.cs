@@ -51,7 +51,7 @@ namespace EmpresaVendas._5___Formularios.Produtos
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show($"Ocorreu um erro ao ativar o produto : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
 

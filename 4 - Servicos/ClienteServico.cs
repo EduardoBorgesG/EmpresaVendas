@@ -22,12 +22,12 @@ namespace EmpresaVendas.Servicos
         /// <param name="novoCliente"></param>
         public void NovoCliente(Cliente novoCliente)
         {
-            if (_clienteRepositorio.VerificaCliente(novoCliente.Telefone) == true)
+            //Lança exceção para o formulário exibir o erro e não mostrar a mensagem de sucesso
+            if (!_clienteRepositorio.VerificaCliente(novoCliente.Telefone))
             {
-                _clienteRepositorio.CadastrarCliente(novoCliente);
-                return;
+                throw new Exception("Já existe um cliente cadastrado com esse telefone");
             }
-            MessageBox.Show("Este cliente já está cadastrado");
+            _clienteRepositorio.CadastrarCliente(novoCliente);
 
         }
         /// <summary>

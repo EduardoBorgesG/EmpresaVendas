@@ -33,23 +33,10 @@ namespace EmpresaVendas._4___Servicos
                 throw ex;
             }
         }
-        public int NovaVenda(Venda venda)
+        public int FinalizarVenda(Venda venda, List<VendaItens> itens)
         {
-            var result = _vendaRepositorio.IncluirVenda(venda);
-            return result;
-
-        }
-        public bool InserirDetalhes(VendaItens vendaItens)
-        {
-            try
-            {
-                var resultado = _vendaRepositorio.InserirVendaItem(vendaItens);
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            if (itens == null || itens.Count == 0) throw new Exception("Adicione ao menos um produto à venda");
+            return _vendaRepositorio.RegistrarVenda(venda, itens);
         }
         public object AdquirirProdutos(int id)
         {

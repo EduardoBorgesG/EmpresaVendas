@@ -30,7 +30,7 @@ namespace EmpresaVendas._3___Repositorios
         //Editar Produto
         public bool EditarProduto(Produto produto)
         {
-            string query = $"UPDATE public.p_produtos_tb SET nome= '{produto.nome}', descricao= '{produto.Descricao}', preco_produto= '{produto.Preco_produto}' WHERE id = {produto.Id};";
+            string query = "UPDATE public.p_produtos_tb SET nome = @nome, descricao = @Descricao, preco_produto = @Preco_produto, estoque = @Estoque WHERE id = @Id;";
             var result = conn.Executar(sql: query, param: produto) ; 
             return result == 1;
         }
@@ -45,13 +45,9 @@ namespace EmpresaVendas._3___Repositorios
         public bool VerificaProduto(string nome) 
         {
             //METODO QUE VERIFICA SE JÁ possuí esse produto cadastrado
-            string query = $"SELECT id FROM public.p_produtos_tb WHERE nome = '{nome}'";
-            var result = conn.VerificarnoBanco(sql: query, param: nome);
-            if (result != null)
-            {
-                MessageBox.Show("Esse produto já está cadastrado no banco de dados");
-                return false;
-            }
+            //Retorna true quando o produto ainda NÃO existe (pode cadastrar)
+            string query = "SELECT id FROM public.p_produtos_tb WHERE nome = @nome";
+            var result = conn.VerificarnoBanco(sql: query, param: new { nome });
             return result == null;
 
         }

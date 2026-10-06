@@ -13,10 +13,8 @@ namespace EmpresaVendas._4___Servicos
 {
     public interface IVendaServico
     {
-        int NovaVenda(Venda venda);
+        int FinalizarVenda(Venda venda, List<VendaItens> itens);
         decimal AtualizaPreco(int id);
         object AdquirirProdutos(int id);
-        
-        bool InserirDetalhes(VendaItens vendaItens);        
     }
 }

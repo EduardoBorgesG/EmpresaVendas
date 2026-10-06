@@ -1,124 +1,168 @@
-﻿using EmpresaVendas._1___Classes;
-using EmpresaVendas.Classes;
-using EmpresaVendas.Conecctions;
-using System;
+using EmpresaVendas._1___Classes;
+using EmpresaVendas.Infra;
+using Npgsql;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Data;
 
 namespace EmpresaVendas._3___Repositorios
 {
     public class ProdutoRepositorio : IProdutoRepositorio
     {
-        private readonly DbConnection<Produto> conn;
+        private readonly IConnectionFactory _connectionFactory;
 
-        public ProdutoRepositorio(DbConnection<Produto> conn)
+        public ProdutoRepositorio(IConnectionFactory connectionFactory)
         {
-            this.conn = conn;
+            _connectionFactory = connectionFactory;
         }
+
         //Cadastrar Produto
         public bool CadastrarProduto(Produto produto)
         {
-            string query = @"INSERT INTO public.p_produtos_tb(
-	                         nome, descricao, preco_produto, estoque, ativo)
-	                         VALUES (@nome, @descricao, @preco_produto, @estoque, true);";
-            var result = conn.Executar(sql: query, param: produto);
-            return result == 1;
+            const string sql = @"INSERT INTO public.p_produtos_tb (nome, descricao, preco_produto, estoque, ativo)
+                                 VALUES (@nome, @descricao, @preco_produto, @estoque, true);";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@nome", produto.nome);
+                comando.AdicionarParametro("@descricao", produto.Descricao);
+                comando.AdicionarParametro("@preco_produto", produto.Preco_produto);
+                comando.AdicionarParametro("@estoque", produto.Estoque);
+                return comando.ExecuteNonQuery() == 1;
+            }
         }
+
         //Editar Produto
         public bool EditarProduto(Produto produto)
         {
-            string query = "UPDATE public.p_produtos_tb SET nome = @nome, descricao = @Descricao, preco_produto = @Preco_produto, estoque = @Estoque WHERE id = @Id;";
-            var result = conn.Executar(sql: query, param: produto) ; 
-            return result == 1;
+            const string sql = @"UPDATE public.p_produtos_tb
+                                 SET nome = @nome, descricao = @descricao, preco_produto = @preco_produto, estoque = @estoque
+                                 WHERE id = @id;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@nome", produto.nome);
+                comando.AdicionarParametro("@descricao", produto.Descricao);
+                comando.AdicionarParametro("@preco_produto", produto.Preco_produto);
+                comando.AdicionarParametro("@estoque", produto.Estoque);
+                comando.AdicionarParametro("@id", produto.Id);
+                return comando.ExecuteNonQuery() == 1;
+            }
         }
-        //Remover Produto
+
+        //Não deleta o produto: zera o estoque e o marca como inativo
         public bool EsgotarProduto(int id)
         {
-            //NÃO DELETA PRODUTO SOMENTE ZERA O ESTOQUE
-            string query = $"UPDATE public.p_produtos_tb SET estoque = 0, ativo = false WHERE id = {id};";
-            var result = conn.Executar(sql: query, param: id);
-            return result == 1;
-        }
-        public bool VerificaProduto(string nome) 
-        {
-            //METODO QUE VERIFICA SE JÁ possuí esse produto cadastrado
-            //Retorna true quando o produto ainda NÃO existe (pode cadastrar)
-            string query = "SELECT id FROM public.p_produtos_tb WHERE nome = @nome";
-            var result = conn.VerificarnoBanco(sql: query, param: new { nome });
-            return result == null;
+            const string sql = "UPDATE public.p_produtos_tb SET estoque = 0, ativo = false WHERE id = @id;";
 
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@id", id);
+                return comando.ExecuteNonQuery() == 1;
+            }
         }
+
+        public bool VerificaProduto(string nome)
+        {
+            //Retorna true quando o produto ainda NÃO existe (pode cadastrar)
+            const string sql = "SELECT 1 FROM public.p_produtos_tb WHERE nome = @nome LIMIT 1;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@nome", nome);
+                return comando.ExecuteScalar() == null;
+            }
+        }
+
         public bool AtivarProduto(int id)
         {
-            try
+            const string sql = "UPDATE public.p_produtos_tb SET ativo = true WHERE id = @id;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
             {
-                string query = $"UPDATE public.p_produtos_tb SET ativo = true WHERE id = {id}";
-                var produtos = conn.Executar(sql: query, param: id);
-                return produtos == 1;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                comando.AdicionarParametro("@id", id);
+                return comando.ExecuteNonQuery() == 1;
             }
         }
 
         public List<Produto> ObterProdutosInativos()
         {
-            try
+            const string sql = @"SELECT id, nome
+                                 FROM public.p_produtos_tb
+                                 WHERE ativo = false
+                                 ORDER BY nome;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
             {
-                string query = @"SELECT id, nome FROM public.p_produtos_tb WHERE ativo = false";
-                var produtos = conn.Consulta(sql: query);
-                return produtos.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return comando.LerLista(registro => new Produto
+                {
+                    Id = registro.ObterInt("id"),
+                    nome = registro.ObterString("nome")
+                });
             }
         }
+
+        //Obtém os produtos ativos
         public List<Produto> ObterProduto()
         {
-            try
-            {
-                string query = @"SELECT * FROM public.p_produtos_tb WHERE ativo = true;";
-                var produtos = conn.Consulta(sql: query);
-                return produtos.ToList();
+            const string sql = @"SELECT id, nome, descricao, preco_produto, estoque
+                                 FROM public.p_produtos_tb
+                                 WHERE ativo = true
+                                 ORDER BY nome;";
 
-            }
-            catch (Exception ex)
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
             {
-                throw ex;
+                return comando.LerLista(MapearProduto);
             }
         }
-        //Alimenta a minha lista de seleção de produtos buscando por ID
+
+        //Alimenta a lista de seleção de produtos da venda buscando por ID
         public List<Produto> ColetaDadosProduto(int id)
         {
-            try
+            const string sql = "SELECT id, nome, preco_produto FROM public.p_produtos_tb WHERE id = @id;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
             {
-                string query = $"SELECT id, nome, preco_produto FROM p_produtos_tb WHERE id = {id}";
-                var Produtos2 = conn.ColetaValoresDoBanco(sql: query, param: id);
-                return Produtos2.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                comando.AdicionarParametro("@id", id);
+                return comando.LerLista(registro => new Produto
+                {
+                    Id = registro.ObterInt("id"),
+                    nome = registro.ObterString("nome"),
+                    Preco_produto = registro.ObterDecimal("preco_produto")
+                });
             }
         }
+
+        //Retorna o estoque atual do produto (ou null se o produto não existir)
         public object VerificaEstoque(int id)
         {
-            //Verifica se a quantidade é maior ou igual ao estoque
-            try
+            const string sql = "SELECT estoque FROM public.p_produtos_tb WHERE id = @id;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
             {
-                string query = $"SELECT estoque FROM p_produtos_tb WHERE id = {id}";
-                object result = conn.VerificarnoBanco(sql: query, param: id);
-                return result;
+                comando.AdicionarParametro("@id", id);
+                return comando.ExecuteScalar();
             }
-            catch (Exception ex)
+        }
+
+        private static Produto MapearProduto(IDataRecord registro)
+        {
+            return new Produto
             {
-                throw ex;
-            }
+                Id = registro.ObterInt("id"),
+                nome = registro.ObterString("nome"),
+                Descricao = registro.ObterString("descricao"),
+                Preco_produto = registro.ObterDecimal("preco_produto"),
+                Estoque = registro.ObterInt("estoque")
+            };
         }
     }
 }

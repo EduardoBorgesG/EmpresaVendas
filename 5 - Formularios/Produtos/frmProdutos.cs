@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EmpresaVendas.Conecctions;
 using System.Globalization;
 using NPOI.XWPF.UserModel;
 

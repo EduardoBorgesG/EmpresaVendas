@@ -1,13 +1,5 @@
-﻿using EmpresaVendas._1___Classes;
-using EmpresaVendas.Classes;
-using Npgsql;
-using NPOI.SS.Formula.Functions;
-using System;
+using EmpresaVendas._1___Classes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EmpresaVendas._3___Repositorios
 {
@@ -15,12 +7,5 @@ namespace EmpresaVendas._3___Repositorios
     {
         //INCLUÍ VENDA, ITENS E BAIXA O ESTOQUE (TRANSAÇÃO ÚNICA)
         int RegistrarVenda(Venda venda, List<VendaItens> itens);
-        object AdquiriPropriedades(int id);
-        object VerificarQuantidade(int id);
-        object AdquirirEstoquePreco(int id);
-        decimal AtualizaPreco(int id);
-        
-        
-
     }
 }

@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
-using Dapper;
-using EmpresaVendas.Conecctions;
 using System.Data;
 using System.Windows.Forms;
 using EmpresaVendas.Formularios;

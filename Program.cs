@@ -4,9 +4,9 @@ using EmpresaVendas._5___Formularios;
 using EmpresaVendas._5___Formularios.Clientes;
 using EmpresaVendas._5___Formularios.Produtos;
 using EmpresaVendas._5___Formularios.Vendas;
-using EmpresaVendas.Conecctions;
 using EmpresaVendas.Formularios;
 using EmpresaVendas.Formularios.Produtos;
+using EmpresaVendas.Infra;
 using EmpresaVendas.Repositorios;
 using EmpresaVendas.Servicos;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,9 +40,12 @@ namespace EmpresaVendas
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            // Conexão, repositórios e serviços são Scoped: uma instância por formulário aberto
+            // Fábrica de conexões: Singleton porque só guarda a connection string (sem estado mutável).
+            // Cada operação dos repositórios abre e fecha a própria conexão com "using"
+            services.AddSingleton<IConnectionFactory, NpgsqlConnectionFactory>();
+
+            // Repositórios e serviços são Scoped: uma instância por formulário aberto
             // (cada formulário é criado em um escopo próprio pelo FormFactory)
-            services.AddScoped(typeof(DbConnection<>));
 
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();

@@ -9,9 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EmpresaVendas.Classes;
-using EmpresaVendas.Conecctions;
 using Npgsql;
-using Dapper;
 using EmpresaVendas.Servicos;
 using EmpresaVendas._5___Formularios.Clientes;
 
@@ -119,7 +117,7 @@ namespace EmpresaVendas.Formularios
                     var endereco = txtEnderecoCliente.Text;
                     var Cliente = new Cliente(nome, email, telefone, cep, endereco);
                     _clienteSerico.NovoCliente(Cliente);
-                    MessageBox.Show("Registro incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Cliente incluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     //Só limpa os campos se deu certo, para o usuário poder corrigir em caso de erro
                     LimparCampos();
                     ObterClientes();

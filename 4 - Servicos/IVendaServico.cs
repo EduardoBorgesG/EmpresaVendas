@@ -1,20 +1,10 @@
-﻿using EmpresaVendas._1___Classes;
-using EmpresaVendas.Classes;
-using Npgsql;
-using NPOI.SS.Formula.Functions;
-using System;
+using EmpresaVendas._1___Classes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EmpresaVendas._4___Servicos
 {
     public interface IVendaServico
     {
         int FinalizarVenda(Venda venda, List<VendaItens> itens);
-        decimal AtualizaPreco(int id);
-        object AdquirirProdutos(int id);
     }
 }

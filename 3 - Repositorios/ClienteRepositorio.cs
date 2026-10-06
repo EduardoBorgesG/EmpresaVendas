@@ -1,87 +1,139 @@
-﻿using EmpresaVendas._1___Classes;
 using EmpresaVendas.Classes;
-using EmpresaVendas.Conecctions;
+using EmpresaVendas.Infra;
+using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
-
+using System.Data;
 
 namespace EmpresaVendas.Repositorios
 {
     public class ClienteRepositorio : IClienteRepositorio
     {
-        private readonly DbConnection<Cliente> conn;
+        private readonly IConnectionFactory _connectionFactory;
 
-        public ClienteRepositorio(DbConnection<Cliente> conn)
+        public ClienteRepositorio(IConnectionFactory connectionFactory)
         {
-            this.conn = conn;
+            _connectionFactory = connectionFactory;
         }
+
         public bool VerificaCliente(string telefone)
         {
-            //METODO QUE VERIFICA SE JÁ POSSUÍ O TELEFONE CADASTRADO
             //Retorna true quando o telefone ainda NÃO existe (pode cadastrar)
-            string query = "SELECT id FROM public.c_clientes_tb WHERE telefone = @telefone";
-            var result = conn.VerificarnoBanco(sql: query, param: new { telefone });
-            return result == null;
+            const string sql = "SELECT 1 FROM public.c_clientes_tb WHERE telefone = @telefone LIMIT 1;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@telefone", telefone);
+                return comando.ExecuteScalar() == null;
+            }
         }
+
         //Adiciona um cliente no banco de dados
         public bool CadastrarCliente(Cliente cliente)
         {
-            string query = @"INSERT INTO public.c_clientes_tb(
-	                        nome, email, telefone, cep, endereco, ativo)
-	                        VALUES (@nome, @email, @telefone, @cep, @endereco, true);";
+            const string sql = @"INSERT INTO public.c_clientes_tb (nome, email, telefone, cep, endereco, ativo)
+                                 VALUES (@nome, @email, @telefone, @cep, @endereco, true);";
 
-            var result = conn.Executar(sql: query, param: cliente);
-            return result == 1;
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@nome", cliente.nome);
+                comando.AdicionarParametro("@email", cliente.Email);
+                comando.AdicionarParametro("@telefone", cliente.Telefone);
+                comando.AdicionarParametro("@cep", cliente.Cep);
+                comando.AdicionarParametro("@endereco", cliente.Endereco);
+                return comando.ExecuteNonQuery() == 1;
+            }
         }
 
-
-        //Coleta todos os dados do meu banco e armazena em uma lista
         public List<Cliente> ObterClienteAtivos()
         {
+            const string sql = @"SELECT id, nome, email, telefone, cep, endereco
+                                 FROM public.c_clientes_tb
+                                 WHERE ativo = true
+                                 ORDER BY nome;";
 
-            string query = @"SELECT * FROM public.c_clientes_tb WHERE ativo = true;";
-            var clientes = conn.Consulta(sql: query);
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                return comando.LerLista(MapearCliente);
+            }
+        }
 
-            return clientes.ToList();
-        }
-        //Edita somente o telefone
-        public bool AtualizarTelefone(Cliente cliente)
-        {
-            string query = $"UPDATE public.c_cliente_tb SET telefone = '{cliente.Telefone} WHERE {cliente.Id}'";
-            var result = conn.Executar(sql: query, param: cliente);
-            return result == 1;
-        }
         //Edição de Cliente
         public bool AtualizarCliente(Cliente cliente)
         {
+            const string sql = @"UPDATE public.c_clientes_tb
+                                 SET nome = @nome, email = @email, telefone = @telefone, cep = @cep, endereco = @endereco
+                                 WHERE id = @id;";
 
-            string query = $"UPDATE public.c_clientes_tb SET nome = '{cliente.nome}', email = '{cliente.Email}', cep = '{cliente.Cep}', endereco = '{cliente.Endereco}', telefone = '{cliente.Telefone}' WHERE id = {cliente.Id};";
-            var result = conn.Executar(sql: query, param: cliente);
-            return result == 1;
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@nome", cliente.nome);
+                comando.AdicionarParametro("@email", cliente.Email);
+                comando.AdicionarParametro("@telefone", cliente.Telefone);
+                comando.AdicionarParametro("@cep", cliente.Cep);
+                comando.AdicionarParametro("@endereco", cliente.Endereco);
+                comando.AdicionarParametro("@id", cliente.Id);
+                return comando.ExecuteNonQuery() == 1;
+            }
         }
 
-        //Exclusão de cliente
+        //Não exclui: apenas marca o cliente como inativo
         public bool InativarCliente(string id)
         {
-            string query = $"UPDATE public.c_clientes_tb SET ativo = false WHERE id = {id};";
-            var result = conn.Executar(sql: query, param: id);
-            return result == 1;
+            return AlterarStatus(Convert.ToInt32(id), ativo: false);
         }
-        public List<Cliente> ObterClienteInativos()
-        {
-            string query = "SELECT id, nome FROM public.c_clientes_tb WHERE ativo = false";
-            var result = conn.Consulta(sql: query);
-            return result.ToList();
-        }
+
         public bool AtivarCliente(int id)
         {
-            string query = $"UPDATE public.c_clientes_tb SET ativo = true WHERE id = {id};";
-            var result = conn.Executar(sql: query, param: id);
-            return result == 1;
+            return AlterarStatus(id, ativo: true);
+        }
 
+        public List<Cliente> ObterClienteInativos()
+        {
+            const string sql = @"SELECT id, nome
+                                 FROM public.c_clientes_tb
+                                 WHERE ativo = false
+                                 ORDER BY nome;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                return comando.LerLista(registro => new Cliente
+                {
+                    Id = registro.ObterInt("id"),
+                    nome = registro.ObterString("nome")
+                });
+            }
+        }
+
+        private bool AlterarStatus(int id, bool ativo)
+        {
+            const string sql = "UPDATE public.c_clientes_tb SET ativo = @ativo WHERE id = @id;";
+
+            using (var conexao = _connectionFactory.CriarConexao())
+            using (var comando = new NpgsqlCommand(sql, conexao))
+            {
+                comando.AdicionarParametro("@ativo", ativo);
+                comando.AdicionarParametro("@id", id);
+                return comando.ExecuteNonQuery() == 1;
+            }
+        }
+
+        private static Cliente MapearCliente(IDataRecord registro)
+        {
+            return new Cliente
+            {
+                Id = registro.ObterInt("id"),
+                nome = registro.ObterString("nome"),
+                Email = registro.ObterString("email"),
+                Telefone = registro.ObterString("telefone"),
+                Cep = registro.ObterString("cep"),
+                Endereco = registro.ObterString("endereco")
+            };
         }
     }
 }

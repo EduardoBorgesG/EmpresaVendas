@@ -36,9 +36,6 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -82,6 +79,7 @@
       <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -108,7 +106,9 @@
     <Compile Include="1 - Classes\VendaItens.cs" />
     <Compile Include="1 - Classes\Produto.cs" />
     <Compile Include="1 - Classes\Venda.cs" />
-    <Compile Include="2 - Conecctions\DbConnection.cs" />
+    <Compile Include="2 - Infra\IConnectionFactory.cs" />
+    <Compile Include="2 - Infra\NpgsqlConnectionFactory.cs" />
+    <Compile Include="2 - Infra\NpgsqlExtensions.cs" />
     <Compile Include="3 - Repositorios\IProdutoRepositorio.cs" />
     <Compile Include="3 - Repositorios\IVendaRepositorio.cs" />
     <Compile Include="3 - Repositorios\ProdutoRepositorio.cs" />

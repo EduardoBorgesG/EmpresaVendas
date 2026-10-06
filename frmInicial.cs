@@ -1,4 +1,4 @@
-﻿using EmpresaVendas.Formularios;
+using EmpresaVendas.Formularios;
 using EmpresaVendas.Formularios.Produtos;
 using System;
 using System.Collections.Generic;
@@ -9,12 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EmpresaVendas.Conecctions;
-using EmpresaVendas.Servicos;
-using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios;
 using EmpresaVendas._5___Formularios.Vendas;
 using EmpresaVendas._5___Formularios.Clientes;
-using Microsoft.Reporting.WinForms;
 using EmpresaVendas._5___Formularios.Produtos;
 
 
@@ -22,63 +19,51 @@ namespace EmpresaVendas
 {
     public partial class frmInicial : Form
     {
-        private readonly IClienteSerico _clienteSerico;
-        private readonly IProdutoServico _produtoServico;
-        private readonly IVendaServico _vendaServico;
+        private readonly IFormFactory _formFactory;
 
-        public frmInicial(IClienteSerico clienteSerico, IProdutoServico produtoServico, IVendaServico vendaServico)
+        public frmInicial(IFormFactory formFactory)
         {
             InitializeComponent();
-            _clienteSerico = clienteSerico;
-            _produtoServico = produtoServico;
-            _vendaServico = vendaServico;
+            _formFactory = formFactory;
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmProdutos frm = new frmProdutos(_produtoServico);
-            frm.Show();
-        }      
+            _formFactory.Criar<frmProdutos>().Show();
+        }
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmClientes frm = new frmClientes(_clienteSerico);
-            frm.Show();
+            _formFactory.Criar<frmClientes>().Show();
         }
 
         private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVenda frm = new frmVenda(_vendaServico, _clienteSerico, _produtoServico);
-            frm.Show();
+            _formFactory.Criar<frmVenda>().Show();
         }
 
         private void relatórioClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRelatorioClientes frm = new frmRelatorioClientes();
-            frm.Show();
+            _formFactory.Criar<frmRelatorioClientes>().Show();
         }
 
         private void relatórioProdutosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRelatorioProduto frm = new frmRelatorioProduto();
-            frm.Show();
+            _formFactory.Criar<frmRelatorioProduto>().Show();
         }
 
         private void relatórioVendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRelatorioVenda frm = new frmRelatorioVenda();
-            frm.Show();
+            _formFactory.Criar<frmRelatorioVenda>().Show();
         }
 
         private void produtosInativosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAtivarProdutos frm = new frmAtivarProdutos(_produtoServico);
-            frm.Show();
+            _formFactory.Criar<frmAtivarProdutos>().Show();
         }
 
         private void clientesInativosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAtivarClientes frm = new frmAtivarClientes(_clienteSerico);
-            frm.Show();
+            _formFactory.Criar<frmAtivarClientes>().Show();
         }
     }
 }

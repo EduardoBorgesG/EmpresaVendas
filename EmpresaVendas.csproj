@@ -136,6 +136,7 @@
     <Compile Include="4 - Servicos\IVendaServico.cs" />
     <Compile Include="4 - Servicos\ProdutoServico.cs" />
     <Compile Include="4 - Servicos\VendaServico.cs" />
+    <Compile Include="5 - Formularios\FormFactory.cs" />
     <Compile Include="5 - Formularios\Clientes\frmAtivarClientes.cs">
       <SubType>Form</SubType>
     </Compile>

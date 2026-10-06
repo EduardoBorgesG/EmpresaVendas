@@ -14,10 +14,10 @@ namespace EmpresaVendas._3___Repositorios
 {
     public class VendaRepositorio : IVendaRepositorio
     {
-        private DbConnection<Venda> conn;
-        public VendaRepositorio()
+        private readonly DbConnection<Venda> conn;
+        public VendaRepositorio(DbConnection<Venda> conn)
         {
-            conn = new DbConnection<Venda>();
+            this.conn = conn;
         }
         //Alimenta lista de seleção dos clientes
         

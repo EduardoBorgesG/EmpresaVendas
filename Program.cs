@@ -1,16 +1,16 @@
-﻿using EmpresaVendas._3___Repositorios;
+using EmpresaVendas._3___Repositorios;
 using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios;
 using EmpresaVendas._5___Formularios.Clientes;
 using EmpresaVendas._5___Formularios.Produtos;
 using EmpresaVendas._5___Formularios.Vendas;
 using EmpresaVendas.Conecctions;
 using EmpresaVendas.Formularios;
+using EmpresaVendas.Formularios.Produtos;
 using EmpresaVendas.Repositorios;
 using EmpresaVendas.Servicos;
 using Microsoft.Extensions.DependencyInjection;
-using NPOI.SS.Formula.Functions;
 using System;
-using System.Data.Common;
 using System.Windows.Forms;
 
 namespace EmpresaVendas
@@ -33,26 +33,38 @@ namespace EmpresaVendas
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(serviceProvider.GetRequiredService<frmInicial>());
+
+            // Ao fechar o programa, descarta o container (e o que ainda estiver aberto nele)
+            (serviceProvider as IDisposable)?.Dispose();
         }
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            // Registrando a interface e implementação do serviço
-            services.AddSingleton<IClienteSerico, ClienteSerico>();
-            services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
-            services.AddSingleton<IProdutoServico, ProdutoServico>();
-            services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
-            services.AddSingleton<IVendaServico, VendaServico>();
-            services.AddTransient<IVendaRepositorio, VendaRepositorio>();
+            // Conexão, repositórios e serviços são Scoped: uma instância por formulário aberto
+            // (cada formulário é criado em um escopo próprio pelo FormFactory)
+            services.AddScoped(typeof(DbConnection<>));
 
-            services.AddTransient(p => new DbConnection<T>());
-            // Registrando o formulário inicial
+            services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+            services.AddScoped<IVendaRepositorio, VendaRepositorio>();
+
+            services.AddScoped<IClienteSerico, ClienteSerico>();
+            services.AddScoped<IProdutoServico, ProdutoServico>();
+            services.AddScoped<IVendaServico, VendaServico>();
+
+            // Fábrica usada pelo frmInicial para abrir as telas
+            services.AddSingleton<IFormFactory, FormFactory>();
+
+            // Formulários
             services.AddTransient<frmInicial>();
             services.AddTransient<frmClientes>();
+            services.AddTransient<frmProdutos>();
             services.AddTransient<frmVenda>();
-            services.AddTransient<frmAtivarProdutos>();
             services.AddTransient<frmAtivarClientes>();
-
+            services.AddTransient<frmAtivarProdutos>();
+            services.AddTransient<frmRelatorioClientes>();
+            services.AddTransient<frmRelatorioProduto>();
+            services.AddTransient<frmRelatorioVenda>();
         }
     }
 }

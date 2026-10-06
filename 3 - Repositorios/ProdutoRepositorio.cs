@@ -12,11 +12,11 @@ namespace EmpresaVendas._3___Repositorios
 {
     public class ProdutoRepositorio : IProdutoRepositorio
     {
-        private DbConnection<Produto> conn;
+        private readonly DbConnection<Produto> conn;
 
-        public ProdutoRepositorio()
+        public ProdutoRepositorio(DbConnection<Produto> conn)
         {
-            conn = new DbConnection<Produto>();
+            this.conn = conn;
         }
         //Cadastrar Produto
         public bool CadastrarProduto(Produto produto)

@@ -12,7 +12,7 @@ using NPOI.SS.Formula.Functions;
 
 namespace EmpresaVendas.Conecctions
 {
-    public class DbConnection<T>where T : class
+    public class DbConnection<T> : IDisposable where T : class
     {
         private NpgsqlConnection Connection { get; set; }
 
@@ -30,11 +30,10 @@ namespace EmpresaVendas.Conecctions
             }
         }
         //FINALIZADO A CONEXÃO COM O BANCO APÓS TERMINAR DE USA-LA
+        //CHAMADO AUTOMATICAMENTE PELO CONTAINER DE DI QUANDO O ESCOPO DO FORMULÁRIO É DESCARTADO
         public void Dispose()
         {
-            if (Connection.State == ConnectionState.Open) {
-                Connection.Close();
-            }
+            Connection?.Dispose();
         }
         
         //INICIA UMA TRANSAÇÃO PARA AGRUPAR VÁRIOS COMANDOS (TUDO OU NADA)

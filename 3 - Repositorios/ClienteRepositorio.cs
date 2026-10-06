@@ -12,11 +12,11 @@ namespace EmpresaVendas.Repositorios
 {
     public class ClienteRepositorio : IClienteRepositorio
     {
-        private DbConnection<Cliente> conn;
+        private readonly DbConnection<Cliente> conn;
 
-        public ClienteRepositorio()
+        public ClienteRepositorio(DbConnection<Cliente> conn)
         {
-            conn = new DbConnection<Cliente>();
+            this.conn = conn;
         }
         public bool VerificaCliente(string telefone)
         {

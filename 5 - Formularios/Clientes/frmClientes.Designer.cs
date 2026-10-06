@@ -50,9 +50,14 @@
             // gridClientes
             // 
             this.gridClientes.AccessibleName = "gridClientes";
+            this.gridClientes.AllowUserToAddRows = false;
+            this.gridClientes.AllowUserToDeleteRows = false;
             this.gridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridClientes.Location = new System.Drawing.Point(12, 188);
+            this.gridClientes.MultiSelect = false;
             this.gridClientes.Name = "gridClientes";
+            this.gridClientes.ReadOnly = true;
+            this.gridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridClientes.Size = new System.Drawing.Size(757, 336);
             this.gridClientes.TabIndex = 0;
             this.gridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientes_CellClick);

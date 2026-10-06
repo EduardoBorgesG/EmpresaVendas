@@ -47,9 +47,14 @@
             // 
             // gridProdutos
             // 
+            this.gridProdutos.AllowUserToAddRows = false;
+            this.gridProdutos.AllowUserToDeleteRows = false;
             this.gridProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProdutos.Location = new System.Drawing.Point(6, 210);
+            this.gridProdutos.MultiSelect = false;
             this.gridProdutos.Name = "gridProdutos";
+            this.gridProdutos.ReadOnly = true;
+            this.gridProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridProdutos.Size = new System.Drawing.Size(668, 307);
             this.gridProdutos.TabIndex = 0;
             // 

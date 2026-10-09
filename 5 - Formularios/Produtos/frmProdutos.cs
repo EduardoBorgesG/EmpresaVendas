@@ -1,18 +1,11 @@
 ﻿using EmpresaVendas._1___Classes;
+using EmpresaVendas._1___Classes.Excecoes;
 using EmpresaVendas._4___Servicos;
-using EmpresaVendas.Classes;
-using EmpresaVendas.Servicos;
+using EmpresaVendas._5___Formularios.Erros;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Globalization;
-using NPOI.XWPF.UserModel;
+using System.Windows.Forms;
 
 
 namespace EmpresaVendas.Formularios.Produtos
@@ -20,14 +13,16 @@ namespace EmpresaVendas.Formularios.Produtos
     public partial class frmProdutos : Form
     {
         private readonly IProdutoServico _produtoServico;
+        private readonly ITratadorErros _tratadorErros;
         private List<Produto> Produto { get; set; } = new List<Produto>();
         private static readonly CultureInfo CulturaBR = new CultureInfo("pt-BR");
         //Id do produto que está sendo editado (guardado ao clicar em Editar)
         private int _idProdutoEmEdicao;
-        public frmProdutos(IProdutoServico produtoServico)
+        public frmProdutos(IProdutoServico produtoServico, ITratadorErros tratadorErros)
         {
             InitializeComponent();
             _produtoServico = produtoServico;
+            _tratadorErros = tratadorErros;
             ObterProduto();
             txtPrecoProduto.Text = "R$";
             btnSalvarProduto.Enabled = false;
@@ -49,7 +44,7 @@ namespace EmpresaVendas.Formularios.Produtos
             CultureInfo cultura = valor.Contains(",") ? CulturaBR : CultureInfo.InvariantCulture;
             if (!decimal.TryParse(valor, NumberStyles.Number, cultura, out decimal preco) || preco < 0)
             {
-                throw new Exception("Preço do produto inválido");
+                throw new RegraNegocioException("Preço do produto inválido");
             }
             return preco;
         }
@@ -133,7 +128,7 @@ namespace EmpresaVendas.Formularios.Produtos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocorreu um erro ao Incluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _tratadorErros.Tratar($"Ocorreu um erro ao Incluir : ", ex);
                 }
             }
         }
@@ -164,7 +159,7 @@ namespace EmpresaVendas.Formularios.Produtos
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao Excluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 _tratadorErros.Tratar($"Ocorreu um erro ao Excluir : ", ex);
             }
         }
 
@@ -192,7 +187,7 @@ namespace EmpresaVendas.Formularios.Produtos
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao Salvar : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar($"Ocorreu um erro ao Salvar : ", ex);
             }
 
         }

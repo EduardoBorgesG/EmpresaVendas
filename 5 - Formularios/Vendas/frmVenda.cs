@@ -1,18 +1,12 @@
 using EmpresaVendas._1___Classes;
 using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios.Erros;
 using EmpresaVendas.Servicos;
-using Npgsql;
-using NPOI.POIFS.NIO;
-using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -23,17 +17,19 @@ namespace EmpresaVendas._5___Formularios.Vendas
         private readonly IVendaServico _vendaServico;
         private readonly IClienteSerico _clienteSerico;
         private readonly IProdutoServico _produtoServico;
+        private readonly ITratadorErros _tratadorErros;
         private static readonly CultureInfo CulturaBR = new CultureInfo("pt-BR");
         List<VendaItemDTO> vendas = new List<VendaItemDTO>();
 
 
-        public frmVenda(IVendaServico vendaServico, IClienteSerico clienteSerico, IProdutoServico produtoServico)
+        public frmVenda(IVendaServico vendaServico, IClienteSerico clienteSerico, IProdutoServico produtoServico, ITratadorErros tratadorErros)
         {
             InitializeComponent();
             txtValorASerPago.Text = "R$";
             _produtoServico = produtoServico;
             _clienteSerico = clienteSerico;
             _vendaServico = vendaServico;
+            _tratadorErros = tratadorErros;
             ListarCliente();
             ListarProdutos();
             btnFinalizarVenda.Enabled = false;
@@ -53,7 +49,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao carregar os clientes : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao carregar os clientes", ex);
             }
         }
         private void ListarProdutos()
@@ -68,7 +64,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao carregar os produtos : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao carregar os produtos", ex);
             }
 
         }
@@ -102,7 +98,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao finalizar a venda : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao finalizar a venda", ex);
             }
         }
         private decimal CalcularTotal()
@@ -176,7 +172,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao adicionar o produto : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao adicionar o produto", ex);
             }
         }
         private void txtQuantidade_Leave(object sender, EventArgs e)
@@ -189,7 +185,7 @@ namespace EmpresaVendas._5___Formularios.Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao verificar o estoque : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao verificar o estoque", ex);
             }
         }
 

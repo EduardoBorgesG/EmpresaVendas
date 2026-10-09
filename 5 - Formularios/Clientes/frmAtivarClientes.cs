@@ -1,24 +1,20 @@
-﻿using EmpresaVendas._4___Servicos;
+﻿using EmpresaVendas._5___Formularios.Erros;
 using EmpresaVendas.Servicos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace EmpresaVendas._5___Formularios.Clientes
 {
     public partial class frmAtivarClientes : Form
     {
         private readonly IClienteSerico _clienteSerico;
-        public frmAtivarClientes(IClienteSerico clienteSerico)
+        private readonly ITratadorErros _tratadorErros;
+        public frmAtivarClientes(IClienteSerico clienteSerico, ITratadorErros tratadorErros)
         {
             InitializeComponent();
             _clienteSerico = clienteSerico;
+            _tratadorErros = tratadorErros;
             CarregarGrid();
             btnAtivarCliente.Enabled = false;
         }
@@ -54,7 +50,7 @@ namespace EmpresaVendas._5___Formularios.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao ativar o cliente : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um  erro ao ativar o cliente", ex);
             }
         }
     }

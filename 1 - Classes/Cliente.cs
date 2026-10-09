@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Npgsql;
-using System.Data;
-using System.Windows.Forms;
-using EmpresaVendas.Formularios;
-using System.Runtime.CompilerServices;
+using EmpresaVendas._1___Classes.Excecoes;
 
 namespace EmpresaVendas.Classes
 {
@@ -30,14 +22,14 @@ namespace EmpresaVendas.Classes
         }
         public Cliente(string telefone, int id)
         {
-            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new RegraNegocioException("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             Id = id;
         }
         public Cliente(int id, string nome_cliente, string email, string cep, string endereco)
         {
             Id = id;
-            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new RegraNegocioException("Nome do cliente não pode estar vazio");
             nome = nome_cliente;
             Email = email;
             Cep = cep;
@@ -45,31 +37,31 @@ namespace EmpresaVendas.Classes
         }
         public Cliente(string nome_cliente, string email, string telefone, string cep, string endereco)
         {
-            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new RegraNegocioException("Nome do cliente não pode estar vazio");
             nome = nome_cliente;
             Email = email?.ToLower();
             //Verifica se o telefone não é nulo e se está totalmente preenchido
-            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new RegraNegocioException("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             //Verifica se o CEP não é nulo e se está totalmente preenchido
-            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
+            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new RegraNegocioException("CEP do Cliente está preenchido incorretamente");
             Cep = cep;
             Endereco = endereco;
         }
         public Cliente(int id, string nome_cliente, string email, string telefone, string cep, string endereco)
         {
             //Construtor utilizado para salvar edição
-            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new Exception("Nome do cliente não pode estar vazio");
+            nome = !string.IsNullOrEmpty(nome_cliente) ? nome_cliente : throw new RegraNegocioException("Nome do cliente não pode estar vazio");
             nome = nome_cliente;
-            Email = !string.IsNullOrEmpty(email) ? email : throw new Exception("O Email não pode estar vazio");
+            Email = !string.IsNullOrEmpty(email) ? email : throw new RegraNegocioException("O Email não pode estar vazio");
             Email = email.ToLower();
             //Verifica se o telefone não é nulo e se está totalmente preenchido
-            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new Exception("Telefone do cliente preenchido incorretamente");
+            Telefone = !string.IsNullOrEmpty(telefone) && telefone.Length == 15 ? telefone : throw new RegraNegocioException("Telefone do cliente preenchido incorretamente");
             Telefone = telefone;
             //Verifica se o CEP não é nulo e se está totalmente preenchido
-            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new Exception("CEP do Cliente está preenchido incorretamente");
+            Cep = !string.IsNullOrEmpty(cep) && cep.Length == 9 ? cep : throw new RegraNegocioException("CEP do Cliente está preenchido incorretamente");
             Cep = cep;
-            Endereco = !string.IsNullOrEmpty(endereco) ? endereco : throw new Exception("O Endereço não pode estar vazio");
+            Endereco = !string.IsNullOrEmpty(endereco) ? endereco : throw new RegraNegocioException("O Endereço não pode estar vazio");
             Endereco = endereco;
             Id = id;
         }

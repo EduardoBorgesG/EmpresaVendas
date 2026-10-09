@@ -1,4 +1,5 @@
 ﻿using EmpresaVendas._1___Classes;
+using EmpresaVendas._1___Classes.Excecoes;
 using EmpresaVendas._3___Repositorios;
 using EmpresaVendas._4___Servicos;
 using EmpresaVendas.Classes;
@@ -24,7 +25,7 @@ namespace EmpresaVendas.Servicos
             //Lança exceção para o formulário exibir o erro e não mostrar a mensagem de sucesso
             if (!_produtoRepositorio.VerificaProduto(novoProduto.nome))
             {
-                throw new Exception("Já existe um produto cadastrado com esse nome");
+                throw new RegraNegocioException("Já existe um produto cadastrado com esse nome");
             }
             _produtoRepositorio.CadastrarProduto(novoProduto);
 

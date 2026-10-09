@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1 - Classes\Excecoes\RegraNegocioException.cs" />
     <Compile Include="1 - Classes\Cliente.cs" />
     <Compile Include="1 - Classes\VendaItemDTO.cs" />
     <Compile Include="1 - Classes\VendaItens.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="4 - Servicos\IVendaServico.cs" />
     <Compile Include="4 - Servicos\ProdutoServico.cs" />
     <Compile Include="4 - Servicos\VendaServico.cs" />
+    <Compile Include="5 - Formularios\Erros\ITratadorErros.cs" />
+    <Compile Include="5 - Formularios\Erros\TratadorErros.cs" />
     <Compile Include="5 - Formularios\FormFactory.cs" />
     <Compile Include="5 - Formularios\Clientes\frmAtivarClientes.cs">
       <SubType>Form</SubType>
@@ -270,7 +273,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Imagens\" />
-    <Folder Include="Logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

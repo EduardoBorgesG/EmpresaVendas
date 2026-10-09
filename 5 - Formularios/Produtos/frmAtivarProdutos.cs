@@ -1,14 +1,6 @@
-﻿using EmpresaVendas._1___Classes;
-using EmpresaVendas._4___Servicos;
-using EmpresaVendas.Servicos;
+﻿using EmpresaVendas._4___Servicos;
+using EmpresaVendas._5___Formularios.Erros;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EmpresaVendas._5___Formularios.Produtos
@@ -16,10 +8,14 @@ namespace EmpresaVendas._5___Formularios.Produtos
     public partial class frmAtivarProdutos : Form
     {
         private readonly IProdutoServico _produtoServico;
-        public frmAtivarProdutos(IProdutoServico produtoServico)
+        private readonly ITratadorErros _tratadorErros;
+
+        public frmAtivarProdutos(IProdutoServico produtoServico, ITratadorErros tratadorErros)
         {
             InitializeComponent();
+
             _produtoServico = produtoServico;
+            _tratadorErros = tratadorErros;
             CarregarGrid();
             btnAtivarProduto.Enabled = false;
 
@@ -51,7 +47,7 @@ namespace EmpresaVendas._5___Formularios.Produtos
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao ativar o produto : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao ativar o produto", ex);
             }
             
 

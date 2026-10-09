@@ -1,4 +1,5 @@
-﻿using EmpresaVendas.Classes;
+﻿using EmpresaVendas._1___Classes.Excecoes;
+using EmpresaVendas.Classes;
 using EmpresaVendas.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace EmpresaVendas.Servicos
             //Lança exceção para o formulário exibir o erro e não mostrar a mensagem de sucesso
             if (!_clienteRepositorio.VerificaCliente(novoCliente.Telefone))
             {
-                throw new Exception("Já existe um cliente cadastrado com esse telefone");
+                throw new RegraNegocioException("Já existe um cliente cadastrado com esse telefone");
             }
             _clienteRepositorio.CadastrarCliente(novoCliente);
 

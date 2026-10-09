@@ -1,4 +1,5 @@
 using EmpresaVendas._1___Classes;
+using EmpresaVendas._1___Classes.Excecoes;
 using EmpresaVendas.Infra;
 using Npgsql;
 using System;
@@ -50,7 +51,7 @@ namespace EmpresaVendas._3___Repositorios
                         comando.AdicionarParametro("@produto_id", item.produto_id);
                         if (comando.ExecuteNonQuery() != 1)
                         {
-                            throw new Exception($"Estoque insuficiente para o produto de código {item.produto_id}. A venda não foi gravada.");
+                            throw new RegraNegocioException($"Estoque insuficiente para o produto de código {item.produto_id}. A venda não foi gravada.");
                         }
                     }
 

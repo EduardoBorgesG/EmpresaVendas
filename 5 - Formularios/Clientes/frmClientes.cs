@@ -12,19 +12,22 @@ using EmpresaVendas.Classes;
 using Npgsql;
 using EmpresaVendas.Servicos;
 using EmpresaVendas._5___Formularios.Clientes;
+using EmpresaVendas._5___Formularios.Erros;
 
 namespace EmpresaVendas.Formularios
 {
     public partial class frmClientes : Form
     {
         private readonly IClienteSerico _clienteSerico;
+        private readonly ITratadorErros _tratadorErros;
         //Id do cliente que está sendo editado (guardado ao clicar em Editar)
         private int _idClienteEmEdicao;
 
-        public frmClientes(IClienteSerico clienteSerico)
+        public frmClientes(IClienteSerico clienteSerico, ITratadorErros tratadorErros)
         {
             InitializeComponent();
             _clienteSerico = clienteSerico;
+            _tratadorErros = tratadorErros;
             ObterClientes();
             FormatarDg();
             btnCancelarEdicao.Enabled = false;
@@ -124,7 +127,7 @@ namespace EmpresaVendas.Formularios
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocorreu um erro ao Incluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _tratadorErros.Tratar("Ocorreu um erro ao Incluir", ex);
                 }
             }
         }
@@ -165,7 +168,7 @@ namespace EmpresaVendas.Formularios
                 }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao Excluir : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao Excluir", ex);
             }
         }
 
@@ -194,7 +197,7 @@ namespace EmpresaVendas.Formularios
             }
             catch (Exception ex)
             { 
-                MessageBox.Show($"Ocorreu um erro ao Salvar : {ex.Message} ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tratadorErros.Tratar("Ocorreu um erro ao Salvar", ex);
             }
             
         }

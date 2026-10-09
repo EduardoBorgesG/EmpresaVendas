@@ -43,6 +43,7 @@ namespace EmpresaVendas
             // Fábrica de conexões: Singleton porque só guarda a connection string (sem estado mutável).
             // Cada operação dos repositórios abre e fecha a própria conexão com "using"
             services.AddSingleton<IConnectionFactory, NpgsqlConnectionFactory>();
+            services.AddSingleton<ILogger, ArquivoLogger>();
 
             // Repositórios e serviços são Scoped: uma instância por formulário aberto
             // (cada formulário é criado em um escopo próprio pelo FormFactory)

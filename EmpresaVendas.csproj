@@ -106,7 +106,9 @@
     <Compile Include="1 - Classes\VendaItens.cs" />
     <Compile Include="1 - Classes\Produto.cs" />
     <Compile Include="1 - Classes\Venda.cs" />
+    <Compile Include="2 - Infra\ArquivoLogger.cs" />
     <Compile Include="2 - Infra\IConnectionFactory.cs" />
+    <Compile Include="2 - Infra\ILogger.cs" />
     <Compile Include="2 - Infra\NpgsqlConnectionFactory.cs" />
     <Compile Include="2 - Infra\NpgsqlExtensions.cs" />
     <Compile Include="3 - Repositorios\IProdutoRepositorio.cs" />
@@ -268,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Imagens\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
